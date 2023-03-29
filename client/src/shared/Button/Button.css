@@ -1,0 +1,27 @@
+.btn-prim {
+    background: #00f2ea;
+    padding: 20px;
+    font-weight: 800;
+    font-size: 17px;
+    text-transform: capitalize;
+    overflow: hidden;
+}
+
+.btn-prim:after {
+    left: -100%;
+    clip-path: polygon(10% 0, 70% 0, 90% 100%, 30% 100%);
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 300ms ease;
+}
+  
+.btn-prim:hover::after {
+    left: 100%;
+}
+
+.btn-sec {
+    background-color: #dcdcdc;
+    padding: 20px;
+    font-weight: 800;
+    font-size: 17px;
+    text-transform: capitalize;
+}

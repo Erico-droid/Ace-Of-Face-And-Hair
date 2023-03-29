@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+
+.mirror {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 19vh;
+    overflow: hidden;
+}
+
+h1 {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(20px + 5vw);
+    font-weight: 900;
+    color: #474747;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+
+

@@ -1,0 +1,27 @@
+.img-services {
+    min-width: 100%;
+    max-height: 195px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* .carousel .card.col-md-12 {
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.carousel .card {
+    margin-left: 10px;
+    margin-right: 10px;
+} */
+
+.carousel .card img {
+    border-radius: 2.5px;
+} 
+
+.detailed-text p {
+    color: #000;
+    font-weight: 800;
+    text-align: left;
+    padding: 0px;
+}

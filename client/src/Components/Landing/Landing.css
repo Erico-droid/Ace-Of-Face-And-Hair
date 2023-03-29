@@ -1,0 +1,56 @@
+.landing-classic {
+    margin: 0;
+    padding: 0;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/148422/screencap-wheel.png) #fff;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 550px;
+  }
+  
+  
+  #video-background {
+    position: absolute;
+    right: 0; 
+    bottom: 0;
+    min-width: 65%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: 1;
+  }
+
+
+  video[poster] {
+    position: absolute;
+    right: 0; 
+    bottom: 0;
+    min-width: 65%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: 1;
+    object-fit: contain;
+  }
+  
+  .art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 38%, rgba(255,255,255,0) 100%);
+    /* background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 38%, rgba(255,255,255,0) 100%); */
+    z-index: 5;
+  }
+
+  .wording {
+    padding: 70px 0px 40px 0px;
+    font-size: 18px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  
