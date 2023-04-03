@@ -25,3 +25,19 @@
     text-align: left;
     padding: 0px;
 }
+
+.react-multiple-carousel__arrow {
+    background: rgba(0,242,234, 0.5) !important;
+    border-radius: 5px;
+}
+
+.react-multiple-carousel__arrow::before {
+    font-size: 20px;
+    color: #000 !important;
+    font-weight: 800 !important;
+    display: block;
+    font-family: revicons;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}

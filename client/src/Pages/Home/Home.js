@@ -5,7 +5,7 @@ import Button from '../../shared/Button/Button'
 import Landing from '../../Components/Landing/Landing'
 import Heading from '../../shared/Heading/Heading'
 import ItemSlider from '../../Components/ItemSlider/ItemSlider'
-import "./Home.css"
+import Gallery from '../../Components/Gallery/Gallery'
 
 export default function Home() {
   return (
@@ -15,6 +15,13 @@ export default function Home() {
               <Heading wording={"Services"}>Services</Heading>
               <ItemSlider />
             </div>
+            <div className = "work container-fluid">
+              <Heading wording={"Our Work"}>Our Work</Heading>
+              <Card>
+                <Gallery />
+              </Card>
+            </div>
+
     </div>
   )
 }
