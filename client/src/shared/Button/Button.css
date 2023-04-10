@@ -1,10 +1,13 @@
 .btn-prim {
-    background: #00f2ea;
-    padding: 20px;
+    background: rgb(0,242,234);
+    background: linear-gradient(321deg, rgba(0,242,234,1) 57%, rgba(0,242,174,1) 100%);
+    padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: 17px;
+    font-size: calc(0.5vw + 10px);
     text-transform: capitalize;
     overflow: hidden;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .btn-prim:after {
@@ -20,8 +23,12 @@
 
 .btn-sec {
     background-color: #dcdcdc;
-    padding: 20px;
+    padding: 15px calc(1.1vw + 20px);
     font-weight: 800;
-    font-size: 17px;
+    font-size: calc(0.5vw + 10px);;
     text-transform: capitalize;
+}
+
+.detail-icon {
+    padding-right: 10px;
 }

@@ -6,6 +6,7 @@ import Axios from 'axios';
 import "./ItemSlider.css";
 import Card from "../../shared/Card/Card";
 import Placeholder from './Placeholder'
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 export default function ItemSlider(props) {
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
@@ -14,8 +15,9 @@ export default function ItemSlider(props) {
 
     async function getImages() {
         var object = [];
+        var random = Math.round(Math.random() * 50);
         const client = createClient('aqrcwOOWlZKCTMFRklR8ZZSoJ50WJ3gqtbNovW5nFCAonmcQhSWFGDwF');
-        client.photos.curated({ per_page: 12 })
+        client.photos.curated({ per_page: 12, page: random })
           .then(response => {
               object = response.photos;
               return object;
@@ -34,20 +36,33 @@ export default function ItemSlider(props) {
     }, [])
 
     const responsive = {
-        superLargeDesktop: {
+        SuperLargeDesktop: {
           // the naming can be any, depends on you.
-          breakpoint: { max: 4000, min: 3000 },
-          items: 5
+          breakpoint: {max: 4500, min: 3000 },
+          items: 8
         },
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
+        LargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 3000, min: 1500 },
           items: 6
         },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
+        desktop: {
+          breakpoint: { max: 1499, min: 1024 },
+          items: 5
+        },
+        medium: {
+          breakpoint: { max: 1024, min: 780 },
+          items: 4
+        },
+        xtramedium: {
+          breakpoint: { max: 779, min: 660 },
+          items: 3
+        },
+        small: {
+          breakpoint: { max: 659, min: 464 },
           items: 2
         },
-        mobile: {
+        xtrasmall: {
           breakpoint: { max: 464, min: 0 },
           items: 1
         }
@@ -61,6 +76,7 @@ export default function ItemSlider(props) {
           <Placeholder />
         </div>
         :
+        <FadeIn>
         <div className='container-fluid carousel'>
             <Carousel
             swipeable={true}
@@ -90,6 +106,7 @@ export default function ItemSlider(props) {
               })}
             </Carousel>
         </div>  
+        </FadeIn>
       }  
       </>
     )

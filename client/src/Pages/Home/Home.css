@@ -1,4 +1,12 @@
-.services {
+/* .services {
     margin-top: 30px;
     margin-bottom: 50px
-}
+} */
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly; /* Aligns the buttons with equal space between them */
+    align-items: center; /* Vertically centers the buttons within the container */
+    margin-top: 20px;
+    margin-bottom: 10px
+  }

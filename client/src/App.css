@@ -5,4 +5,24 @@ body {
   font-weight: normal;
   background: #F5F5F5;
   color: gray;
+  overflow-x: hidden;
+}
+
+@media (max-width: 575px) {
+  .button-parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+
+  .button-parent2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 0px;
+  }
+  
 }

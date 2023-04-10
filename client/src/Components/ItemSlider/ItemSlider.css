@@ -1,6 +1,7 @@
 .img-services {
     min-width: 100%;
     max-height: 195px;
+    min-height: 195px;
     padding-left: 10px;
     padding-right: 10px;
 }
