@@ -9,14 +9,37 @@ import FadeIn from "react-fade-in";
 import logo from '../../Assets/aofah.png';
 import { ThemeContext, themes } from '../../Contexts/ThemeContext'
 import Card from '../../shared/Card/Card';
+import Slide from '@mui/material/Slide';
+import Snackbar from '@mui/material/Snackbar';
+import { Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 export default function NavBar() {
 	const [checked, setChecked] = React.useState(false);
 	const [loading, setLoading] = React.useState(false);
+	const [open, setOpen] = React.useState({open: false,Transition: Slide,});
 
-	const handleChange = (event) => {
+
+	function SlideTransition(props) {
+		return <Slide {...props} direction="up" />;
+	}
+
+	const handleClose = () => {
+		setOpen({
+		  ...open,
+		  open: false,
+		});
+	};
+
+	const handleChange = (event, Transition) => {
 		setChecked(event.target.checked);
 		// changeTheme(checked ? themes.dark : themes.light);
+		setOpen({
+			open: true,
+			Transition,
+		});
 	};
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
@@ -43,7 +66,7 @@ export default function NavBar() {
 							{({ changeTheme }) => (
 						<Switch
 						checked={checked}
-						onChange={(evt) => {
+						onChange={(evt, SlideTransition) => {
 							handleChange(evt);
 							changeTheme(!checked ? themes.dark : themes.light);
 						}}
@@ -67,6 +90,26 @@ export default function NavBar() {
 		      </div>
 		    </div>
 		  </nav>
+		  <Snackbar
+				open={open.open}
+				onClose={handleClose}
+				TransitionComponent={open.Transition}
+				message={checked ?  "Dark Mode Activated." : "Light Mode Activated"}
+				key={Math.random()}
+				autoHideDuration={2000}
+				action = {
+					<React.Fragment>
+					<IconButton
+					aria-label="close"
+					color="inherit"
+					sx={{ p: 0.5 }}
+					onClick={handleClose}
+					>
+					<CloseIcon />
+					</IconButton>
+				</React.Fragment>
+				}
+			/>
 		  </> 
 		  }
   </div>

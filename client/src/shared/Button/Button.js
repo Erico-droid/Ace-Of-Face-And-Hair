@@ -3,7 +3,6 @@ import './Button.css';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 
 export default function Button(props) {
-  console.log(props.icon);
   return (
     <div>
         <button className = {`btn btn-${props.btn}`}>

@@ -12,6 +12,7 @@ export default function Instagram() {
     const CLIENT_TOKEN = "f35469ddfaa5c11b1285e8adfabc9696"
 
     const EMBED_CLIENT_TOKEN = `${APP_ID}|${CLIENT_TOKEN}`;
+    
 
     async function getMediaUrls() {
         const limit = 10;
@@ -22,10 +23,9 @@ export default function Instagram() {
             axios.get(url)
             .then((resp) => {
                 setMediaUrls(resp.data.data);
-                console.log(mediaUrls);
             })
         } catch(err) {
-            console.log('error: ', err);
+            throw(err);
         }
     }
 
@@ -38,7 +38,7 @@ export default function Instagram() {
         <div className = "card  wavy-card"><span className='instagram-header'>scroll to the right to view more of our instagram feed.</span></div>
         <div className="instagram-container">
             { mediaUrls.map(Post => {
-                    return <div><InstagramEmbed url={Post.permalink} width={340}/></div>
+                    return <div key={Math.random()}><InstagramEmbed url={Post.permalink} width={340}/></div>
                 })
             }
         </div>

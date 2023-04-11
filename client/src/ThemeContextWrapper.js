@@ -5,7 +5,6 @@ export default function ThemeContextWrapper(props) {
   const [theme, setTheme] = useState(themes.light);
 
   function changeTheme(theme) {
-    // console.log(theme);
     setTheme(theme);
   }
 
