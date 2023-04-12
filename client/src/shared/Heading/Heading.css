@@ -1,22 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@900&display=swap');
 
-
-.mirror {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 19vh;
-    overflow: hidden;
-}
 
 h1 {
     position: relative;
-    font-family: 'Roboto', sans-serif;
-    font-size: calc(8px + 3vw);
+    font-family: 'Barlow', sans-serif;
     font-weight: 900;
-    color: #474747;
+    color: #000;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    font-size: 80px;
+    line-height: 26px;
+}
+
+@media (max-width: 418px) {
+    h1 {
+        font-size: 15vw;
+    }
+}
+
+@media (min-width: 419) and (max-width: 768px) {
+h1 {
+    font-size: 12vw;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+h1 {
+    font-size: 9vw;
+}
+}
+
+@media (min-width: 1024px) {
+h1 {
+    font-size: 6vw;
+}
 }
 
 

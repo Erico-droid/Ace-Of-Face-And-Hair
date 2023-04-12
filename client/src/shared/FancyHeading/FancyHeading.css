@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+
+.fancy-h3-heading {
+    font-size: 70px;
+    font-family: 'Sedgwick Ave Display', cursive;
+    text-align: center;
+    background: linear-gradient(156deg, rgba(0,242,174,1) 39%, rgba(0,215,230,1) 45%, rgba(0,210,242,1) 60%, rgba(0,89,242,1) 56%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: capitalize;
+    margin-bottom:0px;
+    line-height: 78px;
+}
+
+@media (max-width: 418px) {
+    .fancy-h3-heading {
+        font-size: 15vw;
+    }
+}
+
+@media (min-width: 419) and (max-width: 768px) {
+.fancy-h3-heading {
+    font-size: 12vw;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+.fancy-h3-heading {
+    font-size: 7.5vw;
+}
+}
+
+@media (min-width: 1024px) {
+.fancy-h3-heading {
+    font-size: 5vw;
+}
+}
+
+  
+  
+  
+  
+  
+  

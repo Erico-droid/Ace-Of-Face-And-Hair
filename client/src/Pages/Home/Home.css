@@ -1,7 +1,10 @@
-/* .services {
-    margin-top: 30px;
-    margin-bottom: 50px
-} */
+
+
+@media(max-width: 472px) {
+    .services {
+        margin-top: 40vw;
+    }
+}
 
 .button-container {
     display: flex;

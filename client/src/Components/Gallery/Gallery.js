@@ -4,6 +4,10 @@ import MainGallery from "react-photo-gallery";
 import { createClient } from 'pexels';
 import PlaceHolder from './PlaceHolder'
 import FadeIn from 'react-fade-in/lib/FadeIn';
+import FancyHeading from '../../shared/FancyHeading/FancyHeading';
+import Heading from '../../shared/Heading/Heading';
+import Button from '../../shared/Button/Button';
+import AppsIcon from '@mui/icons-material/Apps';
 
 export default function Gallery() {
 
@@ -50,7 +54,17 @@ export default function Gallery() {
       :
       <FadeIn>
       <div>
+          <div className='heading-group'>
+                <FancyHeading>Browse Our</FancyHeading>
+                <Heading wording={"Services"}>Work</Heading>
+          </div>
         <MainGallery photos={photos}/>
+      </div>
+      <div className="container">
+        <div className = "button-container button-parent2">
+          <Button btn={"prim"}>Make An Appointment</Button>
+          <Button icon = {<AppsIcon/>} btn={"sec"}>View Our Projects</Button>
+        </div>
       </div>
       </FadeIn>
     }

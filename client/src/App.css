@@ -26,3 +26,9 @@ body {
   }
   
 }
+
+.heading-group {
+  height: 124px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

@@ -471,7 +471,7 @@
 
 var $e = $(e.relatedTarget);
 var idx = $e.index();
-var itemsPerSlide = 4;
+var itemsPerSlide = 5;
 var totalItems = $('.carousel-item').length;
 
 if (idx >= totalItems - (itemsPerSlide - 1)) {
@@ -488,8 +488,10 @@ if (idx >= totalItems - (itemsPerSlide - 1)) {
 });
 
 $('#carouselExample').carousel({
-interval: 2000
+interval: 500
 });
 
 </script>
 </html>
+
+
