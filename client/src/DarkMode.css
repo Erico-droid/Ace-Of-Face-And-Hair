@@ -132,3 +132,23 @@
 .dark-content iframe .Header {
     background: yellow
 }
+
+.dark-content .border-heading {
+    font-family: 'barlow', sans serif;
+    color: #d8d8d8;
+    line-height: 59px;
+    font-size: 40px;
+    text-transform: uppercase;
+    /* border-left: 9px solid black; */
+    border-left: 10px solid;
+    border-image: linear-gradient(0deg, rgba(0,89,242,1) 12%, rgba(0,215,230,1) 12%, rgba(0,242,174,1) 100%) 1;
+    padding-left: 20px;
+}
+
+.dark-content .property-card-h5 {
+    color: #cbfff0;
+}
+
+.dark-content .property-description {
+    background-color: #262626;
+}

@@ -14,6 +14,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { Button } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { NavLink } from 'react-router-dom';
 
 
 export default function NavBar(props) {
@@ -81,8 +82,8 @@ export default function NavBar(props) {
 		      </button>
 		      <div className="collapse navbar-collapse" id="ftco-nav">
 		        <ul className="navbar-nav ml-auto mr-md-3">
-		        	<li className="nav-item active"><a href="#" className="nav-link">Home</a></li>
-		        	<li className="nav-item"><a href="#" className="nav-link">About</a></li>
+		        	<li className="nav-item"><NavLink to="/" className = "nav-link" activeclassname="active">Home</NavLink></li>
+		        	<li className="nav-item"><NavLink to="/portfolio" className = "nav-link" activeclassname="active">Portfolio</NavLink></li>
 		        	<li className="nav-item"><a href="#" className="nav-link">Work</a></li>
 		        	<li className="nav-item"><a href="#" className="nav-link">Blog</a></li>
 		          <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>

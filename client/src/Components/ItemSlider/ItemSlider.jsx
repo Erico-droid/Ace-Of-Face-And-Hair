@@ -22,7 +22,7 @@ export default function ItemSlider(props) {
         var object = [];
         var random = Math.round(Math.random() * 50);
         const client = createClient('aqrcwOOWlZKCTMFRklR8ZZSoJ50WJ3gqtbNovW5nFCAonmcQhSWFGDwF');
-        client.photos.curated({ per_page: 16, page: random })
+        client.photos.curated({ per_page: 8, page: random })
           .then(response => {
               object = response.photos;
               return object;
