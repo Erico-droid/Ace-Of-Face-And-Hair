@@ -91,18 +91,23 @@ export default function ItemSlider(props) {
     }
 
     useEffect(() => {
-
-        console.log(images);
         getImages();
         loadSlider();
     }, [])
+
+    const PlaceHolderSettings = () => {
+        if (props.darkmode)
+          return <Placeholder backgroundColor="grey" foregroundColor="#ecebeb" />
+        else
+          return <Placeholder backgroundColor="#f3f3f3" foregroundColor="#ecebeb" />
+      }
 
     return (
       <>
       {loading ? 
         
         <div style={{ width: "100%"}}>
-          <Placeholder />
+          {PlaceHolderSettings()}
         </div>
         :
         <FadeIn>
@@ -142,13 +147,13 @@ export default function ItemSlider(props) {
                 </div>
                     <a className="card carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
                         <IconButton>
-                        <ArrowBackIosNewIcon  style={{ fontSize: 35, color: "#000", fontWeight: 800}}/>
+                        <ArrowBackIosNewIcon  style={props.darkmode ? { fontSize: 35, color: "#fff", fontWeight: 800} : { fontSize: 35, color: "#000", fontWeight: 800}}/>
                         </IconButton>
                         <span className="sr-only">Previous</span>
                     </a>
                     <a className="card carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
                         <IconButton>
-                        <ArrowForwardIosIcon style={{ fontSize: 35, color: "#000", fontWeight: 800}}/>
+                        <ArrowForwardIosIcon style={props.darkmode ? { fontSize: 35, color: "#fff", fontWeight: 800} : { fontSize: 35, color: "#000", fontWeight: 800}}/>
                         </IconButton>
                         <span className="sr-only">Next</span>
                     </a>

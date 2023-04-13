@@ -35,7 +35,7 @@ export default function Instagram() {
 
     return (
         <div className='instagram-section'>
-        <div className = "card  wavy-card"><span className='instagram-header'>scroll to the right to view more of our instagram feed.</span></div>
+        <div className = "card  wavy-card"><span className='instagram-header'>Unlock more stunning moments from our Instagram feed by scrolling right.</span></div>
         <div className="instagram-container">
             { mediaUrls.map(Post => {
                     return <div key={Math.random()}><InstagramEmbed url={Post.permalink} width={340}/></div>

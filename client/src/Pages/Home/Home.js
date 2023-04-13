@@ -10,15 +10,15 @@ import "./Home.css"
 import Instagram from '../../Components/Instagram/Instagram'
 import ContactSection from '../../Components/ContactSection/ContactSection'
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
             <Landing/>
               <div className = "services">
-                <ItemSlider />
+                <ItemSlider darkmode = {props.darkmode}/>
               </div>
              <div className = "work container-fluid">
-                <Gallery />
+                <Gallery darkmode = {props.darkmode}/>
             </div>
             <div className='instagram-section container-fluid'>
               <Instagram />

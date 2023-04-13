@@ -9,7 +9,7 @@ import Heading from '../../shared/Heading/Heading';
 import Button from '../../shared/Button/Button';
 import AppsIcon from '@mui/icons-material/Apps';
 
-export default function Gallery() {
+export default function Gallery(props) {
 
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,11 +45,18 @@ export default function Gallery() {
     getPhotos();
   }, [])
 
+  const PlaceHolderSettings = () => {
+    if (props.darkmode)
+      return <PlaceHolder backgroundColor="grey" foregroundColor="#ecebeb" />
+    else
+      return <PlaceHolder backgroundColor="#f3f3f3" foregroundColor="#ecebeb" />
+  }
+
   return (
     <>
     {loading ?
       <div style={{ width: "100%"}}>
-         <PlaceHolder />
+         {PlaceHolderSettings()}
        </div>
       :
       <FadeIn>

@@ -23,37 +23,14 @@
   }
 
 .dark-content  h1 {
-    position: relative;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: calc(8px + 3vw);
-    font-weight: 700;
     color: #fff;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     text-shadow: 0 0 0.15em #00f2ea;
-    user-select: none;
-    white-space: nowrap;
-    filter: blur(0.007em);
-    animation: shake 2.5s linear forwards;
-    margin-top: 30px;
 }
 
 .dark-content h1 span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    -webkit-clip-path: polygon(10% 0%, 44% 0%, 70% 100%, 55% 100%);
-            clip-path: polygon(10% 0%, 44% 0%, 70% 100%, 55% 100%);
     color: #fff;
-}
-
-.dark-content h1::before,
-.dark-content h1::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 .dark-content h1::before {
@@ -117,5 +94,41 @@
 
 
 .dark-content  p {
-    color: blue;
+    color: #cbf8ff;
+}
+
+.dark-content .wording p {
+    color: #cbf8ff;
+}
+
+.dark-content .instagram-header {
+    color: #cbf8ff;
+}
+
+.dark-content .pattern {
+    background-image: repeating-linear-gradient(45deg, #00d2f2 0, #00d2f2 1px, #262626 0, #262626 50%);
+}
+
+.dark-content .last-pattern {
+    background-image: repeating-linear-gradient(45deg, #00d2f2 0, #00d2f2 1px, #262626 0, #262626 50%);
+}
+
+.dark-content .contact-body p {
+    color: #fff;
+}
+
+.dark-content .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+    color: #00f2ae;
+}
+
+.dark-content .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    color: #cbfff0
+}
+
+.dark-content .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+    background-color: #cbfff0;
+}
+
+.dark-content iframe .Header {
+    background: yellow
 }

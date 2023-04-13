@@ -3,6 +3,7 @@
 .kilimanjaro_area {
     position: relative;
     z-index: 1;
+    margin-top: 20px;
 	}
 	.foo_top_header_one {
     background-color: #242021;
@@ -119,11 +120,13 @@ p, ul li, ol li {
 .kilimanjaro_social_links a {
     border: 1px solid #333;
     border-radius: 6px;
-    color: #888;
+    color: #fff;
     display: inline-block;
     font-size: 13px;
     margin-bottom: 3px;
     padding: 7px 12px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 .kilimanjaro_blog_area .kilimanjaro_date {
     color: #27ae60;

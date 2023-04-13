@@ -5,6 +5,9 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import Button from '../../shared/Button/Button';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 export default function Footer() {
     let currentYear = new Date().getFullYear();
@@ -24,11 +27,10 @@ export default function Footer() {
                         <div className="kilimanjaro_part m-top-15">
                             {/* <h5>Social Links</h5> */}
                             <ul className="kilimanjaro_social_links">
-                                <li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
-                                <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
-                                <li><a href="#"><i className="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a></li>
-                                <li><a href="#"><i className="fa fa-youtube" aria-hidden="true"></i> YouTube</a></li>
-                                <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+                                <li><a target = "_blank" href="https://web.facebook.com/aceoffaceandhair/"><FacebookIcon style={{color: "#1877f2"}} /> Facebook</a></li>
+                                <li><a target = "_blank" href="https://www.instagram.com/aceoffaceandhair/"><InstagramIcon style = {{ background: '-webkit-linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)',
+                                                                        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}} />Instagram</a></li>
+                                <li><a target = "_blank" href="https://www.youtube.com/@aceoffaceandhair1961"><YouTubeIcon style = {{color: "#FF0000"}}/> YouTube</a></li>
                             </ul>
                         </div>
                     </div>

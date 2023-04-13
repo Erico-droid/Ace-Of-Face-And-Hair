@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@900&display=swap');
 
 
-h1 {
+h1 span {
     position: relative;
     font-family: 'Barlow', sans-serif;
     font-weight: 900;
@@ -13,25 +13,25 @@ h1 {
 }
 
 @media (max-width: 418px) {
-    h1 {
+    h1 span {
         font-size: 15vw;
     }
 }
 
 @media (min-width: 419) and (max-width: 768px) {
-h1 {
+h1 span {
     font-size: 12vw;
 }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-h1 {
+h1 span {
     font-size: 9vw;
 }
 }
 
 @media (min-width: 1024px) {
-h1 {
+h1 span {
     font-size: 6vw;
 }
 }

@@ -16,11 +16,10 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-export default function NavBar() {
+export default function NavBar(props) {
 	const [checked, setChecked] = React.useState(false);
 	const [loading, setLoading] = React.useState(false);
 	const [open, setOpen] = React.useState({open: false,Transition: Slide,});
-
 
 	function SlideTransition(props) {
 		return <Slide {...props} direction="up" />;
@@ -40,6 +39,7 @@ export default function NavBar() {
 			open: true,
 			Transition,
 		});
+		props.getDark(!checked);
 	};
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
