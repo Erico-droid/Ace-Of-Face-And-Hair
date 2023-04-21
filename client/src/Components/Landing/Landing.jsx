@@ -6,14 +6,22 @@ import LandingImage from '../../Assets/untitled-6.jpg';
 import InfoIcon from '@mui/icons-material/Info';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import { Fade } from '@mui/material';
+import Vid from '../../Assets/vidBox.mp4'
+import Banner from '../../Assets/untitled-6.jpg'
 import $ from "jquery";
 
 export default function Landing() {
 
     const windowHeight = useRef(window.innerHeight);
-    const LandingHeight = parseInt(windowHeight.current) - 118;
 
+    if (window.innerWidth > 435)
+        var LandingHeight = parseInt(windowHeight.current) - 118;
+    else
+        var LandingHeight = parseInt(windowHeight.current) - 279;
 
+    // var longStory = "Ace of Face and Hair is a versatile company that offers styling services i.e. Hair, Makeup for TV, FILM &amp;  Theatre. We explore the possibilities of Art on the human body. We work behind the scenes to create illusions, concealing or unveiling layers of complexity bending and even breaking conventional rules of beautification. We are fascinated and continue to engage in mixed mediums to tell stories."
+    var story = "Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.";
+    console.log(window.innerHeight);
     useEffect(() => {
         $(document).ready(function() {
             const video = $("#my-video");
@@ -30,16 +38,27 @@ export default function Landing() {
         video.style.opacity = 0;
         });
 
-        // window.addEventListener('scroll', () => {
-        // const rect = video.getBoundingClientRect();
-        // const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
 
-        // if (isVisible) {
-        //     video.play();
-        // } else {
-        //     video.pause();
-        // }
-    // });
+        var scrolledPast = false;
+        window.addEventListener('scroll', function checkScroll() {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 668 && scrolledPast === false) 
+                scrolledPast = true;
+            
+            if (scrollY > 668 && !video.ended) {
+                video.pause();
+                video.style.opacity = 0;
+            }
+
+            if (scrollY < 368 && !video.ended) {
+                video.play();
+                video.style.opacity = 1;
+            }
+            
+            if (scrolledPast && video.ended)
+                video.style.opacity = 0;
+            });
 
     }, [])
         
@@ -52,11 +71,7 @@ export default function Landing() {
             <div className='wording'>
                     <div className='row'>
                         <div className='col-md-6 col-sm-12 col-xs-12'>
-                        <p>Ace of Face and Hair is a versatile company that offers styling services i.e. Hair, Makeup for TV, FILM &amp;
-                            Theatre. We explore the possibilities of Art on the human body. We work behind the scenes to create
-                            illusions, concealing or unveiling layers of complexity bending and even breaking conventional rules of
-                            beautification. We are fascinated and continue to engage in mixed mediums to tell stories.
-                        </p>
+                        <p>{story}</p>
                         <div className='row text-sm-center text-xl-left text-lg-left button-parent'>
                             <div className='col-md-6 col-sm-6 col-xs-6'>
                                 <Button btn={'prim'}>make an appointment</Button>
@@ -69,9 +84,9 @@ export default function Landing() {
                     </div>
                 </div> 
             </div>
-            <div className="video-wrapper">
+            <div className="video-wrapper" style={{backgroundImage: Banner}}>
                     <video autoPlay id = "my-video" muted poster = "https://vid.alarabiya.net/images/2014/10/14/22d9be89-163d-4f3a-855e-368d6227533f/22d9be89-163d-4f3a-855e-368d6227533f_16x9_1200x676.jpg">
-                        <source src="https://media.istockphoto.com/id/1317499240/video/young-woman-hiking-and-looking-at-camera.mp4?s=mp4-640x640-is&k=20&c=RRKwc-dZR6ENt0CGaAmKV5rEunUjRCZF6Qznl1zgev8=" type="video/mp4" />
+                        <source src={Vid} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>

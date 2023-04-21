@@ -1,0 +1,9 @@
+.project-description p {
+    font-family: 'heebo', sans serif;
+    text-align: justify;
+    font-size: 15px;
+}
+
+.project-description {
+    padding: 0px 10px;
+}

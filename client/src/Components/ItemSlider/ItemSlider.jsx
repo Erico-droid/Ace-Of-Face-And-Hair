@@ -46,7 +46,7 @@ export default function ItemSlider(props) {
                     resolve(carouselwareva);
                 else
                     reject("There was an unexpected error");
-              }, 1000);
+              }, 2000);
         });
     }
 
@@ -58,7 +58,7 @@ export default function ItemSlider(props) {
                 const carousel = new Carousel(carouselElement);
                 
                 $('#carouselExample').carousel({
-                    interval: 2000
+                    interval: 209000
                 });
 
                 $(document).ready(function() {
@@ -127,11 +127,11 @@ export default function ItemSlider(props) {
                                                     <img src={Image.src["large"]} className="" />
                                                 </div>
                                                 <div className="myoverlay"></div>
-                                                <div className="profile-img">
+                                                {/* <div className="profile-img">
                                                     <div className="borders avatar-profile">
                                                         <img src={Image.src["large"]} />
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <div className="profile-title">
                                                     <a href="#">
                                                         <h3>{Image.photographer}</h3>

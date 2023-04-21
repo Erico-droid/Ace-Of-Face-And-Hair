@@ -5,13 +5,13 @@ import Home from './Pages/Home/Home';
 import Footer from './Components/Footer/Footer';
 import { useState } from 'react';
 import Portfolio from './Pages/Portfolio/Portfolio';
-import {Router, Routes, Route, Link, NavLink} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
+import DetailedProject from './Components/DetailedProject/DetailedProject';
 
 
 export default function App() {
 
   const [dark, setDark] = useState(false);
-
   const getDark = (value) => {
     setDark(value);
   }
@@ -24,6 +24,7 @@ export default function App() {
       <Routes>
           <Route path = "/" exact element = {<Home darkmode = {dark} />} />
           <Route path = "/portfolio" exact element = {<Portfolio darkmode = {dark} />} />
+          <Route path = "/portfolio/project/:id" exact element = {<DetailedProject darkmode = {dark} />} />
       </Routes>
       <Footer />
     </div>

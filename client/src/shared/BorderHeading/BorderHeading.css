@@ -13,6 +13,18 @@
     padding-left: 20px;
 }
 
+.border-heading.small {
+    font-family: 'barlow', sans serif;
+    color: #000;
+    line-height: 40px;
+    font-size: 30px !important;
+    text-transform: uppercase;
+    /* border-left: 9px solid black; */
+    border-left: 10px solid;
+    border-image: linear-gradient(0deg, rgba(0,89,242,1) 12%, rgba(0,215,230,1) 12%, rgba(0,242,174,1) 100%) 1;
+    padding-left: 20px;
+}
+
 .border-heading-div {
     margin: 20px 0px;
 }

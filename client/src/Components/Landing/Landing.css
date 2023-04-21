@@ -1,5 +1,6 @@
 
 .landing-container {
+  position:relative;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -14,14 +15,14 @@
   top: 0;
   width: 95%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 38%, rgba(245,245,245,0) 80%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(90deg, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 38%, rgba(245,245,245,0) 55%, rgba(255,255,255,0) 100%);
   z-index: 1;
   }
 
   .content {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 75%;
   transform: translateY(-50%);
   color: #fff;
   z-index: 5;
@@ -35,13 +36,40 @@
     overflow: hidden;
     position: relative;
     z-index: 0;
-    background-image: url("https://i.ytimg.com/vi/aqz-KE-bpKQ/maxresdefault.jpg");
+    background-image: url("../../Assets/untitled-6.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: 146px top;
     background-repeat: no-repeat;
-    background-color: black;
+    /* background-color: black; */
     border-radius: 5px;
   }
+
+
+  @media (max-width: 1274px) and (min-width: 769px) {
+    .video-wrapper {
+      background-position: calc(50% - -6vw) top;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 646px) {
+    .video-wrapper {
+      background-position: calc(50% - 0vw) top;
+    }
+  }
+
+  @media (max-width: 645px) and (min-width: 435px) {
+    .video-wrapper {
+      background-position: calc(50% - -6vw) top;
+    }
+  }
+
+  @media (max-width: 434px) {
+    .video-wrapper {
+      background-position: center top;
+      background-size: cover;
+    }
+  }
+
 
   .video-wrapper video {
     position: absolute;
@@ -98,12 +126,12 @@
       }
 
   .content {
-      position: absolute;
-      /* left: 4%; */
-      bottom: 30%;
-      /* transform: translateY(-50%); */
-      color: #fff;
-      z-index: 5;
+    position: absolute;
+    left: 0;
+    bottom: 10%;
+    /* transform: translateY(-50%); */
+    color: #fff;
+    z-index: 5;
     }
 
     .wording p {

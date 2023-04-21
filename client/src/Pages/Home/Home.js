@@ -9,6 +9,7 @@ import Gallery from '../../Components/Gallery/Gallery'
 import "./Home.css"
 import Instagram from '../../Components/Instagram/Instagram'
 import ContactSection from '../../Components/ContactSection/ContactSection'
+import Courses from '../../Components/Courses/Courses'
 
 export default function Home(props) {
   return (
@@ -17,16 +18,19 @@ export default function Home(props) {
               <div className = "services">
                 <ItemSlider darkmode = {props.darkmode}/>
               </div>
-             <div className = "work container-fluid">
+             {/* <div className = "work container-fluid">
                 <Gallery darkmode = {props.darkmode}/>
+            </div> */}
+            <div className='contact-section container-fluid'>
+              <ContactSection />
+            </div>
+            <div className='courses-section'>
+              <Courses />
             </div>
             <div className='instagram-section container-fluid'>
               <Instagram />
             </div>
-            <div className='contact-section container-fluid'>
-              <ContactSection />
-            </div>
-
+            
 
     </div>
   )

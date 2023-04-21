@@ -18,7 +18,7 @@ export default function Gallery(props) {
     var random = Math.round(Math.random() * 10);
     var object = [];
     const client = await createClient('aqrcwOOWlZKCTMFRklR8ZZSoJ50WJ3gqtbNovW5nFCAonmcQhSWFGDwF');
-    client.photos.curated({ per_page: 12, page: random })
+    client.photos.curated({ per_page: 6, page: random })
       .then(response => {
           object = response.photos;
           return object;
@@ -28,8 +28,8 @@ export default function Gallery(props) {
         for (var i = 0; i < response.length; i++){
           var obj = {}
           obj["src"] = response[i].src["large"];
-          obj["width"] = response[i].width
-          obj["height"] = response[i].height
+          obj["width"] = 3000 //response[i].width
+          obj["height"] = 4000 //response[i].height
           arr[i] = obj;
           obj = {};
         }
@@ -52,6 +52,8 @@ export default function Gallery(props) {
       return <PlaceHolder backgroundColor="#f3f3f3" foregroundColor="#ecebeb" />
   }
 
+  const BasicRows = () => <MainGallery photos={photos}/>;
+
   return (
     <>
     {loading ?
@@ -60,18 +62,29 @@ export default function Gallery(props) {
        </div>
       :
       <FadeIn>
-      <div>
+      <div className='gal'>
+        <div className = "row">
+          <div className='col-md-6'>
+          <div className='top-phots'>
+            <div className='shadower'>
+              <BasicRows />
+              </div>
+          </div>
+          </div>
+          <div className='col-md-6 content-centre'>
           <div className='heading-group'>
                 <FancyHeading>Browse Our</FancyHeading>
                 <Heading wording={"Services"}>Work</Heading>
           </div>
-        <MainGallery photos={photos}/>
-      </div>
-      <div className="container">
+          <div className="container art-text">
+          <p>We create art through hair and makeup. Our skilled stylists explore the possibilities of the human body, crafting stunning looks that challenge conventional beauty. From intricate makeup designs to bold hairstyles, we tell stories that capture the imagination. Whether it's for TV, film, theatre, or a high-profile photoshoot, we bring your vision to life. Trust us to provide the best in the business, with the expertise to make you look and feel amazing.</p>
         <div className = "button-container button-parent2">
           <Button btn={"prim"}>Make An Appointment</Button>
           <Button icon = {<AppsIcon/>} btn={"sec"}>View Our Projects</Button>
         </div>
+      </div>
+          </div>
+          </div>
       </div>
       </FadeIn>
     }
