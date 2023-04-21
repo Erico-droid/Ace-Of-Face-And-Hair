@@ -6,7 +6,7 @@
 .instagram-container {
     width:100%;
     height:100%;
-    /* white-space: nowrap; */
+    white-space: nowrap;
     position: relative;
     overflow-x:scroll;
     overflow-y:hidden;
@@ -51,16 +51,66 @@
     border: 1px solid #f2f2f2;
     border-radius: 3px;
     width: 100%;
-    max-width: 25%;
+    /* max-width: 25%; */
     float: none;
     height: 90%;
     margin: -30px 0.25%;
     display: inline-block;
     zoom: 1;
+    white-space: break-spaces;
+  }
+
+  @media (min-width: 600px) and (max-width: 799px) {
+    .instagram-card{
+      background: #ffffff;
+      border: 1px solid #f2f2f2;
+      border-radius: 3px;
+      width: 50%;
+      /* max-width: 25%; */
+      float: none;
+      height: 90%;
+      margin: -30px 0.25%;
+      display: inline-block;
+      zoom: 1;
+      white-space: break-spaces;
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 1199px) {
+    .instagram-card{
+      background: #ffffff;
+      border: 1px solid #f2f2f2;
+      border-radius: 3px;
+      max-width: 25%;
+      float: none;
+      height: 90%;
+      margin: -30px 0.25%;
+      display: inline-block;
+      zoom: 1;
+      white-space: break-spaces;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .instagram-card{
+      background: #ffffff;
+      border: 1px solid #f2f2f2;
+      border-radius: 3px;
+      max-width: 20%;
+      float: none;
+      height: 90%;
+      margin: -30px 0.25%;
+      display: inline-block;
+      zoom: 1;
+      white-space: break-spaces;
+    }
   }
 
   .intagram-card-image img {
     max-width: 100%;
+    min-width: 100%;
+    /* max-height: 238px; */
+    min-height: 171px;
   }
   
   .instagram-card-header{
@@ -90,7 +140,7 @@
   }
   
   .instagram-card-content{
-    padding: 20px;
+    padding: 5px 10px;
   }
   
   .likes{
@@ -246,4 +296,8 @@
 
 .center {
   text-align: center;
+}
+
+.ig-btn-grp {
+  margin-top: 50px;
 }

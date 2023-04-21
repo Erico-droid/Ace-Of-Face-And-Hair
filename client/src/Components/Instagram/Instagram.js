@@ -41,13 +41,30 @@ export default function Instagram() {
         try {
             axios.get(url)
             .then((resp) => {
-                // console.log(resp.data)
-                setMediaUrls(resp.data.data);
+                var arr = resp.data.data;
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].caption.length < 35) {
+                        arr[i].caption += "\n ...";
+                    }
+
+                    if (arr[i].caption.length >= 35) {
+                        if (arr[i].caption.length > 48) {
+                            arr[i].caption = arr[i].caption.slice(0, 48);
+                            arr[i].caption += "...";
+                        } else {
+                            arr[i].caption = arr[i].caption.slice(0, 48);
+                        }
+                    }
+                }
+                // console.log(resp.data.data[0].caption)
+                setMediaUrls(arr);
             })
         } catch(err) {
             throw(err);
         }
     }
+
+
 
     async function myTest() {
         const url = "https://www.instagram.com/_kab.ira_/?__a=1";
@@ -66,69 +83,30 @@ export default function Instagram() {
     useEffect(() => {
         getMediaUrls();
         getProfileDetails();
-        myTest();
     }, [])
 
     return (
         <div className='instagram-section'>
-        <div className = "card  wavy-card">
-            <div className = "container">
-                <div className = "row">
-                    <div className='col-md-8'>
-                <div className="profile">
-                    <div className="profile-image">
-                        <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="" />
-
+            <div className="instagram-container">
+                    {mediaUrls.map(Post => {
+                        return (
+                    <div className="instagram-card" key = {Post.id}>
+                
+                    <div className="intagram-card-image">
+                    <img src={Post.media_url} alt = {Post.caption}/>
                     </div>
-
-                    <div className="profile-user-settings">
-                        <h1 className="profile-user-name text-bold">{profileDetails.username}</h1>
-                        <button className="btn profile-settings-btn" aria-label="profile settings"><i className="fas fa-cog" aria-hidden="true"></i></button>
+                
+                    <div className="instagram-card-content">
+                    {/* <p><a className="instagram-card-content-user" href="https://www.instagram.com/followmeto/">{profileDetails.username}</a>  {Post.caption}</p> */}
+                    {Post.caption}
                     </div>
-
-                    <div className="profile-stats">
-                        <ul>
-                            <li><span className="profile-stat-count">164</span> posts</li>
-                            <li><span className="profile-stat-count">188</span> followers</li>
-                            <li><span className="profile-stat-count">206</span> following</li>
-                        </ul>
-                    </div>
-
-                    <div className="profile-bio">
-                        <p><span className="profile-real-name">{profileDetails.username}</span> Ace Of Face and Hair (AFH)
-Hair & Makeup Artistry.
-Special Makeup Effects!
-NETFLIX, SHOWMAX, MNET & MORE
-📸📽️🎭⚔️💈🎨🎞️🎬
-Creative Consulting.©
-🇰🇪🌍</p>
-                    </div>
-                    </div>
-                </div>
-                <div className='col-md-4' >
-                    <div className = "btn-container">
-                    <div className = "center"><Button icon = {<InstagramIcon/>} btn = {"instagram"}>Connect with us on Instagram</Button></div>
-                    </div>
-                </div>
-                </div>
+                </div>)
+                })}
             </div>
-          </div>
-        <div className="instagram-container">
-                {mediaUrls.map(Post => {
-                    return (
-                <div className="instagram-card" key = {Post.id}>
-            
-                <div className="intagram-card-image">
-                <img src={Post.media_url} alt = {Post.caption}/>
+
+            <div className='text-center ig-btn-grp'>
+                    <Button btn = {"instagram"}>Connect With Us On Instagram</Button>
                 </div>
-            
-                <div className="instagram-card-content">
-                <p><a className="instagram-card-content-user" href="https://www.instagram.com/followmeto/">{profileDetails.username}</a>  {Post.caption}</p>
-                </div>
-            </div>)
-            })}
-            
-        </div>
         </div>
     )
 }

@@ -25,10 +25,12 @@
 }
 
 .contact-body p {
+    position: relative;
     font-family: 'Heebo', sans-serif;
     color: #000;
     text-transform: capitalize;
     font-size: 18px;
+    z-index: 2;
 }
 
 .pattern {

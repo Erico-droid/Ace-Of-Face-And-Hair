@@ -10,6 +10,7 @@ import "./Home.css"
 import Instagram from '../../Components/Instagram/Instagram'
 import ContactSection from '../../Components/ContactSection/ContactSection'
 import Courses from '../../Components/Courses/Courses'
+import Clients from '../../Components/Clients/Clients'
 
 export default function Home(props) {
   return (
@@ -18,9 +19,9 @@ export default function Home(props) {
               <div className = "services">
                 <ItemSlider darkmode = {props.darkmode}/>
               </div>
-             {/* <div className = "work container-fluid">
+             <div className = "work container-fluid">
                 <Gallery darkmode = {props.darkmode}/>
-            </div> */}
+            </div>
             <div className='contact-section container-fluid'>
               <ContactSection />
             </div>
@@ -30,7 +31,9 @@ export default function Home(props) {
             <div className='instagram-section container-fluid'>
               <Instagram />
             </div>
-            
+            <div className='clients-section container fluid'>
+              <Clients />
+            </div>
 
     </div>
   )

@@ -56,8 +56,8 @@ export default function Courses() {
                         </div>
                     </div>
                     <div className='col-md-6 div-lg-6 div-xl-6 order-md-2 order-1'>
-                        <section className="_container_uazc9_9">
-                            <div className="_inner_uazc9_23">
+                        {/* <section className="_container_uazc9_9">
+                            <div className="_inner_uazc9_23"> */}
                                 <div className="_graphic_uazc9_169">
                                     <figure id="widget-demo" className="_demo_uazc9_255 step_1" aria-label="Animation showing responsive widget layout options">
                                         <div className="demo__item" style={{backgroundColor: "rgb(101, 31, 15)"}}>
@@ -69,8 +69,8 @@ export default function Courses() {
                                             <img data-src="https://scontent-gru2-1.cdninstagram.com/v/t51.29350-15/342384628_938476810809173_8688402124848942054_n.jpg?_nc_cat=1&amp;ccb=1-7&amp;_nc_sid=8ae9d6&amp;_nc_ohc=sEOtjV6qLCkAX_Fp7rs&amp;_nc_ht=scontent-gru2-1.cdninstagram.com&amp;edm=APCawUEEAAAA&amp;oh=00_AfCXVzdYUVYDM5tgfklIbFK9q8hKrgpoIooIWCYgLbjpyg&amp;oe=64471214" role="presentation" alt="" src="https://1.bp.blogspot.com/-kK7Fxm7U9o0/YN0bSIwSLvI/AAAAAAAACFk/aF4EI7XU_ashruTzTIpifBfNzb4thUivACLcBGAsYHQ/s1280/222.jpg" className="loaded"/></div>
                                         </figure>
                                     </div>
-                                </div>
-                        </section>
+                                {/* </div>
+                        </section> */}
                     </div>
                 <div className='course'>
                 </div>
