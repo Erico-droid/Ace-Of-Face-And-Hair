@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Portfolio from './Pages/Portfolio/Portfolio';
 import {Routes, Route} from 'react-router-dom';
 import DetailedProject from './Components/DetailedProject/DetailedProject';
+import AboutHeader from './Components/AboutLanding/AboutLanding';
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Route path = "/" exact element = {<Home darkmode = {dark} />} />
           <Route path = "/portfolio" exact element = {<Portfolio darkmode = {dark} />} />
           <Route path = "/portfolio/project/:id" exact element = {<DetailedProject darkmode = {dark} />} />
+          <Route path = "/about" exact element = {<AboutHeader />} />
       </Routes>
       <Footer />
     </div>

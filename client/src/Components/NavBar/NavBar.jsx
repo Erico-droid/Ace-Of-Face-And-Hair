@@ -84,7 +84,7 @@ export default function NavBar(props) {
 		        <ul className="navbar-nav ml-auto mr-md-3">
 		        	<li className="nav-item"><NavLink to="/" className = "nav-link" activeclassname="active">Home</NavLink></li>
 		        	<li className="nav-item"><NavLink to="/portfolio" className = "nav-link" activeclassname="active">Portfolio</NavLink></li>
-		        	<li className="nav-item"><a href="#" className="nav-link">Work</a></li>
+		        	<li className="nav-item"><NavLink to="/about" className="nav-link">About</NavLink></li>
 		        	<li className="nav-item"><a href="#" className="nav-link">Blog</a></li>
 		          <li className="nav-item"><a href="#" className="nav-link">Contact</a></li>
 		        </ul>

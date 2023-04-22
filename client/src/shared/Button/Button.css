@@ -23,6 +23,30 @@
     color: #000;
 }
 
+.btn-text {
+    background: transparent !important;
+    padding: 15px calc(0.1vw + 20px);
+    font-weight: 800;
+    font-size: calc(0.5vw + 10px);
+    text-transform: capitalize;
+    overflow: hidden;
+    max-width: 100%;
+    word-wrap: break-word;
+    color: #000;
+}
+
+.dark-content .btn-text {
+    background: transparent !important;
+    padding: 15px calc(0.1vw + 20px);
+    font-weight: 800;
+    font-size: calc(0.5vw + 10px);
+    text-transform: capitalize;
+    overflow: hidden;
+    max-width: 100%;
+    word-wrap: break-word;
+    color: #fff;
+}
+
 .dark-content .btn-outline {
     background: transparent !important;
     padding: 15px calc(0.1vw + 20px);

@@ -32,7 +32,8 @@ export default function Courses() {
         observer.observe(ref.current);
 
         return () => {
-            observer.unobserve(ref.current);
+            console.log(ref.current);
+            // observer.unobserve(ref.current);
         }
     }, []);
 
