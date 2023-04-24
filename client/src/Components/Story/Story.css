@@ -1,0 +1,36 @@
+.about-us-word {
+    position:relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-area{
+    width: 100%;
+    height: 100%;
+}
+
+
+.about-image-area {
+    width: 100%;
+    height: 100%;
+}
+
+.cont {
+    margin: 40px 10px;
+}
+
+
+.about-word-area {
+    background-image: url("../../Assets/smoke.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%);
+    opacity: .3;
+    transform: scaleX(-1);
+    position: absolute;
+    left: 0%;
+    top: 0%;
+}

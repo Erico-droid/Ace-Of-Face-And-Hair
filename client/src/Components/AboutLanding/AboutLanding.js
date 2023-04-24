@@ -8,31 +8,28 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import AboutImage from "../../Assets/aboutArea.png";
 
 
-export default function AboutHeader() {
-  const height = window.innerHeight - 118;
+export default function AboutLanding() {
+  var height;
   const width = window.innerWidth;
+  if (width < 768 && width > 500)
+    height = window.innerHeight + 118;
+  else if (width < 500)
+    height = window.innerHeight + 220;
+  else
+    height = window.innerHeight - 118;
 
-  const p5container = useRef();
-  function getGlitchEffect () {
-    // const p5Instance = new p5(draw);
-  }
-
-  useEffect(() => {
-    // getGlitchEffect()
-  })
-
-
+  console.log(height)
   return (
     <div className='container-fluid'>
-      <div className='about-landing' style = {{height: height, width: "100%"}}>
-          <div className='content-area col-md-6 pl-0 in-b order-2 order-md-1'>
+      <div className='row about-landing' style = {{height: height, width: "100%"}}>
+          <div className='content-area col-md-6 col-sm-12 order-1 order-md-1'>
               <div className='about-content'>
               <div className='heading-group'>
                 <FancyHeading>Ace Of Face And Hair</FancyHeading>
                 <Heading>Our story unfolded</Heading>
               </div>
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus massa quis urna dapibus placerat. Suspendisse potenti. Aliquam sagittis nisl vel tellus efficitur, sed maximus tellus laoreet. Vivamus venenatis dolor vel turpis ultrices blandit. Nullam vitae ante sit amet ante vestibulum tristique euismod vitae quam. Aliquam pharetra quam ac diam mollis aliquet. Vestibulum consequat lorem vel lectus gravida, a auctor mauris faucibus. Sed semper vitae odio at lobortis. 
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus massa quis urna dapibus placerat. Suspendisse potenti. Aliquam sagittis nisl vel tellus efficitur, sed maximus tellus laoreet. 
               </p>
               <div className='button-container'>
               <Button btn = {"prim"}>make an appointment</Button>
@@ -40,10 +37,17 @@ export default function AboutHeader() {
               </div>
           </div>
           </div>
-            <div className='col-md-6 in-b video-area order-1 order-md-2'>
+            <div className='col-md-6 video-area order-2 order-md-2'>
               <div className='about-video'>
-              <img src = {AboutImage}  alt = "abt-image"/>
-                {/* <YouTubeEmbed url="https://www.youtube.com/watch?v=HpVOs5imUN0" width={width/2} height={400} /> */}
+                <div className = "glitch">
+                  <img src = {AboutImage}  alt = "abt-image"/>
+                  <div className="glitch__layers">
+                    <div className="glitch__layer"></div>
+                    <div className="glitch__layer"></div>
+                    <div className="glitch__layer"></div>
+                  </div>
+                    {/* <YouTubeEmbed url="https://www.youtube.com/watch?v=HpVOs5imUN0" width={width/2} height={400} /> */}
+                </div>
               </div>
             </div>
           </div>
