@@ -2,6 +2,7 @@ import React from 'react';
 import AboutLanding from '../../Components/AboutLanding/AboutLanding';
 import Story from '../../Components/Story/Story';
 import Clients from '../../Components/Clients/Clients';
+import GoalsSection from '../../Components/GoalsSection/GoalsSection';
 
 export default function About() {
   return (
@@ -9,6 +10,7 @@ export default function About() {
       <AboutLanding />
       {/* <Clients /> */}
       <Story />
+      <GoalsSection />
     </div>
   )
 }

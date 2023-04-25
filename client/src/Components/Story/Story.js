@@ -1,27 +1,12 @@
 import React, { useEffect } from 'react';
 import Heading from '../../shared/Heading/Heading';
 import "./Story.css"
-import Typewriter, {typeString} from 'typewriter-effect/dist/core';
 import AfricanPattern from "../../Assets/african-pattern.jpg";
 import { YouTubeEmbed } from 'react-social-media-embed';
 import BorderHeading from '../../shared/BorderHeading/BorderHeading';
 import Card from '../../shared/Card/Card';
 
 export default function Story() {
-
-    function TypeWriter() {
-        var story = document.querySelector(".about-us-heading");
-        const heading = story.querySelector('span');
-        
-        var typeWriter = new Typewriter(heading);
-
-        typeWriter.typeString("Hell, nah").pauseFor(2500).start();
-    }       
-    
-    useEffect(() => {
-        // TypeWriter();
-    }, [])
-
     return (
         <div className='container-fluid'>
             <BorderHeading>Our Story</BorderHeading>
@@ -39,7 +24,7 @@ export default function Story() {
                         </div>
                         <div className='col-md-6 order-1'>
                         <div className = "image-area">
-                            <YouTubeEmbed url="https://www.youtube.com/watch?v=HpVOs5imUN0" width={"100%"} height={400} />
+                            {/* <YouTubeEmbed url="https://www.youtube.com/watch?v=HpVOs5imUN0" width={"100%"} height={400} /> */}
                         </div>
                         </div>
                     </div>

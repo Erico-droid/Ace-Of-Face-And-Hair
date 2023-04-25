@@ -190,3 +190,7 @@
     width: 100%;
     bottom: 0;
 }
+
+.dark-content .ftco-navbar-light .navbar-nav > .nav-item .active {
+    color: yellow;
+}
