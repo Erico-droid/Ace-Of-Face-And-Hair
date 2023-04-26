@@ -9,6 +9,15 @@
     letter-spacing: 3px;
 }
 
+.dark-content .h2-type {
+    font-family: "heebo", sans serif;
+    font-size: calc(50px + 0.5vw);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
 .our-section {
     margin: 20px 2px 20px 2px;
 }
@@ -175,6 +184,12 @@
 
   .change-text {
     color: #000;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px
+  }
+
+  .dark-content .change-text {
+    color: #fff;
     font-family: 'Patrick Hand', cursive;
     font-size: 20px
   }

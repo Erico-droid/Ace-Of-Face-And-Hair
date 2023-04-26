@@ -64,7 +64,7 @@ export default function Projects(props) {
         <FadeIn>
             <BorderHeading>Projects</BorderHeading>
             <div className='row'>
-                {projects.map(project => {return  <IndividualProject project = {project} key = {project.title} />})}
+                {projects.map(project => {return  <IndividualProject project = {project} key = {Math.random()} />})}
             </div>
          </FadeIn>
         }

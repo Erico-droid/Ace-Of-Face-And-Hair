@@ -1,18 +1,23 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import "./GoalsSection.css";
 import Typewriter, {typeString} from 'typewriter-effect/dist/core';
+import { useLocation } from 'react-router-dom';
 
 export default function GoalsSection() {
-
+    const ref = useRef();
     const [text, setText] = useState("Empowering individuals with exceptional, inclusive styling services.");
-    
+
+    var checker = false;
+
     function TypeWriter() {
         var story = document.querySelector(".type-goal");
         const heading = story.querySelector('h2');
-        
         var typeWriter = new Typewriter(heading);
-
-        typeWriter.typeString("We empower people to express their authentic selves through style.").pauseFor(2500).start();
+        var arr = ["We liberate individuals to showcase their genuine identity through art.", "We empower people to express their authentic selves through style and art.", "We enable individuals to exhibit their true selves through style and art.", "We unleash the power of self-expression through the art of the human form."]
+        var random = Math.round(Math.random() * arr.length - 1);
+        if (random < 0)
+            random = 1;
+        typeWriter.typeString(arr[random]).pauseFor(500).start();
     }
     
     
@@ -34,7 +39,6 @@ export default function GoalsSection() {
     function changeText() {
         var target = document.querySelector("#nav-tab .active");
         var aria = target.getAttribute("aria-controls");
-        console.log(aria);
         if (aria === "nav-vision")
             setText("Unleashing unique beauty through diversity and authenticity.");
         if (aria === "nav-who")
@@ -43,13 +47,31 @@ export default function GoalsSection() {
             setText("Exceeding expectations with professionalism, creativity, and inclusivity.");
     }
     
+
     useEffect(() => {
-        TypeWriter();
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                if (!checker){
+                    TypeWriter();
+                    checker = true;
+                }
+            } 
+        });
+
+        const element = ref.current;
+        observer.observe(element);
+
+        return () => {
+            if (element instanceof Element) {
+                observer.unobserve(element);
+                checker = false;
+            }
+        }
     }, [])
 
     return (
         <div className='container-fluid'>
-        <div className='our-section'>
+        <div className='our-section' ref={ref}>
             <div className = "row">
                 <div className='col-md-6'>
                     <div className='type-goal'>
@@ -74,10 +96,10 @@ export default function GoalsSection() {
                                 </div>
                             </nav>
                             <div className="tab-content" id="nav-tabContent">
-                                <div className="tab-pane fade show" id="nav-who" role="tabpanel" aria-labelledby="nav-who-tab">
+                                <div className="tab-pane fade active show" id="nav-who" role="tabpanel" aria-labelledby="nav-who-tab">
                                 <p>At Ace of Face and Hair, our goal is to provide exceptional styling services that go above and beyond our clients' expectations. We believe in fostering a diverse and inclusive community that celebrates individuality, and we strive to stay up-to-date with the latest trends and techniques in the industry.</p>
                                 </div>
-                                <div className="tab-pane fade active show" id="nav-vision" role="tabpanel" aria-labelledby="nav-vision-tab">
+                                <div className="tab-pane fade" id="nav-vision" role="tabpanel" aria-labelledby="nav-vision-tab">
                                 <p>Our vision at Ace of Face and Hair is to revolutionize the beauty industry by offering an innovative and creative approach to styling that empowers individuals to embrace their unique selves and feel confident in their own bodies. We believe in the art of the human body and strive to enhance its natural beauty through our services.</p>
                                 
                                 </div>
