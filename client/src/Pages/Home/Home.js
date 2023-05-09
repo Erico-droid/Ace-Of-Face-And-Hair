@@ -19,7 +19,7 @@ export default function Home(props) {
               <div className = "services">
                 <ItemSlider darkmode = {props.darkmode}/>
               </div>
-             <div className = "work container-fluid">
+             <div className = "work">
                 <Gallery darkmode = {props.darkmode}/>
             </div>
             <div className='contact-section container-fluid'>
@@ -28,9 +28,11 @@ export default function Home(props) {
             <div className='courses-section'>
               <Courses />
             </div>
+            //why AFH
             <div className='instagram-section container-fluid'>
               <Instagram />
             </div>
+            //what AFH is all about in details and testimonials
             <div className='clients-section container fluid'>
               <Clients />
             </div>

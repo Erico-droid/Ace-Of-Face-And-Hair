@@ -7,6 +7,7 @@ import "./ContactSection.css"
 import Button from '../../shared/Button/Button'
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
+import svg from "../../Assets/shapes.svg"
 
 export default function ContactSection() {
 
@@ -25,10 +26,19 @@ export default function ContactSection() {
   } 
 
   return (
-    <Card>
       <div className='contact-body'>
-        <div className='pattern'></div>
-        <div className='last-pattern'></div>
+            <div className='shape-right'>
+              <svg aria-hidden="true" className="shape__inner top-right" style={{color:" #cd7a00"}} data-v-67de5fba="">
+                <use xlinkHref={`${svg}#triangle`} data-v-67de5fba="">
+                  </use>
+              </svg>
+            </div>
+            <div className='shape-left'>
+              <svg aria-hidden="true" className="shape__inner bottom-left" style={{color:"#0077be"}} data-v-67de5fba="">
+                <use xlinkHref={`${svg}#circle`}>
+                  </use>
+              </svg>
+            </div>
         <div className='text-center contacticon'>
           <img src = {getIcon()} alt = "contact icon" />
         </div>
@@ -40,6 +50,5 @@ export default function ContactSection() {
           <Button icon = {<PhoneIcon  />} color = {"white"} bg = {"black"} btn = {"sec"}>Contact us</Button>
         </div>
       </div>
-    </Card>
   )
 }

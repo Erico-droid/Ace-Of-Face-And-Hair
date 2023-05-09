@@ -41,7 +41,7 @@ export default function Courses() {
 
     return (
     <div className='container-fluid widgets-loaded' ref={ref}>
-        <div className = "bg-white courses card mt-4">
+        <div className = "courses mt-4">
             <div className='row'>
                     <div className='jeez col-md-6 order-md-1 order-2'>
                         <div className = "content-h">

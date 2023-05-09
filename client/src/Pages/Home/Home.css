@@ -1,11 +1,3 @@
-
-
-@media(max-width: 472px) {
-    .services {
-        margin-top: 40vw;
-    }
-}
-
 .button-container {
     display: flex;
     justify-content: space-evenly; /* Aligns the buttons with equal space between them */
@@ -13,3 +5,39 @@
     margin-top: 20px;
     margin-bottom: 10px
   }
+
+.services, .work, .courses-section {
+    min-height: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.courses-section{
+    background: rgba(245,245,245,0.1);
+    position: relative;
+    min-height: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 1;
+}
+
+.contact-section {
+    min-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background: white;
+}
+
+.dark-content .contact-section {
+    background: #000;
+}
+
+.work {
+    background: rgb(0,173,173,0.1);
+}

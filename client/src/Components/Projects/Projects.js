@@ -57,7 +57,7 @@ export default function Projects(props) {
     return (
         <>
         {loading ?
-            <div style = {{width: "100%", minHeight: "100vh"}}>
+            <div style = {{width: "100%", minHeight: "100vh", position: "relative", display: "block"}}>
                 {PlaceHolderSettings()}
             </div>
             :

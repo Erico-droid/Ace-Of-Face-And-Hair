@@ -55,7 +55,7 @@ export default function Gallery(props) {
   const BasicRows = () => <MainGallery photos={photos}/>;
 
   return (
-    <>
+    <div className='container'>
     {loading ?
       <div style={{ width: "100%"}}>
          {PlaceHolderSettings()}
@@ -88,6 +88,6 @@ export default function Gallery(props) {
       </div>
       </FadeIn>
     }
-    </>
+    </div>
   )
 }

@@ -9,6 +9,7 @@ import {Routes, Route} from 'react-router-dom';
 import DetailedProject from './Components/DetailedProject/DetailedProject';
 import AboutHeader from './Components/AboutLanding/AboutLanding';
 import About from './Pages/About/About';
+import Contact from './Pages/Contact/Contact';
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           <Route path = "/portfolio" exact element = {<Portfolio darkmode = {dark} />} />
           <Route path = "/portfolio/project/:id" exact element = {<DetailedProject darkmode = {dark} />} />
           <Route path = "/about" exact element = {<About />} />
+          <Route path = "/contact" exact element = {<Contact />} />
       </Routes>
       <Footer />
     </div>
