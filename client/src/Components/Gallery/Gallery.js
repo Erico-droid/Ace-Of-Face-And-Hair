@@ -72,11 +72,15 @@ export default function Gallery(props) {
           </div>
           </div>
           <div className='col-md-6 content-centre'>
-          <div className='heading-group'>
+          {/* <div className='heading-group'>
                 <FancyHeading>Browse Our</FancyHeading>
                 <Heading wording={"Services"}>Work</Heading>
+          </div> */}
+
+<div className="container art-text">
+          <div className='heading-group-wording'>
+              <h3 className = "wordheading"> Explore Our Diverse Collection of Work.</h3>
           </div>
-          <div className="container art-text">
           <p>We create art through hair and makeup. Our skilled stylists explore the possibilities of the human body, crafting stunning looks that challenge conventional beauty. From intricate makeup designs to bold hairstyles, we tell stories that capture the imagination. Whether it's for TV, film, theatre, or a high-profile photoshoot, we bring your vision to life. Trust us to provide the best in the business, with the expertise to make you look and feel amazing.</p>
         <div className = "button-container button-parent2">
           <Button btn={"prim"}>Make An Appointment</Button>

@@ -112,10 +112,14 @@ export default function ItemSlider(props) {
         :
         <FadeIn>
          <div className="container">
-            <div className='heading-group'>
-                <FancyHeading>Discover our</FancyHeading>
-                <Heading wording={"Services"}>Services</Heading>
-            </div>
+                <div className = "section-content-wording">
+                    <div className='heading-group-wording'>
+                        <h3 className = "wordheading">Discover Our Hair and Makeup Services.</h3>
+                    </div>
+                     <div>
+                    <p className = "section-content">At Ace of Face and Hair, we offer an array of transformative services that celebrate individuality and challenge conventional beauty standards. Our skilled stylists specialize in hair and makeup artistry for TV, film, theatre, and high-profile photoshoots. From intricate makeup designs to bold hairstyles, we use mixed mediums to tell captivating stories through the human body.</p>
+                    </div>
+                </div>
                 <div id="carouselExample" ref={carouselRef} className="carousel slide" data-ride="carousel" data-interval="9000">
                     <div className="carousel-inner row w-100 mx-auto">
                         {images.map((Image, index) => {
@@ -147,13 +151,13 @@ export default function ItemSlider(props) {
                 </div>
                     <a className="card carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
                         <IconButton>
-                        <ArrowBackIosNewIcon  style={props.darkmode ? { fontSize: 35, color: "#fff", fontWeight: 800} : { fontSize: 35, color: "#000", fontWeight: 800}}/>
+                        <ArrowBackIosNewIcon  style={props.darkmode ? { fontSize: 25, color: "#fff", fontWeight: 800} : { fontSize: 25, color: "#000", fontWeight: 800}}/>
                         </IconButton>
                         <span className="sr-only">Previous</span>
                     </a>
                     <a className="card carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
                         <IconButton>
-                        <ArrowForwardIosIcon style={props.darkmode ? { fontSize: 35, color: "#fff", fontWeight: 800} : { fontSize: 35, color: "#000", fontWeight: 800}}/>
+                        <ArrowForwardIosIcon style={props.darkmode ? { fontSize: 25, color: "#fff", fontWeight: 800} : { fontSize: 25, color: "#000", fontWeight: 800}}/>
                         </IconButton>
                         <span className="sr-only">Next</span>
                     </a>

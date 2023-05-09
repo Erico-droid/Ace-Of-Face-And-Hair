@@ -3,7 +3,7 @@
     background: linear-gradient(321deg, rgba(0,242,234,1) 57%, rgba(0,242,174,1) 100%);
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
@@ -14,12 +14,12 @@
     background: transparent !important;
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
     word-wrap: break-word;
-    border: 3px solid black;
+    border: 1px solid black;
     color: #000;
 }
 
@@ -27,7 +27,7 @@
     background: transparent !important;
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
@@ -39,7 +39,7 @@
     background: transparent !important;
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
@@ -51,7 +51,7 @@
     background: transparent !important;
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
@@ -67,7 +67,7 @@
     background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
@@ -83,7 +83,7 @@
     background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
     padding: 15px calc(0.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);
+    font-size: calc(0.5vw + 7px);
     text-transform: capitalize;
     overflow: hidden;
     max-width: 100%;
@@ -106,7 +106,7 @@
     background-color: #dcdcdc;
     padding: 15px calc(1.1vw + 20px);
     font-weight: 800;
-    font-size: calc(0.5vw + 10px);;
+    font-size: calc(0.5vw + 7px);;
     text-transform: capitalize;
 }
 

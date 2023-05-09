@@ -33,6 +33,12 @@ export default function ContactSection() {
                   </use>
               </svg>
             </div>
+            <div className='shape-top-left'>
+              <svg aria-hidden="true" className="shape__inner top-left" style={{color:" #0a6143"}} data-v-67de5fba="">
+                <use xlinkHref={`${svg}#square`} data-v-67de5fba="">
+                  </use>
+              </svg>
+            </div>
             <div className='shape-left'>
               <svg aria-hidden="true" className="shape__inner bottom-left" style={{color:"#0077be"}} data-v-67de5fba="">
                 <use xlinkHref={`${svg}#circle`}>

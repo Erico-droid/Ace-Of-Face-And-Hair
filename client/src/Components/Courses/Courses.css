@@ -24,7 +24,7 @@
     font-family: 'Heebo', sans-serif;
     color: #000;
     font-size: calc(11px + 0.5vw);
-    padding: 0px 18px;
+    padding: 0px;
 }
 
 .dark-content .courses p {
@@ -82,6 +82,8 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 45%, rgba(0,0,0,1) 73%, r
 
 .step_10 .demo__item {
     border-radius: 5px;
+    width: 90%;
+    height: 80%;
 }
 .step_10 .demo__item:first-child {
     transform: translateY(34%) scale(0.224);
@@ -98,9 +100,9 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 45%, rgba(0,0,0,1) 73%, r
 .step_10 .demo__item:nth-child(5) {
     transform: translate(46.64%, 59.01%) scale(0.2077);
 }
-.step_10 .demo__item:nth-child(6) {
+/* .step_10 .demo__item:nth-child(6) {
     transform: translate(70.06%, 42.11%) scale(0.3035);
-}
+} */
 @-webkit-keyframes _raceBy_1c5lo_1 {
     0% {
         transform: translate(-60%);
@@ -129,4 +131,18 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 45%, rgba(0,0,0,1) 73%, r
     min-width: 100%;
     overflow-x: hidden !important;
     overflow-y: hidden !important;
+}
+
+.image-dots {
+    position: absolute;
+    right: -65px;
+    top: -45px;
+    z-index: -10;
+}
+
+.image-dots-2 {
+    position: absolute;
+    right: 118px;
+    top: -45px;
+    z-index: -10;
 }

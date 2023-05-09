@@ -13,7 +13,7 @@
 
 .contact-body h2 {
     position: relative;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     background: linear-gradient(259deg, rgba(0,242,174,1) 22%, rgba(0,215,230,1) 59%, rgba(0,210,242,1) 87%);
     -webkit-background-clip: text;
@@ -63,14 +63,22 @@
 
 .shape-right{
     position: absolute;
-    left: 128%;
+    left: 119%;
     bottom: 0%;
 }
 
 .shape-left{
     position: absolute;
-    right: 125%;
+    right: 120%;
     top: 65%;
+    z-index: -1;
+}
+
+.shape-top-left{
+    position: absolute;
+    right: 116%;
+    top: -140%;
+    z-index: -10;
 }
 
 .shape__inner {

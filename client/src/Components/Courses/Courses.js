@@ -3,7 +3,8 @@ import "./Courses.css"
 import Heading from '../../shared/Heading/Heading';
 import FancyHeading from '../../shared/FancyHeading/FancyHeading';
 import Button from '../../shared/Button/Button';
-import SchoolIcon from '@mui/icons-material/School';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import svg from "../../Assets/shapes.svg"
 
 export default function Courses() {
     const ref = useRef();
@@ -40,20 +41,31 @@ export default function Courses() {
 
 
     return (
-    <div className='container-fluid widgets-loaded' ref={ref}>
+    <div className='container widgets-loaded' ref={ref}>
         <div className = "courses mt-4">
+            <div className='image-dots'>
+              <svg aria-hidden="true" className="shape__inner image-dots" style={{color:" #0a6143"}} data-v-67de5fba="">
+                <use xlinkHref={`${svg}#dots-2`} data-v-67de5fba="">
+                  </use>
+              </svg>
+            </div>
+            <div className='image-dots-2'>
+              <svg aria-hidden="true" className="shape__inner image-dots" style={{color:" #0a6143"}} data-v-67de5fba="">
+                <use xlinkHref={`${svg}#dots-2`} data-v-67de5fba="">
+                  </use>
+              </svg>
+            </div>
             <div className='row'>
                     <div className='jeez col-md-6 order-md-1 order-2'>
                         <div className = "content-h">
-                            <div className = "heading-group">
-                                <FancyHeading>Checkout Our</FancyHeading>
-                                <Heading>courses</Heading>
+                        <div className='heading-group-wording'>
+                                <h3 className = "wordheading"> Elevate Your Skills with Our Comprehensive Courses.</h3>
                             </div>
                             <div className='content-text text-left'>
                                     <p>Our Basic Makeup Course offers more than just makeup skills, including eyebrow tattoo artistry. You will learn advanced techniques to enhance your beauty and makeup expertise. Whether you're looking to pursue a career in the beauty industry or simply improve your skills, our training can help you reach your goals. Join our course today and expand your makeup artistry knowledge.</p>
                             </div>
-                            <div className = "text-center">
-                                <Button btn={"outline"} icon = {<SchoolIcon />}>View Our Courses</Button>
+                            <div className = "text-left">
+                                <Button btn={"outline"} icon = {<ArrowForwardIcon />}>View Our Courses</Button>
                             </div>
                         </div>
                     </div>
