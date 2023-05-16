@@ -63,22 +63,26 @@
 
 .shape-right{
     position: absolute;
-    left: 119%;
-    bottom: 0%;
+    bottom: 3.5rem;
+    left: calc(100% - 6.5vw);
+    z-index: 99;
+    overflow-x: hidden;
 }
 
 .shape-left{
     position: absolute;
-    right: 120%;
-    top: 65%;
-    z-index: -1;
+    bottom: -16.5rem;
+    left: calc(100% - 106.5vw);
+    z-index: 99;
+    overflow-x: hidden;
 }
 
 .shape-top-left{
     position: absolute;
-    right: 116%;
-    top: -140%;
-    z-index: -10;
+    bottom: -9.5rem;
+    left: calc(100% - 106.5vw);
+    z-index: 99;
+    overflow-x: hidden;
 }
 
 .shape__inner {

@@ -14,6 +14,17 @@
     align-content: center;
 }
 
+.services, .work, .courses-section, .contact-section, .instagram-section,
+.client-section, .points-section {
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth;
+    overflow-y: hidden !important;
+    z-index: -1;
+}
+
 .courses-section{
     background: rgba(245,245,245,0.1);
     position: relative;
@@ -40,4 +51,11 @@
 
 .work {
     background: rgb(0,173,173,0.1);
+}
+
+.afh-details {
+    min-width: 100%;
+    min-height: 500px;
+
+    background: #155bd5;
 }

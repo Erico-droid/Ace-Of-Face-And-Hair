@@ -11,6 +11,8 @@ import Instagram from '../../Components/Instagram/Instagram'
 import ContactSection from '../../Components/ContactSection/ContactSection'
 import Courses from '../../Components/Courses/Courses'
 import Clients from '../../Components/Clients/Clients'
+import AFHDetails from '../../Components/AFHDetails/AFHDetails'
+import PointTab from '../../Components/PointTab/PointTab'
 
 export default function Home(props) {
   return (
@@ -28,15 +30,20 @@ export default function Home(props) {
             <div className='courses-section'>
               <Courses />
             </div>
-            //why AFH
+            <div className='afh-details'>
+              <AFHDetails />
+            </div>
             <div className='instagram-section container-fluid'>
               <Instagram />
             </div>
-            //what AFH is all about in details and testimonials
             <div className='clients-section container fluid'>
               <Clients />
             </div>
-
+            <div className='points-section'>
+            <PointTab background={"#0a6143"} color = {"#ffffff"} darkmode = {props.darkmode} btns = {true}>
+              Make the most outta afh
+            </PointTab>
+            </div>
     </div>
   )
 }

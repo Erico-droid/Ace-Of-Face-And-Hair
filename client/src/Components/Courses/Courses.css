@@ -83,7 +83,7 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 45%, rgba(0,0,0,1) 73%, r
 .step_10 .demo__item {
     border-radius: 5px;
     width: 90%;
-    height: 80%;
+    height: 90%;
 }
 .step_10 .demo__item:first-child {
     transform: translateY(34%) scale(0.224);

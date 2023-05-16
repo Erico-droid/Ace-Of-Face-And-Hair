@@ -3,7 +3,7 @@
 .kilimanjaro_area {
     position: relative;
     z-index: 1;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 	}
 	.foo_top_header_one {
     background-color: #242021;

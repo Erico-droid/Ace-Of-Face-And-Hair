@@ -138,3 +138,7 @@
   .team-boxed .social a:hover {
     opacity:1;
   }
+
+  .team .wordheading {
+    width: 60%;
+  }

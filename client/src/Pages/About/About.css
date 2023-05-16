@@ -1,0 +1,11 @@
+.about-lndn, .client-section-main,
+ .team-section-main, .goal-section-main,
+ .story-main {
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth;
+    overflow-y: hidden !important;
+    z-index: -1;
+}

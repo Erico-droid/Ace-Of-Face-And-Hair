@@ -63,8 +63,8 @@ export default function Landing() {
     }, [])
         
     return (
-        <div className='container-fluid'>
-            <Card constraints = {"pl-0 pr-0"} size={12}>
+        <div className='container-fluid home-landing'>
+            <Card constraints = {"pl-0 pr-0"} background = {"#f5f5f5"} size={12}>
             <div className="landing-container" style={{height: LandingHeight}}>
             <div className="overlay"></div>
             <div className="content">

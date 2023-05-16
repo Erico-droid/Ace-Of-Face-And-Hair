@@ -20,6 +20,7 @@
 
 .our-section {
     margin: 20px 2px 20px 2px;
+    min-height: 650px;
 }
 
 /*===========================
@@ -27,8 +28,11 @@
 ===========================*/
 .about-five {
     background-color: var(--light-3);
-    padding-top: 10px;
-    padding-bottom: 90px;
+    /* padding-top: 10px;
+    padding-bottom: 90px; */
+    position: relative;
+    min-height: 650px;
+    width: 100%
   }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .about-five {
@@ -193,3 +197,39 @@
     font-family: 'Patrick Hand', cursive;
     font-size: 20px
   }
+
+.type-goal h2 {
+  display: block;
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%);
+} 
+
+.about-five-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.image-dots-type-write {
+  position: absolute;
+  left: 25%;
+  top: 60%;
+  z-index: 1;
+}
+
+.image-square-type-write {
+  position: absolute;
+  left: 115%;
+  top: 27%;
+  height: 600px;
+  z-index: 1;
+}
+
+.image-square-2-type-write {
+  position: absolute;
+  left: 100%;
+  top: -2%;
+  height: 600px;
+  z-index: 0;
+}

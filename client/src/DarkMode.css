@@ -22,6 +22,19 @@
     z-index: 5;
   }
 
+@media (max-width: 768px) {
+    .dark-content .card .overlay  {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9724264705882353) 23%, rgba(0,0,0,0.5270483193277311) 56%, rgba(0,0,0,0) 94%);
+        z-index: 1;
+    }
+}
+
+
 .dark-content  h1 {
     color: #fff;
     letter-spacing: 0.02em;

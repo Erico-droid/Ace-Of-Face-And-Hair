@@ -58,8 +58,10 @@ export default function NavBar(props) {
 			<>
 			<nav className="ftco-navbar-light navbar navbar-expand-lg ftco_navbar" id="ftco-navbar">
 		    <div className="container-md container-lg container-xl container-fluid">
-				<span className="spanLogo"><img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /></span>
-		    	<a className="navbar-brand" href="index.html">ace of face and hair</a>
+				<span className="spanLogo">
+					<img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" />
+				</span>
+		    	{/* <a className="navbar-brand" href="index.html">ace of face and hair</a> */}
 		    	<div className="social-media order-lg-last darkmode-place">
 		    		<p className="mb-0 d-flex">
 		    			<span className="d-flex align-items-center justify-content-center">{checked ? <DarkModeIcon /> : <LightModeIcon />}</span>

@@ -27,19 +27,13 @@ export default function ContactSection() {
 
   return (
       <div className='contact-body'>
-            <div className='shape-right'>
+            <div className='shape-right shape '>
               <svg aria-hidden="true" className="shape__inner top-right" style={{color:" #cd7a00"}} data-v-67de5fba="">
                 <use xlinkHref={`${svg}#triangle`} data-v-67de5fba="">
                   </use>
               </svg>
             </div>
-            <div className='shape-top-left'>
-              <svg aria-hidden="true" className="shape__inner top-left" style={{color:" #0a6143"}} data-v-67de5fba="">
-                <use xlinkHref={`${svg}#square`} data-v-67de5fba="">
-                  </use>
-              </svg>
-            </div>
-            <div className='shape-left'>
+            <div className='shape-left shape '>
               <svg aria-hidden="true" className="shape__inner bottom-left" style={{color:"#0077be"}} data-v-67de5fba="">
                 <use xlinkHref={`${svg}#circle`}>
                   </use>
@@ -48,9 +42,9 @@ export default function ContactSection() {
         <div className='text-center contacticon'>
           <img src = {getIcon()} alt = "contact icon" />
         </div>
-        <div className='text-center'>
+        <div className='text-center  container'>
           <h2>We're waiting to hear from you.</h2>
-          <p>Contact us today and let's make magic happen!</p>
+          <p>Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen!Contact us today and let's make magic happen! Contact us today and let's make magic happen!  Contact us today and let's make magic happen!</p>
         </div>
         <div className='text-center'>
           <Button icon = {<PhoneIcon  />} color = {"white"} bg = {"black"} btn = {"sec"}>Contact us</Button>

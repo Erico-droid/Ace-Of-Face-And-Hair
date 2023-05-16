@@ -10,14 +10,18 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 export default function TeamSection() {
   return (
-    <div className='container-fluid'>
+    <div className='container'>
         <div className='team'>
-            <div className='heading-group'>
+            {/* <div className='heading-group'>
                 <FancyHeading>Discover the dedicated</FancyHeading>
                 <Heading>crew behind AFH</Heading>
-            </div>
+            </div> */}
             <div className="team-boxed">
         <div className="container">
+
+        <div className='heading-group-wording'>
+              <h3 className = "wordheading"> Discover the dedicated crew behind AFH.</h3>
+          </div>
           <div className="content-div">
             <div className="row people">
                 <div className="col-md-6 col-lg-6 item">

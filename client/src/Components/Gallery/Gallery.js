@@ -8,6 +8,7 @@ import FancyHeading from '../../shared/FancyHeading/FancyHeading';
 import Heading from '../../shared/Heading/Heading';
 import Button from '../../shared/Button/Button';
 import AppsIcon from '@mui/icons-material/Apps';
+import svg from "../../Assets/shapes.svg"
 
 export default function Gallery(props) {
 
@@ -56,6 +57,12 @@ export default function Gallery(props) {
 
   return (
     <div className='container'>
+      <div className='shape-top-left shape '>
+            <svg aria-hidden="true" className="shape__inner top-left" style={{color:" #0a6143"}} data-v-67de5fba="">
+              <use xlinkHref={`${svg}#square`} data-v-67de5fba="">
+                </use>
+            </svg>
+          </div>
     {loading ?
       <div style={{ width: "100%"}}>
          {PlaceHolderSettings()}

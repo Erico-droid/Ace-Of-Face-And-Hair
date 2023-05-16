@@ -43,13 +43,13 @@ export default function Courses() {
     return (
     <div className='container widgets-loaded' ref={ref}>
         <div className = "courses mt-4">
-            <div className='image-dots'>
+            <div className='image-dots shape'>
               <svg aria-hidden="true" className="shape__inner image-dots" style={{color:" #0a6143"}} data-v-67de5fba="">
                 <use xlinkHref={`${svg}#dots-2`} data-v-67de5fba="">
                   </use>
               </svg>
             </div>
-            <div className='image-dots-2'>
+            <div className='image-dots-2 shape'>
               <svg aria-hidden="true" className="shape__inner image-dots" style={{color:" #0a6143"}} data-v-67de5fba="">
                 <use xlinkHref={`${svg}#dots-2`} data-v-67de5fba="">
                   </use>
@@ -86,8 +86,6 @@ export default function Courses() {
                                 {/* </div>
                         </section> */}
                     </div>
-                <div className='course'>
-                </div>
             </div>
         </div>
     </div>

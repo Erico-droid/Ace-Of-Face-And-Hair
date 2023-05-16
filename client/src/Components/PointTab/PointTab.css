@@ -1,0 +1,43 @@
+.big-heading {
+    position: relative;
+    min-height: 285px;
+}
+
+@media (max-width: 768px) {
+    .big-heading {
+        position: relative;
+        min-height: 385px;
+    }
+}
+
+.big-heading .content-group {
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    margin: 40px 0px;
+}
+
+.big-bg {
+    margin-top: 100px;
+}
+
+.image-square-big-area {
+    position: absolute;
+    bottom: -10.5rem;
+    left: calc(100% - 18.5vw);
+    z-index: 99;
+    overflow-x: hidden;
+}
+
+.image-square-big-area .image-square-area {
+    width: 400px;
+    z-index: 1;
+}
+
+.shape__inner-big {
+    height: 300px;
+    width: 300px
+}

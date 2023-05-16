@@ -113,3 +113,10 @@
 .detail-icon {
     padding-right: 10px;
 }
+
+
+@media (max-width: 768px) {
+    .btn-prim, .btn-instagram, .btn-sec, .btn-outline {
+        font-size: calc(0.5vw + 10px);;
+    }
+}

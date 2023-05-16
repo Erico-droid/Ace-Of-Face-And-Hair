@@ -1,3 +1,7 @@
+.about-landing {
+	padding-top: 125px
+}
+
 .content-area {
     position: relative;
     width: 100%;
@@ -99,7 +103,7 @@
     /* left: -100px; */
     position: absolute;
     /* top: 50px; */
-    width: 70%;
+    width: 50%;
     z-index: -100;
     filter: grayscale(100%);
     opacity: .15;
@@ -278,7 +282,7 @@ p {
 
 
 .about-us-word p {
-	padding: 10px 20px;
+	padding: 10px 0px 10px 20px;
 	margin: 0px;
 	text-align: justify;
 }
