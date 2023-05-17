@@ -21,6 +21,7 @@ export default function NavBar(props) {
 	const [checked, setChecked] = React.useState(false);
 	const [loading, setLoading] = React.useState(false);
 	const [open, setOpen] = React.useState({open: false,Transition: Slide,});
+	const [scrollPosition, setScrollPosition] = useState(0);
 
 	function SlideTransition(props) {
 		return <Slide {...props} direction="up" />;
@@ -32,6 +33,12 @@ export default function NavBar(props) {
 		  open: false,
 		});
 	};
+
+	(() => {
+		window.addEventListener("scroll", (evt) => {
+			setScrollPosition(window.scrollY)
+		})
+	})();
 
 	const handleChange = (event, Transition) => {
 		setChecked(event.target.checked);
@@ -47,7 +54,7 @@ export default function NavBar(props) {
 
   return (
     <>
-    <section className="ftco-section">
+    <section className="ftco-section" style={scrollPosition === 0 ? { position: "relative"} : { position: "fixed" }}>
 		<div className="container-fluid container-fluid-sm">
 			{loading ?
 			<>

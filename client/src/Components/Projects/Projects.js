@@ -45,6 +45,7 @@ export default function Projects(props) {
     useEffect(() => {
         fetchProjects();
         setLoading(false);
+        props.loading(false)
     }, [])
 
     const PlaceHolderSettings = () => {

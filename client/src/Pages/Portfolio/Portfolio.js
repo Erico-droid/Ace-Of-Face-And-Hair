@@ -3,8 +3,8 @@ import Projects from '../../Components/Projects/Projects'
 
 export default function Portfolio(props) {
   return (
-    <div className='container-fluid'>
-      <Projects darkmode = {props.darkmode}/>
+    <div className='container'>
+      <Projects darkmode = {props.darkmode} loading={props.load}/>
     </div>
   )
 }

@@ -4,6 +4,7 @@
   z-index: 1000;
   width: 100%;
   background: #f5f5f5;
+  transition: .3s ease-in-out;
 }
 
 .dark-content .ftco-section {

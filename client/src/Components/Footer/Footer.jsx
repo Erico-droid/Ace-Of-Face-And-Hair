@@ -9,12 +9,12 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
-export default function Footer() {
+export default function Footer(props) {
     let currentYear = new Date().getFullYear();
 
   return (
 
-<footer className="kilimanjaro_area">
+<footer className="kilimanjaro_area" style={props.loading ? {display: "none"} : {display: "block"} }>
     <div className=''></div>
         <div className="foo_top_header_one section_padding_100_70">
             <div className="container">

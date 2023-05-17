@@ -16,7 +16,7 @@ export default function AboutLanding() {
   else if (width < 500)
     height = window.innerHeight + 220;
   else
-    height = window.innerHeight - 0;
+    height = window.innerHeight - 100;
   return (
     <div className='container-fluid'>
       <div className='row about-landing' style = {{height: height, width: "100%"}}>
