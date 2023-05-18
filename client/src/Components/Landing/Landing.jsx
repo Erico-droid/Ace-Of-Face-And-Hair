@@ -72,13 +72,13 @@ export default function Landing() {
                     <div className='row'>
                         <div className='col-md-6 col-sm-12 col-xs-12'>
                         <p>{story}</p>
-                        <div className='row text-sm-center text-xl-left text-lg-left button-parent'>
-                            <div className='col-md-6 col-sm-6 col-xs-6'>
+                        <div className = "button-container button-parent2">
+                            {/* <div className='col-md-6 col-sm-6 col-xs-6'> */}
                                 <Button btn={'prim'}>make an appointment</Button>
-                            </div>
-                            <div className='col-md-6 col-sm-6 col-xs-6'>
+                            {/* </div> */}
+                            {/* <div className='col-md-6 col-sm-6 col-xs-6'> */}
                                 <Button icon={<InfoIcon />} btn={'sec'}>Our Story Unfolded</Button>
-                            </div>
+                            {/* </div> */}
                         </div>
                         </div>
                     </div>

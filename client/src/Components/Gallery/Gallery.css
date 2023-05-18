@@ -30,14 +30,13 @@
 
 
 .top-phots {
-    /* aspect-ratio: 500/331; */
     max-width: 495px;
     perspective: 200px;
     position: relative;
     width: 100%;
     left: 19%;
-    bottom: 9%;
-    /* max-height: 100px; */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .top-phots::before {

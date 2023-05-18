@@ -80,15 +80,15 @@
 .shape-top-left{
     position: absolute;
     bottom: -9.5rem;
-    left: calc(100% - 106.5vw);
-    z-index: 99;
+    left: calc(100% - 102.5vw);
+    z-index: 0;
     overflow-x: hidden;
 }
 
 .shape__inner {
     display: block;
     position: relative;
-    width: 400px;
-    height: 400px;
-    z-index:0;
+    width: 29vw;
+    height: 55vh;
+    z-index: 0;
 }
