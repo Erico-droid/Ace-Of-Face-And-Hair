@@ -292,8 +292,8 @@ export default function ContactForm() {
                     </div>
                 <div className='col-md-6'>
                     <div className='heading-group-wording'>
-                    <h3 className = "wordheading" style = {{color: "#000"}}>Frequently Asked Questions.</h3>
-                    <p style = {{color: "#000"}}>
+                    <h3 className = "wordheading">Frequently Asked Questions.</h3>
+                    <p>
                     primeForce Property Manager Plus is a custom-built solution for complex businesses managing thousands of units. 
                     </p>
                     </div>

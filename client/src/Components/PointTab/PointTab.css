@@ -41,3 +41,11 @@
     height: 300px;
     width: 300px
 }
+
+.content-group p {
+    max-width: 50%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+}

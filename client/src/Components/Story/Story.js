@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import Heading from '../../shared/Heading/Heading';
 import "./Story.css"
-// import AfricanPattern from "../../Assets/african-pattern.jpg";
-import { YouTubeEmbed } from 'react-social-media-embed';
-import BorderHeading from '../../shared/BorderHeading/BorderHeading';
-import Card from '../../shared/Card/Card';
 
 export default function Story() {
     return (
@@ -24,7 +19,9 @@ export default function Story() {
                             </div>
                             <div className='col-md-6 order-1'>
                             <div className = "image-area">
-                                <div className = "video-sim"></div>
+                                <div className = "video-sim">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VEMWabj-2FQ" title="OUR STORY : ACE OF FACE AND HAIR - Hair &amp; Makeup for FILM/TV &amp; THEATRE 🎭" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                </div>
                                 {/* <YouTubeEmbed url="https://www.youtube.com/watch?v=HpVOs5imUN0" width={"100%"} height={400} /> */}
                             </div>
                             </div>

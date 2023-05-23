@@ -35,12 +35,20 @@
   }
 
   .content {
-  position: absolute;
+  /* position: absolute;
   left: 0;
   top: 75%;
   transform: translateY(-50%);
   color: #fff;
-  z-index: 5;
+  z-index: 5; */
+
+  position: absolute;
+    left: 0;
+    top: 85%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 5;
+    /* min-height: 100%; */
   }
 
   .video-wrapper {
@@ -102,7 +110,8 @@
 
   .wording p {
     color: #000;
-    font-size: calc(11px + 0.5vw);
+    /* font-size: calc(11px + 0.5vw); */
+    max-width: 95%
 }
 
   @media (max-width: 768px) {
@@ -168,3 +177,37 @@
     .dark-content .home-landing .card {
       background-color: #000 !important;
     }
+
+
+    .main-logo-landing-div {
+      /* position: absolute;
+      min-width: 25vw;
+      max-width: 30vw;
+      min-height: 25vw;
+      max-height: 30vh;
+      bottom: 120%;
+      left: 20%;
+      transform: translate(-50%, -50%); */
+
+      position: absolute;
+    /* min-width: 25vw; */
+    max-width: 25vw;
+    /* min-height: 25vw
+vw
+; */
+    max-height: 30vh;
+    bottom: 105%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+    .main-logo-landing-div img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+@media (max-width: 768px) {
+  .main-logo-landing-div {
+    display: none;
+  }
+}

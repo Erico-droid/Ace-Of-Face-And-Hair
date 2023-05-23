@@ -6,9 +6,14 @@
     /* margin-top: 20px; */
 	}
 	.foo_top_header_one {
-    background-color: #242021;
-    color: #fff;
-}
+        background-color: #fefefe;
+        color: #fff;
+    }
+
+    .dark-content .foo_top_header_one {
+        background-color: #101215;
+        color: #cccccc;
+    }
 
 .logo-2 {
     width: 210px;
@@ -22,9 +27,11 @@
     color: #fff;
 }.kilimanjaro_part {
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 .foo_top_header_one .kilimanjaro_part > h5 {
-    color: #fff;
+    color: #000;
+    text-transform: uppercase;
 }
 .kilimanjaro_part h4, .kilimanjaro_part h5 {
     margin-bottom: 30px;
@@ -40,15 +47,25 @@ ul {
     padding: 0;
 }
 .kilimanjaro_bottom_header_one {
-    background-color: #111;
+    background-color: #f5f5f5;
+}
+
+.dark-content .kilimanjaro_bottom_header_one {
+    background: #191C20
 }
 .section_padding_50 {
     padding: 10px 0;
 }
 .kilimanjaro_bottom_header_one p {
-    color: #fff;
+    color: #000;
+    font-size: 16px;
     margin: 0;
 }
+
+.dark-content .kilimanjaro_bottom_header_one p {
+    color: #ccc;
+}
+
 p, ul li, ol li {
     font-weight: 300;
 }
@@ -91,22 +108,33 @@ ul {
 }
 .kilimanjaro_links a {
     border-bottom: 1px solid #333;
-    color: rgba(255,255,255,.5);
+    color: #000;
     display: block;
     font-size: 13px;
     margin-bottom: 5px;
     padding-bottom: 10px;
 }
 .kilimanjaro_links a {
-    color: rgba(255,255,255,.5);
-    font-size: 13px;
+    color: #000;
+    font-size: 14px;
 }
+
+.dark-content .kilimanjaro_links a {
+    color: #ccc;
+}
+
 top-15 {
     margin-top: 15px;
 }
 .foo_top_header_one .kilimanjaro_part > h5 {
-    color: #fff;
+    color: #000;
+    text-transform: uppercase;
 }
+
+.dark-content .foo_top_header_one .kilimanjaro_part > h5 {
+    color: #ccc;
+}
+
 .kilimanjaro_part h4, .kilimanjaro_part h5 {
     margin-bottom: 30px;
 }
@@ -120,7 +148,7 @@ p, ul li, ol li {
 .kilimanjaro_social_links a {
     border: 1px solid #333;
     border-radius: 6px;
-    color: #fff;
+    color: #000;
     display: inline-block;
     font-size: 13px;
     margin-bottom: 3px;
@@ -128,6 +156,13 @@ p, ul li, ol li {
     margin-left: 2px;
     margin-right: 2px;
 }
+
+.dark-content .kilimanjaro_social_links a {
+    border: 1px solid #fff;
+    border-radius: 6px;
+    color: #ccc;
+}
+
 .kilimanjaro_blog_area .kilimanjaro_date {
     color: #27ae60;
     font-size: 13px;
@@ -140,7 +175,7 @@ p, ul li, ol li {
 }
 .kilimanjaro_works > a {
     display: inline-block;
-    float: left;
+    /* float: left; */
     position: relative;
     width: 33.33333333%;
     z-index: 1;
@@ -191,14 +226,6 @@ p, ul li, ol li {
     position: relative;
     z-index: 1;
 }
-.kilimanjaro_links a {
-    border-bottom: 1px solid #333;
-    color: rgba(255,255,255,.5);
-    display: block;
-    font-size: 13px;
-    margin-bottom: 5px;
-    padding-bottom: 10px;
-}
 
 .kilimanjaro_single_text {
     font-size: 14px;
@@ -236,4 +263,10 @@ p, ul li, ol li {
     from { transform: rotate(360deg);}
   }
 
-/* Credit to https://bootsnipp.com/snippets/X2XOv */
+  .footer-cancelled {
+    text-decoration: line-through;
+  }
+
+  .footer-cancelled a:hover {
+    cursor: not-allowed;
+  }

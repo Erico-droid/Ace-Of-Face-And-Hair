@@ -34,6 +34,9 @@
     filter: brightness(0.8)
   }
   
+  .dark-content .testimonial-area {
+    background: #051634;
+  }
 
   .img-fluid-big img {
     position: absolute;

@@ -6,6 +6,7 @@ body {
   background: #F5F5F5;
   color: gray;
   overflow-x: hidden;
+  transition: all .4s ease-in-out 0s !important;
 }
 
 @media (max-width: 575px) {
@@ -35,4 +36,5 @@ body {
 
 footer p {
   font-size: 14px;
+  text-align: left;
 }

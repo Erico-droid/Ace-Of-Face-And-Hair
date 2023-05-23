@@ -87,6 +87,9 @@ export default function Instagram() {
 
     return (
         <div className='instagram-section'>
+            <div className='heading-group-wording text-center'>
+                <h3 className = "wordheading">Our latest Instagram Posts.</h3>
+            </div>
             <div className="instagram-container">
                     {mediaUrls.map(Post => {
                         return (

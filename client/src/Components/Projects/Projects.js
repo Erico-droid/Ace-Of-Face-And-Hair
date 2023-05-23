@@ -45,7 +45,6 @@ export default function Projects(props) {
     useEffect(() => {
         fetchProjects();
         setLoading(false);
-        props.loading(false)
     }, [])
 
     const PlaceHolderSettings = () => {
@@ -56,7 +55,7 @@ export default function Projects(props) {
     }
         
     return (
-        <>
+        <div style = {{marginBottom: "50px"}}>
         {loading ?
             <div style = {{width: "100%", minHeight: "100vh", position: "relative", display: "block"}}>
                 {PlaceHolderSettings()}
@@ -69,6 +68,6 @@ export default function Projects(props) {
             </div>
          </FadeIn>
         }
-        </>
+        </div>
   )
 }

@@ -9,6 +9,10 @@ h3.wordheading {
     text-transform: capitalize;
 }
 
+.dark-content h3.wordheading {
+    color: #cccccc;
+}
+
 .heading-group-wording {
     /* height: 54px; */
     margin-top: 20px;
@@ -52,6 +56,10 @@ p {
     border-radius: 10px;
 }
 
+.dark-content .service-text-home {
+    background: #191C20
+}
+
 .p-wording p {
     padding: 0px 100px;
 }
@@ -70,6 +78,10 @@ p {
     max-width: 100%;
     height: 400px;
     margin-top: 5em;
+}
+
+.dark-content .photo-album {
+    background: #101215;
 }
 
 
@@ -129,4 +141,57 @@ p {
     .service-desktop-content {
         display: none;
     }
+}
+.mobile-images {
+        position: absolute;
+    min-width: 400px;
+    max-width: 400px;
+    margin-top: 60px;
+    bottom: -13%;
+    left: 60%;
+    transform: translateX(-50%);
+}
+
+.mobile-images img {
+    
+    width: 250px;
+    max-height: 350px;
+    border-radius: 10px;
+    filter: contrast(1.5) drop-shadow(2px 4px 6px black);
+}
+
+.mobile-images .img-2 {
+    position: absolute;
+    z-index: 12;
+    left: 11%;
+    top: 10%;
+}
+
+.mobile-all-content {
+    position: relative;
+    margin-top: 350px;
+}
+
+.mobile-wording {
+    padding-top: 30px
+}
+
+.p-mobile-wording p {
+    padding: 0px 10px;
+}
+
+@media (max-width: 767px) {
+    .services {
+        min-height: 950px !important
+    }
+}
+
+@media (min-width: 768px) {
+    .service-mobile-content {
+        display: none;
+    }
+}
+
+.container-xl {
+    max-width: 1500px !important;
 }

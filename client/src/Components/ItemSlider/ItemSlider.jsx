@@ -56,7 +56,7 @@ export default function ItemSlider(props) {
         :
         <FadeIn>
           <div className='service-desktop-content'>
-            <div className="container-lg container-fluid-md">
+            <div className="container-xl container-fluid-md">
             <div className='shape-work-left shape '>
               <svg aria-hidden="true" className="shape__inner top-right" style={{color:" #cd7a00"}} data-v-67de5fba="">
                 <use xlinkHref={`${svg}#triangle`} data-v-67de5fba="">
@@ -77,7 +77,7 @@ export default function ItemSlider(props) {
                                 <h3 className = "wordheading"> Explore Our Diverse Collection of Work.</h3>
                             </div>
                             <div className='p-wording text-center'>
-                                <p>
+                                <p className='text-left'>
                                 Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.
                                 </p>
                                 <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
@@ -96,6 +96,27 @@ export default function ItemSlider(props) {
                     </div>
                 </div>
             </div> 
+            </div>
+            <div className='service-mobile-content'>
+                <div className='container-fluid'>
+                    <div className='mobile-all-content'>
+                        <div className='mobile-images'>
+                        <img src="https://wallpaperaccess.com/full/757572.jpg" className = "img-1" alt="" />
+                        <img src="https://wallpapercave.com/wp/wp4937436.jpg" className = "img-2" alt="" />
+                      </div>
+                  </div>
+                  <div className='mobile-wording'>
+                            <div className='heading-group-wording text-center'>
+                                <h3 className = "wordheading"> Explore Our Diverse Collection of Work.</h3>
+                            </div>
+                            <div className='p-mobile-wording text-center'>
+                                <p className='text-left'>
+                                Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.
+                                </p>
+                                <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
+                            </div>
+                      </div>
+                </div>
             </div>  
         </FadeIn>
       }  

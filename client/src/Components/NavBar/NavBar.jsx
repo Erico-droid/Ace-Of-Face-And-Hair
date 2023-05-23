@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import './NavBar.css';
 import WidgetsSharpIcon from '@mui/icons-material/WidgetsSharp';
 import Switch from '@mui/material/Switch';
@@ -12,20 +12,30 @@ import Slide from '@mui/material/Slide';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import MuiAlert from '@mui/material/Alert';
+import Heading from "../../shared/Heading/Heading"
 
 
 export default function NavBar(props) {
 	const [checked, setChecked] = React.useState(false);
 	const [loading, setLoading] = React.useState(false);
-	const [open, setOpen] = React.useState({open: false,Transition: Slide,});
+	const [open, setOpen] = React.useState({open: false,Transition: Slide});
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [openSnackbar, setOpenSnackbar] = useState(false);
+	const [pathName, setPathName] = useState("")
 
 	function SlideTransition(props) {
 		return <Slide {...props} direction="up" />;
 	}
+
+
+	let location = useLocation()
+	
+	useEffect(() => {
+		setPathName(location.pathname)
+	}, [location])
+
 
 	const handleSnackbarClose = () => {
 		setOpenSnackbar(false);
@@ -66,9 +76,10 @@ export default function NavBar(props) {
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
+
   return (
     <>
-    <section className="ftco-section" style={scrollPosition === 0 ? { position: "relative"} : { position: "fixed" }}>
+    <section className="ftco-section" style={scrollPosition <= 500 ? { position: "relative", transition: "position .3s ease", transitionDelay: ".3s"} : { position: "fixed",transition: "position .3s ease", transitionDelay: ".3s" }}>
 		<div className="container-fluid container-fluid-sm">
 			{loading ?
 			<>
@@ -80,7 +91,7 @@ export default function NavBar(props) {
 			<nav className="ftco-navbar-light navbar navbar-expand-lg ftco_navbar" id="ftco-navbar">
 		    <div className="container-md container-lg container-xl container-fluid">
 				<span className="spanLogo">
-					<img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" />
+					{ pathName === "/" && windowSize.current[0] > 1000 ? scrollPosition <= 200 ? <h3 className = "wordheading text-right mt-md-3" >Ace Of Face And Hair</h3> : <img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /> : <img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /> }
 				</span>
 		    	{/* <a className="navbar-brand" href="index.html">ace of face and hair</a> */}
 		    	<div className="social-media order-lg-last darkmode-place">
@@ -119,7 +130,7 @@ export default function NavBar(props) {
 				onClose={handleClose}
 				TransitionComponent={open.Transition}
 				message={checked ?  "Dark Mode Activated." : "Light Mode Activated"}
-				key={Math.random()}
+				key={open ? "abracdabra-light" : "abracdabra-dark"}
 				autoHideDuration={2000}
 				action = {
 					<React.Fragment>

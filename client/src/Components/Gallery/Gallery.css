@@ -118,6 +118,6 @@
     .art-text p {
         color: #000;
         font-size: calc(11px + 0.5vw);
-        text-align: right
+        text-align: left
     }
 }

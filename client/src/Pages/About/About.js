@@ -9,7 +9,7 @@ import PointTab from '../../Components/PointTab/PointTab';
 
 export default function About(props) {
   return (
-    <div>
+    <>
       <div className='about-lndn'>
         <AboutLanding />
       </div>
@@ -30,6 +30,6 @@ export default function About(props) {
               Make the most outta afh
             </PointTab>
       </div>
-    </div>
+    </>
   )
 }

@@ -20,8 +20,7 @@ export default function GoalsSection() {
             random = 1;
         typeWriter.typeString(arr[random]).pauseFor(500).start();
     }
-    
-    
+
     function handleClick (evt) {
         var button  = evt.target;
         var toBeRemoved = document.querySelector("#nav-tab .active");

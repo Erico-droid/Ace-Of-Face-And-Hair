@@ -3,11 +3,11 @@
 }
 
 .dark-content .ftco-navbar-light {
-    background-color: #262626 !important;
+    background-color: #101215 !important;
 }
 
 .dark-content .card {
-    background-color: #262626 !important;
+    background-color: #101215 !important;
 }
 
 .dark-content .card .overlay {
@@ -106,23 +106,23 @@
 
 
 .dark-content  p {
-    color: #cbf8ff;
+    color: #cccccc;
 }
 
 .dark-content .wording p {
-    color: #cbf8ff;
+    color: #cccccc;
 }
 
 .dark-content .instagram-header {
-    color: #cbf8ff;
+    color: #cccccc;
 }
 
 .dark-content .pattern {
-    background-image: repeating-linear-gradient(45deg, #00d2f2 0, #00d2f2 1px, #262626 0, #262626 50%);
+    background-image: repeating-linear-gradient(45deg, #00d2f2 0, #00d2f2 1px, #101215 0, #101215 50%);
 }
 
 .dark-content .last-pattern {
-    background-image: repeating-linear-gradient(45deg, #00d2f2 0, #00d2f2 1px, #262626 0, #262626 50%);
+    background-image: repeating-linear-gradient(45deg, #00d2f2 0, #00d2f2 1px, #101215 0, #101215 50%);
 }
 
 .dark-content .contact-body p {
@@ -134,11 +134,11 @@
 }
 
 .dark-content .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-    color: #cbfff0
+    color: #cccccc
 }
 
 .dark-content .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
-    background-color: #cbfff0;
+    background-color: #cccccc;
 }
 
 .dark-content iframe .Header {
@@ -163,16 +163,16 @@
 }
 
 .dark-content .property-card-h5 {
-    color: #cbfff0;
+    color: #cccccc;
 }
 
 .dark-content .property-description {
-    background-color: #262626;
+    background-color: #101215;
 }
 
 .dark-content .instagram-card {
-    background: #262626;
-    border: 1px solid #262626;
+    background: #101215;
+    border: 1px solid #101215;
 }
 
 .dark-content .instagram-card-content-user {
@@ -191,7 +191,7 @@
 }
 
 .dark-content .art-text p {
-    color: #cbfff0;
+    color: #cccccc;
     font-size: calc(11px + 0.5vw);
 }
 
@@ -205,5 +205,5 @@
 }
 
 .dark-content .ftco-navbar-light .navbar-nav > .nav-item .active {
-    color: yellow;
+    color: #00f2ae;
 }

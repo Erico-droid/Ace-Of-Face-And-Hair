@@ -9,6 +9,7 @@ import { Fade } from '@mui/material';
 import Vid from '../../Assets/vidBox.mp4'
 import Banner from '../../Assets/untitled-6.jpg'
 import $ from "jquery";
+import Logo2 from '../../Assets/aofahcute.png';
 
 export default function Landing() {
 
@@ -76,6 +77,10 @@ export default function Landing() {
             <div className="landing-container" style={{height: LandingHeight, marginBottom: mgBt}}>
             <div className="overlay"></div>
             <div className="content">
+
+            <div className='main-logo-landing-div'>
+                <img src={Logo2}  alt = "Ace Of Face And Hair Main Logo" />
+            </div>
             <div className='wording'>
                     <div className='row'>
                         <div className='col-md-6 col-sm-12 col-xs-12'>

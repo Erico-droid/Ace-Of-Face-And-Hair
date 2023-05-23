@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-import Logo2 from '../../Assets/aofahcute.jpg';
+import Logo2 from '../../Assets/aofahcute.png';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import Button from '../../shared/Button/Button';
 import Popover from '@mui/material/Popover';
@@ -8,13 +8,14 @@ import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import {Link} from "react-router-dom"
 
 export default function Footer(props) {
     let currentYear = new Date().getFullYear();
 
   return (
 
-<footer className="kilimanjaro_area" style={props.loading ? {display: "none"} : {display: "block"} }>
+<footer className="kilimanjaro_area">
     <div className=''></div>
         <div className="foo_top_header_one section_padding_100_70">
             <div className="container">
@@ -37,18 +38,19 @@ export default function Footer(props) {
 
                     <div className="col-12 col-md-6 col-lg-4">
                         <div className="kilimanjaro_part m-top-15 pt-lg-5">
+                            <h5 className='text-center'>Quick Links</h5>
                             <ul className="kilimanjaro_links">
-                                <li><a href="#"><i className="fa fa-angle-right" aria-hidden="true"></i>Terms & Conditions</a></li>
-                                <li><a href="#"><i className="fa fa-angle-right" aria-hidden="true"></i>About Licences</a></li>
-                                <li><a href="#"><i className="fa fa-angle-right" aria-hidden="true"></i>Help & Support</a></li>
-                                <li><a href="#"><i className="fa fa-angle-right" aria-hidden="true"></i>Careers</a></li>
-                                <li><a href="#"><i className="fa fa-angle-right" aria-hidden="true"></i>Privacy Policy</a></li>
-                                <li><a href="#"><i className="fa fa-angle-right" aria-hidden="true"></i>Community & Forum</a></li>
+                                <li><Link to={"/"}><i className="fa fa-angle-right" aria-hidden="true"></i>Home (Ace Of Face And Hair)</Link></li>
+                                <li><Link to={"/portfolio"}><i className="fa fa-angle-right" aria-hidden="true"></i>Our Portfolio (Completed Projects)</Link></li>
+                                <li><Link to={"/about"}><i className="fa fa-angle-right" aria-hidden="true"></i>About us / Our Story</Link></li>
+                                <li className="footer-cancelled" title='coming soon...'><Link ><i className="fa fa-angle-right" aria-hidden="true"></i>Shop (Our Services)</Link></li>
+                                <li><Link to={"/contact"}><i className="fa fa-angle-right" aria-hidden="true"></i>Get in touch (Contact Us)</Link></li>
+                                <li><Link to={"/contact"}><i className="fa fa-angle-right" aria-hidden="true"></i>Frequently Asked Questions (FAQ)</Link></li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div className="col-12 col-md-6 col-lg-4 text-center">
+                    <div className="col-12 col-md-6 col-lg-4 text-left">
                         <div className="kilimanjaro_part pt-lg-5">
                             <div className="kilimanjaro_single_text">
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 

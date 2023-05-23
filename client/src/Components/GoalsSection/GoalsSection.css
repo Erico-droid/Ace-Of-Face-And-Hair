@@ -7,6 +7,7 @@
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 3px;
+    min-height: 400px
 }
 
 .dark-content .h2-type {

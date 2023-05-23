@@ -25,7 +25,7 @@ export default function Home(props) {
                 <Gallery darkmode = {props.darkmode}/>
             </div>
             <div className='contact-section container-fluid'>
-              <ContactSection />
+              <ContactSection darkmode = {props.darkmode}/>
             </div>
             <div className='courses-section'>
               <Courses />

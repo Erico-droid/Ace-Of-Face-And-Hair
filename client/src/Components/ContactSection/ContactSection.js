@@ -9,7 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import svg from "../../Assets/shapes.svg"
 
-export default function ContactSection() {
+export default function ContactSection(props) {
 
   const [icon, setIcon] = useState(2);
 
@@ -47,7 +47,7 @@ export default function ContactSection() {
           <p>Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen!Contact us today and let's make magic happen! Contact us today and let's make magic happen!  Contact us today and let's make magic happen!</p>
         </div>
         <div className='text-center'>
-          <Button icon = {<PhoneIcon  />} color = {"white"} bg = {"black"} btn = {"sec"}>Contact us</Button>
+          <Button icon = {<PhoneIcon  />} color = {"white"} bg = {props.darkmode ? "#101215" : "black"} btn = {"sec"}>Contact us</Button>
         </div>
       </div>
   )
