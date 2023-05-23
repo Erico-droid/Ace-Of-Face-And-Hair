@@ -1,145 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 <style>
- 
-.wrapper {
-	background: darkorange;
-	height: 450px;
-	position: relative;
-	overflow: hidden;
-	display: flex;
-	flex-flow: row nowrap;
-	-webkit-box-align: end;
-	align-items: flex-end;
-	-webkit-box-pack: center;
-	justify-content: center;
-	margin: 67px 0 0;
-}
-.mainSlider {
-	position: absolute;
-	top: 80px;
-	left: 0;
-	width: 500%;
-	height: auto;
-	transition: left 0.4s;
-	display: flex;
-	flex-flow: row nowrap;
-}
-.content {
-	height: 100%;
-	text-align: center;
-	display: flex;
-	-webkit-box-flex: 1;
-	flex: 1;
-	flex-flow: column nowrap;
-	-webkit-box-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	justify-content: center;
-}
-.content h2 {
-	font-size: 18px;
-	color: #fff;
-	font-family: montserrat;
-}
-.content p {
-	font-size: 30px;
-	font-family: cookie;
-	line-height: 1.7;
-	color: #fff;
-	margin-top: -20px;
-	margin-bottom: 20px;
-	max-width: 750px;
-}
-.img-area img {
+
+	body {
+		background: yellow;
+	}
+	.sp-container {
 	width: 100%;
+	height: 100%;
+	position: relative;
+	margin: 80px auto 0px auto;
 }
-.img-area {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	overflow: hidden;
-	display: inline-block;
-	margin-bottom: 40px;
-	border: 5px solid #fff;
-}
-.dots {
-	width: 12px;
-	height: 12px;
-	margin: 15px 10px;
-	z-index: 10;
-	outline: 10px solid white;
-	outline-offset: -6px;
-	cursor: pointer;
-	appearance: none;
-	backface-visibility: hidden;
-	border-radius: 50%;
-}
-.dots:checked:nth-of-type(1)~.mainSlider {
-	left: 0%;
-}
-.dots:checked:nth-of-type(2)~.mainSlider {
-	left: -100%;
-}
-.dots:checked:nth-of-type(3)~.mainSlider {
-	left: -200%;
-}
-.dots:checked:nth-of-type(4)~.mainSlider {
-	left: -300%;
-}
-.dots:checked:nth-of-type(5)~.mainSlider {
-	left: -400%;
+.sp-content {
+	width: 100%;
+	height: 400px;
+	position: relative;
+	animation: 
+		open 0.4s linear forwards, 
+		squeeze 0.6s linear 5.5s forwards;
 }
 
+.sp-content:after {
+	content: '';
+	width: 4px;
+	background: #000;
+	height: 100%;
+	position: absolute;
+	left: 50%;
+}
+
+.sp-wrap {
+	width: 400px;
+	padding: 0px 25px;
+	height: 100%;
+	text-align: right;
+	font-size: 70px;
+	line-height: 80px;
+	float: left;
+	position: relative;
+	background: #ffdd00;
+	overflow: hidden;
+}
+
+.sp-container h2 {
+	color: #000;
+	text-shadow: 0px 0px 1px rgba(0,0,0,0.9);
+}
+.sp-wrap span {
+	display: block;
+	background: #ffdd00;
+	opacity: 0;
+}
+.sp-wrap span.sp-mid {
+	opacity: 1;
+}
+.sp-container .sp-right h2 {
+	color: #fff;
+	text-shadow: 0px 0px 1px rgba(255,255,255,0.9);
+}
+.sp-wrap span.sp-mid {
+	font-family: 'MisoBold';
+	text-transform: uppercase;
+	font-size: 160px;
+	line-height: 130px;
+	position: relative;
+}
+
+.sp-left span.sp-top {
+	animation: 
+		slideLeft 0.5s ease-in 0.6s backwards, 
+		fadeOut 1s linear 4s backwards;
+}
+.sp-left span.sp-mid {
+	animation: 
+		slideLeft 0.5s ease-in 1s backwards, 
+		moveUp 0.6s linear 5s forwards;
+}
+.sp-left span.sp-bottom {
+	animation: 
+		slideLeft 0.5s ease-in 1.4s backwards, 
+		fadeOut 1s linear 4.2s backwards;
+}
+
+.sp-right span {
+	text-align: left;
+}
+.sp-right span.sp-top {
+	animation: 
+		slideRight 0.5s ease-in 2s backwards, 
+		fadeOut 1s linear 4.4s backwards;
+}
+.sp-right span.sp-mid {
+	animation: 
+		slideRight 0.5s ease-in 2.4s backwards, 
+		moveUp 0.6s linear 5s forwards;
+}
+.sp-right span.sp-bottom {
+	animation: 
+		slideRight 0.5s ease-in 3.2s backwards, 
+		fadeOut 1s linear 4.6s backwards;
+}
+
+.sp-wrap i {
+	position: absolute;
+	background: #ffdd00;
+	width: 60px;
+}
+.sp-wrap i:first-child {
+	color: #000;
+}
+.sp-wrap i:last-child {
+	opacity: 0;
+	animation: fadeOut 1s linear 6s backwards;
+}
+
+.sp-full {
+	position: absolute;
+	font-size: 67px;
+	top: 142px;
+	width: 700px;
+	left: 145px;
+	animation: fadeIn 1s linear 6.6s backwards;
+}
+.sp-full a {
+	background: #000;
+	color: #fff;
+	border-radius: 4px;
+	padding: 10px 40px;
+	display: inline-block;
+	font-size: 40px;
+	margin-top: 40px;
+	animation: zoomIn 0.7s ease-in-out 7s backwards;
+}
+.sp-full h2 {
+	width: 400px;
+	padding: 0px 50px 0px 0px;
+	float: left;
+	text-align: right;
+}
+.sp-full a:hover {
+	opacity: 0.8;
+}
+
+@keyframes open{
+	0%{
+		transform: scale(1,0);
+	}
+	100%{
+		transform: scale(1,1);
+	}
+}
+
+@keyframes squeeze{
+	0%{
+		height: 400px;
+	}
+	100%{
+		height: 120px;
+	}
+}
+
+@keyframes fadeOut{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}
+@keyframes fadeIn{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@keyframes slideLeft{
+	0%{
+		transform: translateX(120%);
+	}
+	100%{
+		transform: translateX(0%);
+	}
+}
+@keyframes slideRight{
+	0%{
+		transform: translateX(-120%);
+	}
+	100%{
+		transform: translateX(0%);
+	}
+}
+
+@keyframes moveUp{
+	0%{
+		transform: translateY(0px);
+	}
+	100%{
+		transform: translateY(-170px);
+	}
+}
+
+@keyframes zoomIn{
+	0%{
+		transform: scale(0);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
 </style>
 <body>
-  <!DOCTYPE html>
-<html lang="en">
-<!--codingflicks.com-->
-<head>
-	<meta charset="UTF-8">
-	<title>Pure CSS Responsive Testimonial Slider</title>
-	<link href="style.css" rel="stylesheet">
-</head>
-<body>
-	<div class="wrapper">
-		<input checked="checked" class="dots" name="testi" title="slide1" type="radio"> <input class="dots" name="testi" title="slide2" type="radio"> <input class="dots" name="testi" title="slide3" type="radio"> <input class="dots" name="testi" title="slide4" type="radio"> <input class="dots" name="testi" title="slide5" type="radio">
-		<div class="mainSlider">
-			<div class="content">
-				<div class="img-area"><img alt="" src="https://images.pexels.com/photos/1317712/pexels-photo-1317712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi, eius. Consequatur, et eum fuga debitis, incidunt quia!</p>
-				<h2>Someone Famous 1</h2>
+	<div class="sp-container">
+		<div class="sp-content">
+			<div class="sp-wrap sp-left">
+				<h2>
+					<span class="sp-top">What if you wouldn't get</span> 
+					<span class="sp-mid">spam</span> 
+					<span class="sp-bottom">anymore?</span>
+				</h2>
 			</div>
-			<div class="content">
-				<div class="img-area"><img alt="" src="https://images.pexels.com/photos/2269872/pexels-photo-2269872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi, eius. Consequatur, et eum fuga debitis, incidunt quia!</p>
-				<h2>Someone Famous 2</h2>
-			</div>
-			<div class="content">
-				<div class="img-area"><img alt="" src="https://images.pexels.com/photos/3190334/pexels-photo-3190334.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi, eius. Consequatur, et eum fuga debitis, incidunt quia!</p>
-				<h2>Someone Famous 3</h2>
-			</div>
-			<div class="content">
-				<div class="img-area"><img alt="" src="https://images.pexels.com/photos/3525908/pexels-photo-3525908.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi, eius. Consequatur, et eum fuga debitis, incidunt quia!</p>
-				<h2>Someone Famous 4</h2>
-			</div>
-			<div class="content">
-				<div class="img-area"><img alt="" src="https://images.pexels.com/photos/9968247/pexels-photo-9968247.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, nisi, eius. Consequatur, et eum fuga debitis, incidunt quia!</p>
-				<h2>Someone Famous 5</h2>
+			<div class="sp-wrap sp-right">
+				<h2>
+					<span class="sp-top">Wouldn't that be absolutely</span> 
+					<span class="sp-mid">great<i>!</i><i>?</i></span> 
+					<span class="sp-bottom">Yeah, it would!</span> 
+				</h2>
 			</div>
 		</div>
+		<div class="sp-full">
+			<h2>A great way to get rid of spam!</h2>
+			<a href="index3.html">Sign up now!</a>
+		</div>
 	</div>
-</body>
-</html>
-
 </body>
 </html>

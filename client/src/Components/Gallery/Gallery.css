@@ -64,14 +64,16 @@
 @media (max-width: 630px) {
     .top-phots {
         aspect-ratio: 500/331;
-        max-width: 490px;
-        perspective: 200px;
+        max-width: 80vw;
+        /* perspective: 200px
+    px
+    ; */
         position: relative;
-        width: 100%;
+        /* width: 100%; */
         left: 50%;
-        transform: translateX(-50%);
-        bottom: 9%;
-        /* max-height: 100px; */
+        transform: translate(-50%, -150%);
+        margin-top: 50%;
+        min-height: 40vh;
     }
     
     .top-phots::before {
@@ -88,12 +90,13 @@
         top: 50px;
         width: 103%;
         z-index: -100;
+        display: none;
     }
 
     .react-photo-gallery--gallery img {
         max-width: 33.3%;
         /* min-width: 191px; */
-        max-height: 206px;
+        max-height: 190px;
         margin: 0px !important;
     }
 }

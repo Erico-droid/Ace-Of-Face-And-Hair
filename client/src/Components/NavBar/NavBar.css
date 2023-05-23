@@ -173,3 +173,14 @@
       letter-spacing: .1em; }
       .ftco-navbar-light .navbar-toggler:focus {
         outline: none !important; }
+
+
+        .nav-link.cancelled {
+          text-decoration: line-through;
+        }
+
+        .nav-link.cancelled:hover {
+          text-decoration: line-through;
+          cursor: not-allowed;
+          color: #000;
+        }

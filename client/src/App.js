@@ -29,7 +29,7 @@ export default function App() {
   }
 
   return (
-      <div>
+      <>
           <header>
             <NavBar getDark = {getDark} />
           </header>
@@ -41,6 +41,6 @@ export default function App() {
           <Route path = "/contact" exact element = {<Contact />} />
       </Routes>
       <Footer loading = {pageLoading} />
-    </div>
+    </>
   );
 }

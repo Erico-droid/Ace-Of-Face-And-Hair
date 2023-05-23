@@ -8,13 +8,12 @@ import Placeholder from './Placeholder';
 import FadeIn from "react-fade-in";
 import logo from '../../Assets/aofah.png';
 import { ThemeContext, themes } from '../../Contexts/ThemeContext'
-import Card from '../../shared/Card/Card';
 import Slide from '@mui/material/Slide';
 import Snackbar from '@mui/material/Snackbar';
-import { Button } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { NavLink } from 'react-router-dom';
+import MuiAlert from '@mui/material/Alert';
 
 
 export default function NavBar(props) {
@@ -22,10 +21,20 @@ export default function NavBar(props) {
 	const [loading, setLoading] = React.useState(false);
 	const [open, setOpen] = React.useState({open: false,Transition: Slide,});
 	const [scrollPosition, setScrollPosition] = useState(0);
+	const [openSnackbar, setOpenSnackbar] = useState(false);
 
 	function SlideTransition(props) {
 		return <Slide {...props} direction="up" />;
 	}
+
+	const handleSnackbarClose = () => {
+		setOpenSnackbar(false);
+	};
+
+
+	const handleSnackbarClick = () => {
+		setOpenSnackbar(true);
+	};
 
 	const handleClose = () => {
 		setOpen({
@@ -49,6 +58,11 @@ export default function NavBar(props) {
 		});
 		props.getDark(!checked);
 	};
+
+	const handleDisabledClick = (evt) => {
+		evt.preventDefault();
+		setOpenSnackbar(true);
+	}
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
@@ -59,10 +73,10 @@ export default function NavBar(props) {
 			{loading ?
 			<>
 			<div style={{ width: "100%"}}>
-				<Placeholder viewBox={windowSize.current[0] < 685 ? "0 0 540 100" : "0 0 1000 100"}/>
+				<Placeholder viewBox={windowSize.current[0] < 685 ? "0 0 540 100" : "0 0 1000 50"}/>
 			</div>
 			</> :
-			<>
+			<FadeIn>
 			<nav className="ftco-navbar-light navbar navbar-expand-lg ftco_navbar" id="ftco-navbar">
 		    <div className="container-md container-lg container-xl container-fluid">
 				<span className="spanLogo">
@@ -94,7 +108,7 @@ export default function NavBar(props) {
 		        	<li className="nav-item"><NavLink to="/" className = "nav-link" activeclassname="active">Home</NavLink></li>
 		        	<li className="nav-item"><NavLink to="/portfolio" className = "nav-link" activeclassname="active">Portfolio</NavLink></li>
 		        	<li className="nav-item"><NavLink to="/about" className="nav-link" activeclassname="active">About</NavLink></li>
-		        	<li className="nav-item"><a href="#" className="nav-link">Blog</a></li>
+		        	<li className="nav-item"><NavLink to="/shop" onClick={handleDisabledClick} title = "coming soon...." className="nav-link cancelled">Shop</NavLink></li>
 		          <li className="nav-item"><NavLink to="/contact" className="nav-link" activeclassname="active">Contact</NavLink></li>
 		        </ul>
 		      </div>
@@ -120,7 +134,13 @@ export default function NavBar(props) {
 				</React.Fragment>
 				}
 			/>
-		  </> 
+			<Snackbar open={openSnackbar} autoHideDuration={8000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      >
+				<MuiAlert onClose={handleSnackbarClose} severity="info">
+				Shop page is coming soon
+				</MuiAlert>
+			</Snackbar>
+		  </FadeIn> 
 		  }
   </div>
 	</section>

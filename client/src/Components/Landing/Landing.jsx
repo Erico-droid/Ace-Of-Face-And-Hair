@@ -14,14 +14,22 @@ export default function Landing() {
 
     const windowHeight = useRef(window.innerHeight);
 
-    if (window.innerWidth > 435)
+    if (window.innerWidth > 435 && window.innerWidth < 500) {
         var LandingHeight = parseInt(windowHeight.current) - 118;
-    else
+        var mgBt = (LandingHeight * ( Math.sqrt(2.855)/6));
+    }
+    else  if (window.innerWidth <= 434) {
         var LandingHeight = parseInt(windowHeight.current) - 279;
+        var mgBt = (LandingHeight * ( Math.sqrt(2.855)/4))
+    }
+    else {
+        var LandingHeight = parseInt(windowHeight.current) - 118;
+        var mgBt = 0;
+    }
 
     // var longStory = "Ace of Face and Hair is a versatile company that offers styling services i.e. Hair, Makeup for TV, FILM &amp;  Theatre. We explore the possibilities of Art on the human body. We work behind the scenes to create illusions, concealing or unveiling layers of complexity bending and even breaking conventional rules of beautification. We are fascinated and continue to engage in mixed mediums to tell stories."
     var story = "Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.";
-    console.log(window.innerHeight);
+   
     useEffect(() => {
         $(document).ready(function() {
             const video = $("#my-video");
@@ -65,7 +73,7 @@ export default function Landing() {
     return (
         <div className='container-fluid home-landing'>
             <Card constraints = {"pl-0 pr-0"} background = {"#f5f5f5"} size={12}>
-            <div className="landing-container" style={{height: LandingHeight}}>
+            <div className="landing-container" style={{height: LandingHeight, marginBottom: mgBt}}>
             <div className="overlay"></div>
             <div className="content">
             <div className='wording'>

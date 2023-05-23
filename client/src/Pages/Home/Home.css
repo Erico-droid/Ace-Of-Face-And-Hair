@@ -6,10 +6,17 @@
     margin-bottom: 10px
   }
 
-.services, .work, .courses-section {
-    min-height: 700px;
+ .work, .courses-section {
+    min-height: 850px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.services {
+    min-height: 750px;
     justify-content: center;
     align-content: center;
 }

@@ -16,7 +16,7 @@ import PointTab from '../../Components/PointTab/PointTab'
 
 export default function Home(props) {
   return (
-    <div>
+    <>
             <Landing/>
               <div className = "services">
                 <ItemSlider darkmode = {props.darkmode}/>
@@ -44,6 +44,6 @@ export default function Home(props) {
               Make the most outta afh
             </PointTab>
             </div>
-    </div>
+    </>
   )
 }
