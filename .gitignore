@@ -24,3 +24,4 @@ client/yarn-error.log*
 
 server/db.sqlite3
 */.env
+server/afh
