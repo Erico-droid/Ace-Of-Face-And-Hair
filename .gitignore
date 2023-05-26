@@ -29,3 +29,4 @@ server/afh
 
 # Ignore Django migration files
 **/migrations/
+**/__pycache__/

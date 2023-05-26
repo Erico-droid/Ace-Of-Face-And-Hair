@@ -1,9 +1,5 @@
 import React from 'react'
-import Card from '../../shared/Card/Card'
-import Player from '../../Components/Player/Player'
-import Button from '../../shared/Button/Button'
 import Landing from '../../Components/Landing/Landing'
-import Heading from '../../shared/Heading/Heading'
 import ItemSlider from '../../Components/ItemSlider/ItemSlider'
 import Gallery from '../../Components/Gallery/Gallery'
 import "./Home.css"

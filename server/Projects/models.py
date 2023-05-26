@@ -13,7 +13,7 @@ class Project (models.Model):
     brief_description = models.TextField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
-    images = models.ManyToManyField(Image, blank=True, null=True)
+    images = models.ManyToManyField(Image, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
