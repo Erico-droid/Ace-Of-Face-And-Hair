@@ -7,6 +7,6 @@ app_name = 'projects'
 
 urlpatterns = [
     path('', views.project_list, name='project_list'),
-    # path('<int:pk>/', views.project_detail, name='project_detail'),
+    path('<slug:project_slug>/', views.project_detail, name='project_detail'),
     # Add more URL patterns as needed
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
