@@ -18,36 +18,27 @@ export default function DetailedProject(props) {
     const [heading, setHeading] = useState("");
     const [loading, setLoading] = useState(true);
 
-    const getImages = async () => {
+    const getData = async () => {
         var imageArr = [];
-        const id = params["id"];
-        const url = `https://jsonplaceholder.typicode.com/photos?albumId=${id}`;
+        const slug = params["slug"];
+        const url = `/portfolio/${slug}/`;
         const request = await Axios.get(url)
         .then(resp => {
             const arr = resp.data;
-            for (var i = 0; i < arr.length; i++) {
+            for (var i = 0; i < arr.images.length; i++) {
                 var obj = {};
                 if (!obj["src"])
-                    obj["src"] = arr[i]["url"];
+                    obj["src"] = arr.images[i]
                 if (!obj["width"])
                     obj["width"] = Math.round(Math.random() * (800 - 550 + 1)) + 550;
                 if (!obj["height"])
                     obj["height"] = Math.round(Math.random() * (1200 - 900 + 1) + 900);
                 imageArr = [...imageArr, obj];
-                setImages(imageArr);
             }
-            
+            setImages(imageArr);
+            setHeading(arr.name)
         })
         .catch(error => {throw error})
-    }
-
-    const getAlbumDetails = async () => {
-        const id = params["id"];
-        const url = `https://jsonplaceholder.typicode.com/albums?id=${id}`;
-        const request = Axios.get(url)
-        .then(resp => {
-            setHeading(resp.data[0]["title"]);
-        })
     }
 
     const openLightbox = useCallback((event, { photo, index }) => {
@@ -61,8 +52,7 @@ export default function DetailedProject(props) {
     };
 
     useEffect(() => {
-        getAlbumDetails();
-        getImages();
+        getData();
         setLoading(false);
     }, [])
 
@@ -79,7 +69,7 @@ export default function DetailedProject(props) {
     }
 
     return (
-        <div className='container-fluid'>
+        <div className='container mt-4 mb-5'>
             {loading ?
                 <div style = {{width: "100%"}}>
                     {PlaceHolderSettings()}
@@ -88,14 +78,11 @@ export default function DetailedProject(props) {
                 <FadeIn>
             <div className='row'>
                 <div className = 'col-md-12'>
-                    <div className='card mb-3'>
+                    <div className='mb-5'>
                     <div className='project-description'>
-                        <BorderHeading size = {"small"}>{heading}</BorderHeading>
-                        <p>Project Description Project Description Project Description Project Description Project Description 
-                        Project Description Project Description Project Description Project Description Project Description Project Description 
-                        Project Description Project Description Project Description Project Description Project Description Project Description 
-                        Project Description Project Description Project Description Project Description Project Description Project Description.
-                        </p>
+                            <div className='heading-group-wording'>
+                                <h3 className = "wordheading">{heading}</h3>
+                            </div>
                         </div>
                     </div>
                     <div>

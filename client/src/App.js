@@ -27,7 +27,7 @@ export default function App() {
       <Routes>
           <Route path = "/" exact element = {<Home darkmode = {dark} />} />
           <Route path = "/portfolio" exact element = {<Portfolio darkmode = {dark} />} />
-          <Route path = "/portfolio/project/:id" exact element = {<DetailedProject darkmode = {dark} />} />
+          <Route path = "/portfolio/:slug" exact element = {<DetailedProject darkmode = {dark} />} />
           <Route path = "/about" exact element = {<About />} />
           <Route path = "/contact" exact element = {<Contact />} />
       </Routes>

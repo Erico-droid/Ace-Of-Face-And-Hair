@@ -7,3 +7,11 @@
 .project-description {
     padding: 0px 10px;
 }
+
+.react-photo-gallery--gallery img {
+    max-width: 24%;
+    min-width: 24%;
+    max-height: 206px;
+    margin: 5px !important;
+    border-radius: 10px;
+}

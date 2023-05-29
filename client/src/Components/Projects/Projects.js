@@ -12,30 +12,12 @@ export default function Projects(props) {
     const [loading, setLoading]  = useState(true);
 
     const fetchProjects = async () => {
-        const url = "https://jsonplaceholder.typicode.com/albums?_limit=10";
+        const url = "/portfolio/";
         var counter = 0;
         const request = await Axios.get(url)
         .then((resp) => {
             var respArray = resp.data;
-            for (var i = 0; i < respArray.length; i++) {
-                const img_req = Axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${i}`)
-                .then((resp) => {
-                    if (resp.data.length !== 0) {
-                        var img = resp.data[0]["url"];
-                        if(!respArray[counter]["img"])
-                            respArray[counter]["img"] = img;
-                    } else {
-                        if(!respArray[counter]["img"]  === undefined)
-                            respArray[counter]["img"] = respArray[counter - 1]["img"];
-                    }
-                    setProjects(respArray)
-                    counter++;
-                })
-                .catch(error => {
-                    throw error;
-                })
-            }
-            return respArray;
+            setProjects(respArray)
         })
         .catch(error => {
             throw error;
@@ -64,7 +46,7 @@ export default function Projects(props) {
         <FadeIn>
             <BorderHeading>Projects</BorderHeading>
             <div className='row'>
-                {projects.map(project => {return  <IndividualProject project = {project} key = {Math.random()} />})}
+                {projects.map(project => {return  <IndividualProject project = {project} key = {project.slug} />})}
             </div>
          </FadeIn>
         }

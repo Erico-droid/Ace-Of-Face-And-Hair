@@ -24,7 +24,7 @@ export default function Landing() {
         var mgBt = (LandingHeight * ( Math.sqrt(2.855)/4))
     }
     else {
-        var LandingHeight = parseInt(windowHeight.current) - 118;
+        var LandingHeight = parseInt(windowHeight.current) - 88;
         var mgBt = 0;
     }
 

@@ -138,3 +138,9 @@ font-size:1.2em;
 {
 opacity:1;
 }
+
+
+.property-card:hover .property-button:hover {
+  background-color: transparent;
+  cursor: pointer;
+}

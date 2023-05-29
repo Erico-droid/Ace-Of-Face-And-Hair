@@ -8,18 +8,18 @@ export default function IndividualProject(props) {
     return (
             <div className = "col-md-3">
                 <div className="property-card card">
-                    <Link to = {`project/${project.id}`}>
-                        <div className="property-image" style={{background: `url(${project.img})`}}>
+                    <Link to = {`${project.slug}`}>
+                        <div className="property-image" style={{background: `url(${project.random_image_url})`}}>
                             <div className="property-image-title">
-                            <h5 className = "property-card-h5">{project.title}</h5>
+                            <h5 className = "property-card-h5">{project.name}</h5>
                             </div>
                         </div>
                     </Link>
                         <div className="property-description">
                             <h5 className = "property-card-h5"> {project.title} </h5>
-                            <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
+                            <p>{project.brief_description}</p>
                         </div>
-                    <Link to = {`project/${project.id}`}>
+                    <Link to = {`${project.slug}`}>
                         <div className="property-button">
                             <span>View this project</span><span className='ml-2'><ArrowForwardIcon /></span>
                         </div>
