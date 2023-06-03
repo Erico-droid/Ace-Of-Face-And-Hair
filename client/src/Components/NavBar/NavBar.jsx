@@ -76,7 +76,6 @@ export default function NavBar(props) {
 			'darkmode': darkmode
 		  };
 		  const resp = await axios.post('/general_setting/', data, { headers });
-		  console.log(resp.data);
 		} catch (error) {
 		  console.error('Failed to retrieve CSRF token', error);
 		}

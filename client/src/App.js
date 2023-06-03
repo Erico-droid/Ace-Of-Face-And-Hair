@@ -10,6 +10,7 @@ import DetailedProject from './Components/DetailedProject/DetailedProject';
 import AboutHeader from './Components/AboutLanding/AboutLanding';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
+import Login from './Pages/Login/Login';
 
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
           <Route path = "/portfolio/:slug" exact element = {<DetailedProject darkmode = {dark} />} />
           <Route path = "/about" exact element = {<About />} />
           <Route path = "/contact" exact element = {<Contact />} />
+          <Route path = "/login" exact element = {<Login />} />
       </Routes>
       <Footer/>
     </>
