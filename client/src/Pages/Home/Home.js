@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Landing from '../../Components/Landing/Landing'
 import ItemSlider from '../../Components/ItemSlider/ItemSlider'
 import Gallery from '../../Components/Gallery/Gallery'
@@ -11,6 +11,11 @@ import AFHDetails from '../../Components/AFHDetails/AFHDetails'
 import PointTab from '../../Components/PointTab/PointTab'
 
 export default function Home(props) {
+
+  useEffect(() => {
+    document.title = "AFH | Home"
+  }, [])
+
   return (
     <>
             <Landing/>

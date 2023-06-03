@@ -49,3 +49,13 @@
     transform: translateX(-50%);
     color: #fff;
 }
+
+@media (max-width: 768px) {
+    .content-group p {
+        max-width: 100%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+    }
+}

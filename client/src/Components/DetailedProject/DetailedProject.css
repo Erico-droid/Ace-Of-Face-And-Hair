@@ -8,7 +8,7 @@
     padding: 0px 10px;
 }
 
-.react-photo-gallery--gallery img {
+.detailed-project .react-photo-gallery--gallery img {
     max-width: 24%;
     min-width: 24%;
     max-height: 206px;

@@ -8,6 +8,7 @@ import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import EmailIcon from '@mui/icons-material/Email';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import axios from 'axios'
 
 export default function ContactForm() {
 
@@ -18,10 +19,15 @@ export default function ContactForm() {
     const [messageError, setMessageError] = useState(true)
     const [btnActive, setBtnActive] = useState(false);
     const [inputArray, setInputArray] = useState([])
+    const [faqs, setFaqs] = useState([])
 
     //use a array to push each form input being touched by the user at first the check if it is contained in there. If not do not put anything in the form inputs.
 
-  
+    const getFaqs = async () => {
+      let response = await axios.get("/general_setting/frequently_asked_questions/")
+      response = response.data
+      setFaqs(response)
+    }
 
     useEffect(() => {
         (() => {
@@ -45,6 +51,7 @@ export default function ContactForm() {
                 // else
                 window.location.hash = targetId;
             })
+            getFaqs()
         })()
         
         //check form inputs
@@ -300,65 +307,24 @@ export default function ContactForm() {
                     <section className='accordion'>
     <div className="container">
       <div className="accordion">
-        <div className="accordion-item" id="question1">
-          <a className="accordion-link" href="#question1">
-            <div className="flex">
-              <h3>BRANDING</h3>
-              {/* <ul>
-                <li>#Figma</li>
-                <li>#Sketch</li>
-                <li>#Adobe</li>
-                <li>#Invision</li>
-                <li>#Protopie</li>
-              </ul> */}
-            </div>
-            <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
-            <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
-          </a>
-          <div className="answer">
-            <p> We believe in the greater good, we strive to do something for people, we aim to make their lives easier and more enjoyable, we love businesses that keep this</p>
-          </div>
-          <hr/>
-      </div>
-        <div className="accordion-item" id="question2">
-          <a className="accordion-link" href="#question2">
-            <div className="flex">
-              <h3>UX/UI DESIGN</h3>
-            </div>
-            <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
-            <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
-          </a>
-          <div className="answer">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-          </div>
-          <hr/>
-      </div>
-        <div className="accordion-item" id="question3">
-          <a className="accordion-link" href="#question3">
-            <div className="flex">
-              <h3>FRONTEND DEVELOPMENT</h3>
-            </div>
-            <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
-            <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
-          </a>
-          <div className="answer">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-          </div>
-          <hr/>
-      </div>
-        <div className="accordion-item" id="question4">
-          <a className="accordion-link" href="#question4">
-            <div>
-              <h3>BACKEND DEVELOPMENT</h3>
-            </div>
-            <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
-            <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
-          </a>
-          <div className="answer">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-          </div>
-          <hr/>
-      </div>
+      {
+      faqs.map((faq, counter = 0) => {
+        return (<div className="accordion-item" id={`question${counter}`}>
+                <a className="accordion-link" href={`#question${counter}`}>
+                  <div className="flex">
+                    <h3>{faq.question}</h3>
+                  </div>
+                  <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
+                  <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
+                </a>
+                <div className="answer">
+                  <p>{faq.answer}</p>
+                </div>
+                <hr/>
+            </div>)
+            counter++;
+        })
+      }
      </div>
     </div>
   </section>

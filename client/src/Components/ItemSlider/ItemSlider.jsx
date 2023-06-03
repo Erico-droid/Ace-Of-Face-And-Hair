@@ -86,7 +86,7 @@ export default function ItemSlider(props) {
                     </div>
                     </div>
                     <div className='col-md-6'>
-                    <div class="photo-album">
+                    <div className="photo-album">
                         <div className='floater'>
                             <img src="https://wallpaperaccess.com/full/757572.jpg" className = "img-1" alt="" />
                             <img src="https://wallpapercave.com/wp/wp4937436.jpg" className = "img-2" alt="" />

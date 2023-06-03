@@ -54,6 +54,7 @@ export default function DetailedProject(props) {
     useEffect(() => {
         getData();
         setLoading(false);
+        document.title = `AFH | ${heading}`
     }, [])
 
     const PlaceHolderSettings = () => {
@@ -69,7 +70,7 @@ export default function DetailedProject(props) {
     }
 
     return (
-        <div className='container mt-4 mb-5'>
+        <div className='container mt-4 mb-5 detailed-project'>
             {loading ?
                 <div style = {{width: "100%"}}>
                     {PlaceHolderSettings()}

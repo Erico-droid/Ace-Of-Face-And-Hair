@@ -15,12 +15,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import { NavLink, useLocation } from 'react-router-dom';
 import MuiAlert from '@mui/material/Alert';
 import Heading from "../../shared/Heading/Heading"
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
 
 
 export default function NavBar(props) {
 	const [checked, setChecked] = React.useState(false);
 	const [loading, setLoading] = React.useState(false);
-	const [open, setOpen] = React.useState({open: false,Transition: Slide});
+	const [open, setOpen] = useState({open: false,Transition: Slide});
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [openSnackbar, setOpenSnackbar] = useState(false);
 	const [pathName, setPathName] = useState("")
@@ -30,13 +32,16 @@ export default function NavBar(props) {
 	}
 
 
+	const handleUserSession = async () => {
+		// window.onload = async () => {
+			let response = await axios.get(`/general_setting/`)
+			setChecked(response.data['dark_mode'])
+		// }
+	}
+
+
 	let location = useLocation()
 	
-	useEffect(() => {
-		setPathName(location.pathname)
-	}, [location])
-
-
 	const handleSnackbarClose = () => {
 		setOpenSnackbar(false);
 	};
@@ -59,14 +64,38 @@ export default function NavBar(props) {
 		})
 	})();
 
+	const submitDarkModeState = async (darkmode) => {
+		try {
+		  const response = await axios.get('/general_setting/get_csrf_token');
+		  const csrfToken = response.data.csrfToken;
+		  const headers = {
+			'X-CSRFToken': csrfToken,
+			'Content-Type': 'application/json',
+		  };
+		  const data = {
+			'darkmode': darkmode
+		  };
+		  const resp = await axios.post('/general_setting/', data, { headers });
+		  console.log(resp.data);
+		} catch (error) {
+		  console.error('Failed to retrieve CSRF token', error);
+		}
+	  };
+	  
+
 	const handleChange = (event, Transition) => {
 		setChecked(event.target.checked);
 		// changeTheme(checked ? themes.dark : themes.light);
 		setOpen({
 			open: true,
-			Transition,
+			Transition: Slide,
 		});
 		props.getDark(!checked);
+		if (checked === false) var darkMode = true
+		else {
+			darkMode = false
+		}
+		submitDarkModeState(darkMode)
 	};
 
 	const handleDisabledClick = (evt) => {
@@ -75,6 +104,13 @@ export default function NavBar(props) {
 	}
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
+
+
+	useEffect(() => {
+		setPathName(location.pathname)
+		handleUserSession()
+	}, [location])
+
 
 
   return (
@@ -99,14 +135,14 @@ export default function NavBar(props) {
 		    			<span className="d-flex align-items-center justify-content-center">{checked ? <DarkModeIcon /> : <LightModeIcon />}</span>
 		    			<ThemeContext.Consumer>
 							{({ changeTheme }) => (
-						<Switch
-						checked={checked}
-						onChange={(evt, SlideTransition) => {
-							handleChange(evt);
-							changeTheme(!checked ? themes.dark : themes.light);
-						}}
-						inputProps={{ 'aria-label': 'controlled' }}
-						/>
+									<Switch
+									checked={checked}
+									onChange={(evt, SlideTransition) => {
+										handleChange(evt);
+										changeTheme(!checked ? themes.dark : themes.light);
+									}}
+									inputProps={{ 'aria-label': 'controlled', 'id' : 'dark_mode' }}
+									/>
 						)}
 						</ThemeContext.Consumer>
 		    		</p>

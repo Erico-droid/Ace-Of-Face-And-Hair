@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AboutLanding from '../../Components/AboutLanding/AboutLanding';
 import Story from '../../Components/Story/Story';
 import Clients from '../../Components/Clients/Clients';
@@ -8,6 +8,9 @@ import "./About.css"
 import PointTab from '../../Components/PointTab/PointTab';
 
 export default function About(props) {
+  useEffect(() => {
+    document.title = "AFH | About"
+  }, [])
   return (
     <>
       <div className='about-lndn'>

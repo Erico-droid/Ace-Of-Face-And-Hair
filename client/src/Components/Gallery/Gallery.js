@@ -9,6 +9,7 @@ import Heading from '../../shared/Heading/Heading';
 import Button from '../../shared/Button/Button';
 import AppsIcon from '@mui/icons-material/Apps';
 import svg from "../../Assets/shapes.svg"
+import axios from 'axios'
 
 export default function Gallery(props) {
 
@@ -18,21 +19,17 @@ export default function Gallery(props) {
   async function getPhotos() {
     var random = Math.round(Math.random() * 10);
     var object = [];
-    const client = await createClient('aqrcwOOWlZKCTMFRklR8ZZSoJ50WJ3gqtbNovW5nFCAonmcQhSWFGDwF');
-    client.photos.curated({ per_page: 6, page: random })
-      .then(response => {
-          object = response.photos;
-          return object;
-      })
+    const url = '/general_setting/work_area_images/'
+    axios.get('/general_setting/work_area_images/')
       .then (response => {
+        response = response.data["images"]
         var arr = [];
         for (var i = 0; i < response.length; i++){
           var obj = {}
-          obj["src"] = response[i].src["large"];
+          obj["src"] = response[i]
           obj["width"] = 3000 //response[i].width
           obj["height"] = 4000 //response[i].height
           arr[i] = obj;
-          obj = {};
         }
         setPhotos(arr);
         setLoading(false);
