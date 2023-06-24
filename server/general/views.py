@@ -40,9 +40,10 @@ def work_area_images(request):
     if request.method == "GET" or request.GET:
         images = Image.objects.all()
         random_images = []
-        for i in range(0,6):
-            rand = random.randint(0,len(images))
-            random_images.append(images[i].image.url)
+        if len(images) > 0:
+            for i in range(0,6):
+                rand = random.randint(0,len(images))
+                random_images.append(images[i].image.url)
         return JsonResponse({'images':random_images})
     
 def frequently_asked_questions(request):
