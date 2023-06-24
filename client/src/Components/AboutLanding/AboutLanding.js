@@ -12,9 +12,9 @@ export default function AboutLanding() {
   var height;
   const width = window.innerWidth;
   if (width < 768 && width > 500)
-    height = window.innerHeight + 118;
+    height = window.innerHeight - 80;
   else if (width < 500)
-    height = window.innerHeight + 220;
+    height = window.innerHeight - 100;
   else
     height = window.innerHeight - 100;
   return (
@@ -22,16 +22,17 @@ export default function AboutLanding() {
       <div className='row about-landing' style = {{height: height, width: "100%"}}>
           <div className='content-area col-md-6 col-sm-12 order-1 order-md-1'>
               <div className='about-content'>
-              <div className='heading-group'>
-                <FancyHeading>Ace Of Face And Hair</FancyHeading>
-                <Heading>Our story unfolded</Heading>
-              </div>
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus massa quis urna dapibus placerat. Suspendisse potenti. Aliquam sagittis nisl vel tellus efficitur, sed maximus tellus laoreet. 
-              </p>
-              <div className='button-container'>
-              <Button btn = {"prim"}>make an appointment</Button>
-              <Button icon = {<ArrowDownwardIcon />} btn = {"text"}>Explore our story</Button>
+                <div className='headContent'>
+                  <div className='heading-group' style = {{height: '70px'}}>
+                    <Heading>Our story unfolded</Heading>
+                  </div>
+                  <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus massa quis urna dapibus placerat. Suspendisse potenti. Aliquam sagittis nisl vel tellus efficitur, sed maximus tellus laoreet. 
+                  </p>
+                  <div className='button-container'>
+                  <Button btn = {"prim"}>make an appointment</Button>
+                  <Button icon = {<ArrowDownwardIcon />} btn = {"text"}>Explore our story</Button>
+                  </div>
               </div>
           </div>
           </div>

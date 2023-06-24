@@ -10,6 +10,7 @@ import Button from '../../shared/Button/Button';
 import AppsIcon from '@mui/icons-material/Apps';
 import svg from "../../Assets/shapes.svg"
 import axios from 'axios'
+import source from '../../proxy.json'
 
 export default function Gallery(props) {
 
@@ -19,8 +20,7 @@ export default function Gallery(props) {
   async function getPhotos() {
     var random = Math.round(Math.random() * 10);
     var object = [];
-    const url = '/general_setting/work_area_images/'
-    axios.get('/general_setting/work_area_images/')
+    axios.get(`${source.proxy}/general_setting/work_area_images/`)
       .then (response => {
         response = response.data["images"]
         var arr = [];

@@ -1,6 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react'
-import { createClient } from 'pexels';
-import Axios from 'axios';
 import "./ItemSlider.css";
 import Placeholder from './Placeholder'
 import FadeIn from 'react-fade-in/lib/FadeIn';

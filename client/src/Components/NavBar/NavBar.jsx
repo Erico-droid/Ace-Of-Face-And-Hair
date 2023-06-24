@@ -17,6 +17,7 @@ import MuiAlert from '@mui/material/Alert';
 import Heading from "../../shared/Heading/Heading"
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
+import source from "../../proxy.json"
 
 
 export default function NavBar(props) {
@@ -34,7 +35,7 @@ export default function NavBar(props) {
 
 	const handleUserSession = async () => {
 		// window.onload = async () => {
-			let response = await axios.get(`/general_setting/`)
+			let response = await axios.get(`${source.proxy}/general_setting/`)
 			setChecked(response.data['dark_mode'])
 		// }
 	}
@@ -66,7 +67,7 @@ export default function NavBar(props) {
 
 	const submitDarkModeState = async (darkmode) => {
 		try {
-		  const response = await axios.get('/general_setting/get_csrf_token');
+		  const response = await axios.get(`${source.proxy}/general_setting/get_csrf_token`);
 		  const csrfToken = response.data.csrfToken;
 		  const headers = {
 			'X-CSRFToken': csrfToken,
@@ -75,7 +76,7 @@ export default function NavBar(props) {
 		  const data = {
 			'darkmode': darkmode
 		  };
-		  const resp = await axios.post('/general_setting/', data, { headers });
+		  const resp = await axios.post(`${source.proxy}/general_setting/`, data, { headers });
 		} catch (error) {
 		  console.error('Failed to retrieve CSRF token', error);
 		}

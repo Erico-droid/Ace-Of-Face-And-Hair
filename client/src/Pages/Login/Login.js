@@ -4,17 +4,18 @@ import Button from '../../shared/Button/Button'
 import AceLogo from "../../Assets/aofahcute.png"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios'
+import source from '../../proxy.json'
 
 export default function Login() {
     const handleLogin = async (data) => {
         data = JSON.stringify(data)
-        const csrf = await axios.get('/general_setting/get_csrf_token');
+        const csrf = await axios.get(`${source.proxy}/general_setting/get_csrf_token`);
 		  const csrfToken = csrf.data.csrfToken;
 		  const headers = {
 			'X-CSRFToken': csrfToken,
 			'Content-Type': 'application/json',
 		  };
-        const response = await axios.post('/general_setting/login/', data, {headers})
+        const response = await axios.post(`${source.proxy}/general_setting/login/`, data, {headers})
         if (response.data.redirect) {
             window.location.href = response.data.redirect;
         }
@@ -38,7 +39,7 @@ export default function Login() {
     <div className="page">
         <div className='container-fluid'>
     <div className="login-row row">
-        <div className="col-sm-8 text-center signin">
+        <div className="col-sm-8 text-center signin card">
         
         <div className='heading-group-wording text-center login-heading'>
                     <h3 className = "wordheading">Sign In to Ace of face and hair</h3>

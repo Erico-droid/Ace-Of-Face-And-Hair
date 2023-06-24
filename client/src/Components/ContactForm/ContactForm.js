@@ -9,6 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import axios from 'axios'
+import source from '../../proxy.json'
 
 export default function ContactForm() {
 
@@ -24,7 +25,7 @@ export default function ContactForm() {
     //use a array to push each form input being touched by the user at first the check if it is contained in there. If not do not put anything in the form inputs.
 
     const getFaqs = async () => {
-      let response = await axios.get("/general_setting/frequently_asked_questions/")
+      let response = await axios.get(`${source.proxy}/general_setting/frequently_asked_questions/`)
       response = response.data
       setFaqs(response)
     }

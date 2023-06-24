@@ -5,6 +5,7 @@ import Axios from 'axios';
 import IndividualProject from '../IndividualProject/IndividualProject';
 import PlaceHolder from './PlaceHolder';
 import FadeIn from 'react-fade-in/lib/FadeIn';
+import source from '../../proxy.json'
 
 export default function Projects(props) {
 
@@ -12,7 +13,7 @@ export default function Projects(props) {
     const [loading, setLoading]  = useState(true);
 
     const fetchProjects = async () => {
-        const url = "/portfolio/";
+        const url = `${source.proxy}/portfolio/`;
         var counter = 0;
         const request = await Axios.get(url)
         .then((resp) => {

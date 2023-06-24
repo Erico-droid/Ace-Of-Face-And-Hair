@@ -7,7 +7,7 @@ import Carousel, { Modal, ModalGateway } from "react-images";
 import BorderHeading from '../../shared/BorderHeading/BorderHeading';
 import PlaceHolder from './PlaceHolder';
 import FadeIn from 'react-fade-in/lib/FadeIn';
-
+import source from '../../proxy.json'
 
 
 export default function DetailedProject(props) {
@@ -21,7 +21,7 @@ export default function DetailedProject(props) {
     const getData = async () => {
         var imageArr = [];
         const slug = params["slug"];
-        const url = `/portfolio/${slug}/`;
+        const url = `${source.proxy}/portfolio/${slug}/`;
         const request = await Axios.get(url)
         .then(resp => {
             const arr = resp.data;
