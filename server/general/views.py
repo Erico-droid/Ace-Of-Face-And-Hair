@@ -14,6 +14,7 @@ def check_session_exists(session_key):
 
 def get_csrf_token(request):
     csrf_token = get_token(request)
+    print("sent")
     return JsonResponse({'csrfToken': csrf_token})
 
 def general_settings(request):
@@ -40,8 +41,13 @@ def work_area_images(request):
     if request.method == "GET" or request.GET:
         images = Image.objects.all()
         random_images = []
-        if len(images) > 0:
+        print(len(images))
+        if len(images) > 0 and not len(images) < 6:
             for i in range(0,6):
+                rand = random.randint(0,len(images))
+                random_images.append(images[i].image.url)
+        else:
+            for i in range(0,len(images)):
                 rand = random.randint(0,len(images))
                 random_images.append(images[i].image.url)
         return JsonResponse({'images':random_images})

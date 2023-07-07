@@ -160,7 +160,7 @@
     list-style: none;
   }
 
-  
+
   h1,
   .h1 {
     font-size: calc(1.425rem + 2.1vw);
@@ -22835,7 +22835,6 @@
     -moz-osx-font-smoothing: grayscale;
     /* Support for IE. */
     font-feature-settings: 'liga';
-    color: #000;
   }
   
   .nav.nav-pills .nav-link .material-icons {
@@ -24449,7 +24448,7 @@
   }
   
   .sidenav .navbar-brand {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 0.15rem;
   }
   
   .sidenav .collapse .nav-item .nav-link.active {
@@ -27908,7 +27907,40 @@
     background: linear-gradient(321deg, rgba(0,242,234,1) 57%, rgba(0,242,174,1) 100%);
     border-radius: 5px;
     padding: 15px;
-    font-weight: 800;
+    font-weight: 600;
     color: #000 !important;
     text-align: right;
   }
+
+
+  .dark-content .navbar-vertical.navbar-expand-xs .navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.dark-content .navbar-vertical .text-black {
+  color: #fff !important;
+}
+
+.dark-content .navbar-vertical.navbar-expand-xs .navbar-nav .nav-link.active {
+  color: #000 !important;
+}
+
+.dark-content .text-dark {
+  color: white !important;
+}
+
+.dark-content a.text-dark:focus, a.text-dark:hover {
+  color: white !important;
+}
+
+.dark-content .text-end h4 {
+  color: #000 !important;
+}
+
+.dark-content .card-body h6 {
+  color: #fff;
+}
+
+.dark-content h6 {
+  color: #fff;
+}

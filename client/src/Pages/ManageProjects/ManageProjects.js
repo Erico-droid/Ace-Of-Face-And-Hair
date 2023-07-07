@@ -3,6 +3,7 @@ import DashboardAside from '../../Components/DashboardAside/DashboardAside'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import proxy from '../../proxy.json'
+import AddIcon from '@mui/icons-material/Add';
 
 export default function 
 
@@ -133,7 +134,7 @@ export default function
           </div>
         <div className = "text-right col-md-12">
             <a className='main-btn' href = "#">
-                Add Project
+                <i style={{marginRight: "15px"}}><AddIcon/></i>Add Project
             </a>
         </div>
         </div>

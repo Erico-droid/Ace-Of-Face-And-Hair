@@ -34,10 +34,8 @@ export default function NavBar(props) {
 
 
 	const handleUserSession = async () => {
-		// window.onload = async () => {
 			let response = await axios.get(`${source.proxy}/general_setting/`)
 			setChecked(response.data['dark_mode'])
-		// }
 	}
 
 
@@ -68,6 +66,7 @@ export default function NavBar(props) {
 	const submitDarkModeState = async (darkmode) => {
 		try {
 		  const response = await axios.get(`${source.proxy}/general_setting/get_csrf_token`);
+		  console.log(response)
 		  const csrfToken = response.data.csrfToken;
 		  const headers = {
 			'X-CSRFToken': csrfToken,
@@ -77,7 +76,11 @@ export default function NavBar(props) {
 			'darkmode': darkmode
 		  };
 		  try {
-		  	const resp = await axios.post(`${source.proxy}/general_setting/`, data, { headers });
+			
+			// Set CSRF token in Axios defaults
+			axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+		  	const resp = await axios.post(`${source.proxy}/general_setting/`, data, { headers, withCredentials: true });
+			console.log(resp)
 		  } catch (error) {
 			console.log("error: failed to post: ", error)
 		  }

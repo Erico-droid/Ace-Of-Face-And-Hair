@@ -1,9 +1,50 @@
+@font-face {
+  font-family: 'heebo';
+  src: url('./Assets/Heebo-VariableFont_wght.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'poppins';
+  src: url('./Assets/Poppins-Black.ttf') format('ttf'),
+  url('./Assets/Poppins-Medium.ttf') format('ttf'),
+  url('./Assets/Poppins-Regular.ttf') format('ttf'),
+  url('./Assets/Poppins-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'poppins';
+  src: url('./Assets/PatrickHand-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'poppins';
+  src: url('./Assets/SedgwickAve-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Barlow';
+  src: url('./Assets/Barlow-Black.ttf') format('ttf'),
+  url('./Assets/Barlow-Medium.ttf') format('ttf'),
+  url('./Assets/Barlow-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "Poppins", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
-  background: #F5F5F5;
+  background: #F5F5F5 !important;
   color: gray;
   overflow-x: hidden;
   transition: all .1s ease-in-out 0s !important;

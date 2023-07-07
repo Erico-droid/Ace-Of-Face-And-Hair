@@ -4,11 +4,55 @@ import DashboardAside from '../../Components/DashboardAside/DashboardAside'
 import axios from 'axios'
 import proxy from '../../proxy.json'
 import {Link} from 'react-router-dom'
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import GradeIcon from '@mui/icons-material/Grade';
+import MessageIcon from '@mui/icons-material/Message';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { Chart } from 'react-chartjs-2';
+import 'chart.js/auto';
+import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
+ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
-export default function 
+
+export default function
 () {
 
     const [projects, setProjects] = useState([])
+    const [data, setData] = useState({
+      datasets: [],
+  })
+
+    const ChartExample = () => {
+      const data = {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [
+          {
+            label: 'Example Bar Chart',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+            ],
+          },
+        ],
+      };
+
+      console.log(data)
+      setData(data)
+      }
+
+      const options = {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      };
+
 
     const getProjects = async () => {
         let projects = await axios.get(`${proxy.proxy}/dashboard/get_projects`)
@@ -22,7 +66,7 @@ export default function
         } else {
             setProjects(projects)
         }
-    } 
+    }
 
     useEffect(() => {
         getProjects()
@@ -53,7 +97,7 @@ export default function
           <div className="card">
             <div className="card-header p-3 pt-2">
               <div className="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i className="material-icons opacity-10">weekend</i>
+                <i className="material-icons opacity-10"><GradeIcon/></i>
               </div>
               <div className="text-end pt-1">
                 <p className="text-sm mb-0 text-capitalize">Today's Money</p>
@@ -66,11 +110,28 @@ export default function
             </div>
           </div>
         </div>
+        <div className="col-xl-3 col-sm-6">
+          <div className="card">
+            <div className="card-header p-3 pt-2">
+              <div className="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                <i className="material-icons opacity-10"><CalendarMonthIcon/></i>
+              </div>
+              <div className="text-end pt-1">
+                <p className="text-sm mb-0 text-capitalize">Sales</p>
+                <h4 className="mb-0">$103,430</h4>
+              </div>
+            </div>
+            <hr className="dark horizontal my-0"></hr>
+            <div className="card-footer p-3">
+              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+            </div>
+          </div>
+        </div>
         <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div className="card">
             <div className="card-header p-3 pt-2">
-              <div className="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i className="material-icons opacity-10">person</i>
+              <div className="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute  text-black">
+                <i className="material-icons opacity-10" style={{color: "black"}}><PeopleAltIcon/></i>
               </div>
               <div className="text-end pt-1">
                 <p className="text-sm mb-0 text-capitalize">Today's Users</p>
@@ -87,7 +148,7 @@ export default function
           <div className="card">
             <div className="card-header p-3 pt-2">
               <div className="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                <i className="material-icons opacity-10">person</i>
+                <i className="material-icons opacity-10"><MessageIcon/></i>
               </div>
               <div className="text-end pt-1">
                 <p className="text-sm mb-0 text-capitalize">New Clients</p>
@@ -97,23 +158,6 @@ export default function
             <hr className="dark horizontal my-0"></hr>
             <div className="card-footer p-3">
               <p className="mb-0"><span className="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-3 col-sm-6">
-          <div className="card">
-            <div className="card-header p-3 pt-2">
-              <div className="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                <i className="material-icons opacity-10">weekend</i>
-              </div>
-              <div className="text-end pt-1">
-                <p className="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 className="mb-0">$103,430</h4>
-              </div>
-            </div>
-            <hr className="dark horizontal my-0"></hr>
-            <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
             </div>
           </div>
         </div>
@@ -144,7 +188,7 @@ export default function
             <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div className="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                 <div className="chart">
-                  <canvas id="chart-line" className="chart-canvas" height="170"></canvas>
+                {data && <Chart data={data} options={options} />}
                 </div>
               </div>
             </div>
@@ -292,7 +336,7 @@ export default function
                     <h6 className="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
                     <p className="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
                   </div>
-                </div>  
+                </div>
               </div>
             </div>
           </div>
