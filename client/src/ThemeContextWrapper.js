@@ -26,7 +26,6 @@ export default function ThemeContextWrapper(props) {
 	}
 
   useEffect(() => {
-    console.log(ThemeContext)
     switch (theme) {
       case themes.light:
         document.body.classList.remove('dark-content');

@@ -11,7 +11,8 @@ import AboutHeader from './Components/AboutLanding/AboutLanding';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
 import Login from './Pages/Login/Login';
-
+import HomeDashboard from './Pages/HomeDashboard/HomeDashboard';
+import ManageProjects from './Pages/ManageProjects/ManageProjects';
 
 export default function App() {
 
@@ -32,6 +33,8 @@ export default function App() {
           <Route path = "/about" exact element = {<About />} />
           <Route path = "/contact" exact element = {<Contact />} />
           <Route path = "/login" exact element = {<Login />} />
+          <Route path='/dashboard' exact element = {<HomeDashboard />} />
+          <Route path='/dashboard-actions/manage-projects' exact element = {<ManageProjects />} />
       </Routes>
       <Footer/>
     </>

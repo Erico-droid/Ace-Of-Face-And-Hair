@@ -34,9 +34,9 @@ export default function Home(props) {
             <div className='afh-details'>
               <AFHDetails />
             </div>
-            <div className='instagram-section container-fluid'>
+            {/* <div className='instagram-section container-fluid'>
               <Instagram />
-            </div>
+            </div> */}
             <div className='clients-section container fluid'>
               <Clients />
             </div>

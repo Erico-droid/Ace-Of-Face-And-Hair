@@ -42,12 +42,10 @@ export default function ContactForm() {
                         var targetChild = accordion.children[i];
                 }
                 targetId = targetChild.getAttribute("id");
-                // console.log(window.location.hash.substring(1) ," ", targetId)
                 // if (window.location.hash.substring(1) === targetId) {
                 //     // window.location.hash = "";
                 //     // Remove the hash from the URL
                 //     window.location.hash = "";
-                //     console.log(window.location)
                 // }
                 // else
                 window.location.hash = targetId;
@@ -138,11 +136,9 @@ export default function ContactForm() {
     
              let lastName = event.target.value.trim();
              if (validateName(lastName) === true){
-              // console.log("Eric");
                setLastNameError(false)
              }
              else{
-              // console.log("Kabira");
                setLastNameError(true)
              }
            })
@@ -218,7 +214,6 @@ export default function ContactForm() {
                setBtnActive(false)
               }
             else{
-              console.log("world")
                setBtnActive(true)
               }
       });

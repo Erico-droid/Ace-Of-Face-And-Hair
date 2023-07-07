@@ -2,6 +2,7 @@ import React from 'react';
 import "./IndividualProject.css";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
+import source from '../../proxy.json'
 
 export default function IndividualProject(props) {
     const project = props.project;
@@ -9,7 +10,7 @@ export default function IndividualProject(props) {
             <div className = "col-md-3">
                 <div className="property-card card">
                     <Link to = {`${project.slug}`}>
-                        <div className="property-image" style={{background: `url(${project.random_image_url})`}}>
+                        <div className="property-image" style={{background: `url(${source.proxy+project.random_image_url})`}}>
                             <div className="property-image-title">
                             <h5 className = "property-card-h5">{project.name}</h5>
                             </div>

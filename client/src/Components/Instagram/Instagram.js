@@ -56,7 +56,6 @@ export default function Instagram() {
                         }
                     }
                 }
-                // console.log(resp.data.data[0].caption)
                 setMediaUrls(arr);
             })
         } catch(err) {
@@ -71,13 +70,10 @@ export default function Instagram() {
         const resp = await axios.get(url, {
             withCredentials: true,
             headers: {
-                'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+                'User-Agent':'Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
                 'Access-Control-Allow-Origin':'localhost:3000'
             }
         });
-        resp.the((res) => {
-            console.log(res);
-        })
     }
 
     useEffect(() => {

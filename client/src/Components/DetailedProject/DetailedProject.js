@@ -4,7 +4,6 @@ import {useParams} from 'react-router-dom';
 import Axios from 'axios';
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
-import BorderHeading from '../../shared/BorderHeading/BorderHeading';
 import PlaceHolder from './PlaceHolder';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import source from '../../proxy.json'
@@ -26,6 +25,7 @@ export default function DetailedProject(props) {
         .then(resp => {
             const arr = resp.data;
             for (var i = 0; i < arr.images.length; i++) {
+                arr.images[i] = source.proxy + arr.images[i];
                 var obj = {};
                 if (!obj["src"])
                     obj["src"] = arr.images[i]

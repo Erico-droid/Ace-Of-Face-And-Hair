@@ -4,7 +4,7 @@ import "./Clients.css"
 export default function Clients() {
   return (
     <div className='all-clients'>
-        <div className="py-7 py-lg-12">
+        <div className="">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-2 col-md-4 col-6">
