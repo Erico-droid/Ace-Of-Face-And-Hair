@@ -13,7 +13,8 @@ import Contact from './Pages/Contact/Contact';
 import Login from './Pages/Login/Login';
 import HomeDashboard from './Pages/HomeDashboard/HomeDashboard';
 import ManageProjects from './Pages/ManageProjects/ManageProjects';
-
+import ProjectUploadForm from './Components/ProjectUploadForm/ProjectUploadForm';
+import ManageFAQ from './Pages/ManageFAQ/ManageFAQ';
 export default function App() {
 
   const [dark, setDark] = useState(false);
@@ -35,6 +36,8 @@ export default function App() {
           <Route path = "/login" exact element = {<Login />} />
           <Route path='/dashboard' exact element = {<HomeDashboard />} />
           <Route path='/dashboard-actions/manage-projects' exact element = {<ManageProjects />} />
+          <Route path='/dashboard-actions/manage-projects/create-project' exact element = {<ProjectUploadForm />} />
+          <Route path='/dashboard-actions/manage-faqs' exact element = {<ManageFAQ />} />
       </Routes>
       <Footer/>
     </>

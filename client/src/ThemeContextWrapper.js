@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeContext, themes } from './Contexts/ThemeContext';
-import axios from 'axios';
-import source from './proxy.json'
+import handleUserSession from './sessionID';
 
 export default function ThemeContextWrapper(props) {
   const [theme, setTheme] = useState(themes.light);
@@ -10,20 +9,13 @@ export default function ThemeContextWrapper(props) {
     setTheme(theme);
   }
 
-  const handleUserSession =async () => {
-    let darkmodePlace = document.querySelector(".darkmode-place");
-    window.onload = async () => {
-      darkmodePlace.style.display= "block"
-      let response = await axios.get(`${source.proxy}/general_setting/`)
-      if (response.data['dark_mode'] === true) {
-        setTheme(themes.dark)
-      }
-      else {
-        console.log(response.data['dark_mode'])
-        setTheme(themes.Light)
-      }
-    }
-	}
+  const handleDarkMode = async () => {
+    const dark_mode = await handleUserSession()
+    if (dark_mode.dark_mode == true)
+      setTheme(themes.dark)
+    else
+      setTheme(themes.light)
+  }
 
   useEffect(() => {
     switch (theme) {
@@ -37,7 +29,7 @@ export default function ThemeContextWrapper(props) {
         document.body.classList.remove('dark-content');
         break;
     }
-    handleUserSession()
+    handleDarkMode()
   }, [theme]);
 
   return (

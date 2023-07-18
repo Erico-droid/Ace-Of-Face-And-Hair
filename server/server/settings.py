@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+# python manage.py runserver_plus --cert-file cert.pem --key-file key.pem
+# $env:HTTPS="true"
+# $env:SSL_CRT_FILE="..\server\cert.pem"
+# $env:SSL_KEY_FILE="..\server\key.pem"
+# npm start
+
 from pathlib import Path
 import os
 
@@ -44,32 +50,34 @@ INSTALLED_APPS = [
     'services',
     'dashboard',
     'rest_framework',
+    "django_extensions"
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    # 'general.middleware.RecordVisitMiddleWare',
 ]
 
-
+LOGO_IMAGE_PATH = os.path.join(BASE_DIR, 'aofahcute.png')
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
+    'https://localhost:3000',
+    'https://127.0.0.1:3000',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
+    'https://localhost:3000',
+    'https://127.0.0.1:3000',
 ]
 
-CSRF_COOKIE_DOMAIN = [
-    "http://localhost:3000"
-]
+# CSRF_COOKIE_DOMAIN = 'https://localhost:3000'
 
 CORS_ALLOW_HEADERS = [
     'accept',
@@ -93,6 +101,14 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
+CSRF_COOKIE_PATH = '/'
+CSRF_COOKIE_SAMESITE = 'Strict'  
+CSRF_COOKIE_SECURE = False
+
+CSRF_COOKIE_NAME = 'X-CSRFToken'
+
+CSRF_COOKIE_HTTPONLY = False
 
 CORS_ALLOW_CREDENTIALS = True
 

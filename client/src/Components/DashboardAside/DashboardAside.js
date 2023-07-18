@@ -58,12 +58,12 @@ export default function DashboardAside() {
           </NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-black " href="../pages/billing.html">
+          <NavLink className="nav-link text-black " to = "/dashboard-actions/manage-faqs">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
               <i className="material-icons opacity-10"><QuestionAnswerIcon/></i>
             </div>
             <span className="nav-link-text ms-1">Manage Faq`s</span>
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
           <a className="nav-link text-black " href="../pages/virtual-reality.html">

@@ -113,7 +113,7 @@
     color: var(--primary);
   }
   .about-five-content .about-five-tab nav button.active {
-    background: linear-gradient(321deg, rgba(0,242,234,1) 57%, rgba(0,242,174,1) 100%);
+    background: linear-gradient(90deg, rgba(200,110,37,1) 0%, rgba(242,231,41,1) 40%, rgba(226,181,30,1) 96%);
     color: #000;
   }
   .about-five-content .about-five-tab nav button:last-child {

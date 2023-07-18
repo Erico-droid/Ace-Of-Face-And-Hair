@@ -18,6 +18,7 @@ import Heading from "../../shared/Heading/Heading"
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import source from "../../proxy.json"
+import handleUserSession from '../../sessionID'
 
 
 export default function NavBar(props) {
@@ -32,12 +33,29 @@ export default function NavBar(props) {
 		return <Slide {...props} direction="up" />;
 	}
 
-
-	const handleUserSession = async () => {
-			let response = await axios.get(`${source.proxy}/general_setting/`)
-			setChecked(response.data['dark_mode'])
+	const submitDarkModeState = async (darkmode) => {
+		console.log('---- ',darkmode)
+		// get the session and the url
+		let sessionId = localStorage.getItem('sessionID');
+		const url =  `${source.proxy}/general_setting/`
+		try {
+			const response = await axios.get(`${source.proxy}/general_setting/get_csrf_token/`);
+			const token = response.data.csrfToken;
+			const data = {
+				user_session: sessionId,
+				dark_mode: darkmode
+			}
+			const headers = {
+				'X-CSRFToken': token,
+				'Content-Type': 'application/json',
+			};		
+			let resp = await axios.post(url, data, { headers });
+			console.log(resp)
+		}
+		catch(error) {
+			console.error(error)
+		}
 	}
-
 
 	let location = useLocation()
 	
@@ -61,38 +79,10 @@ export default function NavBar(props) {
 		window.addEventListener("scroll", (evt) => {
 			setScrollPosition(window.scrollY)
 		})
-	})();
-
-	const submitDarkModeState = async (darkmode) => {
-		try {
-		  const response = await axios.get(`${source.proxy}/general_setting/get_csrf_token`);
-		  console.log(response)
-		  const csrfToken = response.data.csrfToken;
-		  const headers = {
-			'X-CSRFToken': csrfToken,
-			'Content-Type': 'application/json',
-		  };
-		  const data = {
-			'darkmode': darkmode
-		  };
-		  try {
-			
-			// Set CSRF token in Axios defaults
-			axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-		  	const resp = await axios.post(`${source.proxy}/general_setting/`, data, { headers, withCredentials: true });
-			console.log(resp)
-		  } catch (error) {
-			console.log("error: failed to post: ", error)
-		  }
-		} catch (error) {
-		  console.error('Failed to retrieve CSRF token', error);
-		}
-	  };
-	  
+	})(); 	  
 
 	const handleChange = (event, Transition) => {
 		setChecked(event.target.checked);
-		// changeTheme(checked ? themes.dark : themes.light);
 		setOpen({
 			open: true,
 			Transition: Slide,
@@ -112,10 +102,14 @@ export default function NavBar(props) {
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
+	const handleStart = async () => {
+		let startData = await handleUserSession();
+		setChecked(startData.dark_mode)
+	}
 
 	useEffect(() => {
 		setPathName(location.pathname)
-		handleUserSession()
+		handleStart()
 	}, [location])
 
 

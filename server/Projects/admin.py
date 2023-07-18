@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Image, Project
+from .models import CustomImage, Project
 
-admin.site.register(Image)
+admin.site.register(CustomImage)
 admin.site.register(Project)
 # Register your models here.
 

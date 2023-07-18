@@ -1,0 +1,13 @@
+.question-input, .answer-input {
+    width: 80%;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+
+.dark-content textarea.question-input:focus {
+    background: #292f36;
+}
+
+.dark-content textarea.answer-input:focus {
+    background: #292f36;
+}

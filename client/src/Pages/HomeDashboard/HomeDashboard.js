@@ -19,8 +19,8 @@ export default function
 
     const [projects, setProjects] = useState([])
     const [data, setData] = useState({
-      datasets: [],
-  })
+      datasets: []
+    })
 
     const ChartExample = () => {
       const data = {
@@ -40,8 +40,7 @@ export default function
           },
         ],
       };
-
-      console.log(data)
+      
       setData(data)
       }
 
@@ -53,9 +52,13 @@ export default function
         },
       };
 
-
     const getProjects = async () => {
+        const headers = {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'localhost:3000'
+        }
         let projects = await axios.get(`${proxy.proxy}/dashboard/get_projects`)
+        console.log(projects)
         projects = projects.data;
         if (projects.length === 0) {
             const prTable = document.getElementById("projectsTable")

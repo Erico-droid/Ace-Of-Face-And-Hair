@@ -9,4 +9,18 @@ class FAQ(models.Model):
         return self.question
 
 # Keep Record of guys visiting the site.
+class Visitor (models.Model):
+    visitorSessionName = models.CharField(max_length=250)
+    visit_date = models.DateField(auto_now_add=True)
+    visit_darkmode_state = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.visitorSessionName
+    
+    
+class DailyVisit(models.Model):
+    user = models.ForeignKey(Visitor, on_delete = models.CASCADE)
+    visit_date = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.user.visitorSessionName} - {self.visit_date}"

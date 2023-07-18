@@ -133,9 +133,9 @@ export default function
             </div>
           </div>
         <div className = "text-right col-md-12">
-            <a className='main-btn' href = "#">
+            <Link className='main-btn' to = "/dashboard-actions/manage-projects/create-project">
                 <i style={{marginRight: "15px"}}><AddIcon/></i>Add Project
-            </a>
+            </Link>
         </div>
         </div>
       </div>
