@@ -4,7 +4,9 @@ import Placeholder from './Placeholder'
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import Button from '../../shared/Button/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import svg from "../../Assets/shapes.svg"
+import svg from "../../Assets/shapes.svg";
+import afh1slide from "../../Assets/afh1slide.webp"
+import afh2slide from "../../Assets/afh2slide.webp"
 
 export default function ItemSlider(props) {
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
@@ -75,9 +77,7 @@ export default function ItemSlider(props) {
                                 <h3 className = "wordheading"> Explore Our Diverse Collection of Work.</h3>
                             </div>
                             <div className='p-wording text-center'>
-                                <p className='text-left'>
-                                Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.
-                                </p>
+                                <p className='text-left'>Ace of Face and Hair offers leading makeup artistry and hair styling services for TV, film, and theatre productions. With a team of certified professionals, we excel in creating captivating looks and special effects. Our expertise spans across events, editorial photography, and working with celebrities, actors, and institutions.</p>
                                 <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
                             </div>
                         </div>
@@ -86,8 +86,8 @@ export default function ItemSlider(props) {
                     <div className='col-md-6'>
                     <div className="photo-album">
                         <div className='floater'>
-                            <img src="https://wallpaperaccess.com/full/757572.jpg" className = "img-1" alt="" />
-                            <img src="https://wallpapercave.com/wp/wp4937436.jpg" className = "img-2" alt="" />
+                            <img src={afh2slide} className = "img-1" alt="" />
+                            <img src={afh1slide} className = "img-2" alt="" />
                         </div>
                     </div>
                     

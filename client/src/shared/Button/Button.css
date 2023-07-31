@@ -8,6 +8,7 @@
     overflow: hidden;
     max-width: 100%;
     word-wrap: break-word;
+    border-radius: 5px;
 }
 
 .btn-outline {

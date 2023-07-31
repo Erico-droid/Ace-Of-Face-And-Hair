@@ -1,0 +1,26 @@
+div.card.reach-out-card {
+    max-height: 370px;
+    min-height: 100%;
+    border-radius: 10px;
+    min-height: 370px;
+}
+
+.navigation-bar {
+    margin-bottom: 30px;
+}
+
+.body-rel {
+    position: relative
+}
+
+.delete-span {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    color: white;
+    background: red;
+    padding: 7px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}

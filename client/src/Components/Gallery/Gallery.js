@@ -15,7 +15,7 @@ import source from '../../proxy.json'
 export default function Gallery(props) {
 
   const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function getPhotos() {
     var random = Math.round(Math.random() * 10);

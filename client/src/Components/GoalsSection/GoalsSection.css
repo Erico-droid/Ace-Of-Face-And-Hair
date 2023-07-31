@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'heebo';
+  src: url('../../Assets/Heebo-VariableFont_wght.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .h2-type {
     font-family: "heebo", sans serif;
     font-size: calc(50px + 0.5vw);

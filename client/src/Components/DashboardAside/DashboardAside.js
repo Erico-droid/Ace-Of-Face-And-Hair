@@ -18,7 +18,6 @@ export default function DashboardAside() {
     const body = document.querySelector("body");
     let bodyClass = body.classList;
     if (bodyClass.contains("dark-content")) {
-      console.log("dark")
       setDarkMode(true);
     } else {
       setDarkMode(false)
@@ -63,6 +62,22 @@ export default function DashboardAside() {
               <i className="material-icons opacity-10"><QuestionAnswerIcon/></i>
             </div>
             <span className="nav-link-text ms-1">Manage Faq`s</span>
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link text-black " to = "/dashboard-actions/manage-testimonials">
+            <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
+              <i className="material-icons opacity-10"><QuestionAnswerIcon/></i>
+            </div>
+            <span className="nav-link-text ms-1">Manage Testimonials</span>
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link text-black " to = "/dashboard-actions/view-reach-outs">
+            <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
+              <i className="material-icons opacity-10"><QuestionAnswerIcon/></i>
+            </div>
+            <span className="nav-link-text ms-1">View Reach Outs</span>
           </NavLink>
         </li>
         <li className="nav-item">

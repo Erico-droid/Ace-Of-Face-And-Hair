@@ -10,6 +10,9 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import axios from 'axios'
 import source from '../../proxy.json'
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
 
 export default function ContactForm() {
 
@@ -21,6 +24,13 @@ export default function ContactForm() {
     const [btnActive, setBtnActive] = useState(false);
     const [inputArray, setInputArray] = useState([])
     const [faqs, setFaqs] = useState([])
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [message, setMessage] = useState("")
+    const [SnackbarOpen, setSnackbarOpen] = useState(false);
+    const [severity, setSeverity] = useState("info")    
 
     //use a array to push each form input being touched by the user at first the check if it is contained in there. If not do not put anything in the form inputs.
 
@@ -30,26 +40,59 @@ export default function ContactForm() {
       setFaqs(response)
     }
 
+    const handleSnackbarOpen = () => {
+      setSnackbarOpen(true)
+    }
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false)
+    }
+
+    const handleSubmit = async (event) => {
+      event.preventDefault()
+      if (!btnActive) {
+          setMessage("Finish filling your contact form.")
+          setSeverity("warning")
+          handleSnackbarOpen()
+        }
+        else {        
+        const url = `${source.proxy}/general_setting/create_reach_out/`;
+        const data = {
+          "first_name": firstName,
+          "last_name": lastName,
+          "email": email,
+          "phone": phone,
+          "message": message
+        }
+
+        const response = await axios.post(url, data)
+        if (response.status === 200){
+          setMessage("Thank you for reaching out. Our team will get back to you shortly.")
+          setSeverity("success")
+          handleSnackbarOpen()
+        }
+      }
+    }
+
+
+    const handleAccordion = () => {
+      let accordion = document.querySelector("section .accordion");
+      let targetId;
+      accordion.addEventListener('click', (evt) => {
+          evt.preventDefault();
+          let target = (evt.target);
+          for (var i = 0; i < accordion.children.length; i++) {
+              if (accordion.children[i].contains(target))
+                  var targetChild = accordion.children[i];
+          }
+          targetId = targetChild.getAttribute("id");
+          window.location.hash = targetId;
+      })
+    }
+
     useEffect(() => {
         (() => {
-            let accordion = document.querySelector("section .accordion");
-            let targetId;
-            accordion.addEventListener('click', (evt) => {
-                evt.preventDefault();
-                let target = (evt.target);
-                for (var i = 0; i < accordion.children.length; i++) {
-                    if (accordion.children[i].contains(target))
-                        var targetChild = accordion.children[i];
-                }
-                targetId = targetChild.getAttribute("id");
-                // if (window.location.hash.substring(1) === targetId) {
-                //     // window.location.hash = "";
-                //     // Remove the hash from the URL
-                //     window.location.hash = "";
-                // }
-                // else
-                window.location.hash = targetId;
-            })
+            handleAccordion()
             getFaqs()
         })()
         
@@ -122,6 +165,7 @@ export default function ContactForm() {
             else{
               setFirstNameError(true)
             }
+            setFirstName(firstName)
           })
     
            //check last name
@@ -141,6 +185,7 @@ export default function ContactForm() {
              else{
                setLastNameError(true)
              }
+             setLastName(lastName)
            })
     
     
@@ -160,6 +205,7 @@ export default function ContactForm() {
             } else {
               setEmailError(true);
             }
+            setEmail(email)
           });
     
           //check the message
@@ -176,6 +222,7 @@ export default function ContactForm() {
             const isValid = validateMessage(message);
             if (!isValid) setMessageError(true);
             else setMessageError(false)
+            setMessage(message)
           })       
     
           //check the phone number
@@ -196,6 +243,7 @@ export default function ContactForm() {
                 } else {
                   setPhoneError(true);
                 }
+                setPhone(phoneNumber)
           });
         }
 
@@ -231,12 +279,28 @@ export default function ContactForm() {
 
     return (
         <div className = "container mb-4">
+          <Snackbar
+            open={SnackbarOpen}
+            autoHideDuration={5000}
+            onClose={handleSnackbarClose}
+            TransitionComponent={Slide}
+            anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+            >
+            <MuiAlert
+                elevation={6}
+                variant="filled"
+                onClose={handleSnackbarClose}
+                severity={severity} // Can be "success", "error", "warning", or "info"
+            >
+                {message}
+            </MuiAlert>
+            </Snackbar>
             <div className="contact-wrapper">
             <div className = "row">
                 <div className = "col-md-6">
                     <div className='card'>
                             <div className="inner">
-                                <form action="" id = "contactForm" >
+                                <form onSubmit={handleSubmit} id = "contactForm" >
                                     <div className="form-group">
 
                                         {/* //firstname */}
@@ -288,7 +352,7 @@ export default function ContactForm() {
                                       <div><label htmlFor="" style={{color: "green"}}>Message<span className = "status-icon"><CheckCircleIcon /></span></label><textarea id="message" name="message" rows="4" className="form-control complete message" cols="35" placeholder="Enter message here"></textarea></div>}
                                     </div>
 
-                                    {btnActive ? <div className='btn-group text-center w-100'><Button btn={"prim"}>Send us a messsage</Button></div> : <div className='btn-group deactivated text-center w-100'><Button btn={"prim"}>Send us a messsage</Button></div>}
+                                    {btnActive ? <div className='btn-group text-center w-100'><Button btn={"prim"}>Send us a messsage</Button></div> : <div className='btn-group deactivated text-center w-100'><Button btn={"prim"} type = "submit">Send us a messsage</Button></div>}
                                 </form>
                             </div>
                         </div>
@@ -301,26 +365,26 @@ export default function ContactForm() {
                     </p>
                     </div>
                     <section className='accordion'>
-    <div className="container">
-      <div className="accordion">
-      {
-      faqs.map((faq, counter = 0) => {
-        return (<div className="accordion-item" id={`question${counter}`}>
-                <a className="accordion-link" href={`#question${counter}`}>
-                  <div className="flex">
-                    <h3>{faq.question}</h3>
-                  </div>
-                  <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
-                  <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
-                </a>
-                <div className="answer">
-                  <p>{faq.answer}</p>
-                </div>
-                <hr/>
-            </div>)
-            counter++;
-        })
-      }
+                    <div className="container">
+                      <div className="accordion">
+                      {
+                      faqs.map((faq, counter = 0) => {
+                        return (<div className="accordion-item" id={`question${counter}`} key = {Math.random()}>
+                                <a className="accordion-link" href={`#question${counter}`}>
+                                  <div className="flex">
+                                    <h3>{faq.question}</h3>
+                                  </div>
+                                  <i className="icon ion-md-arrow-forward"><ArrowRightIcon /></i>
+                                  <i className="icon ion-md-arrow-down"><ArrowDropDownIcon /></i>
+                                </a>
+                                <div className="answer">
+                                  <p>{faq.answer}</p>
+                                </div>
+                                <hr/>
+                            </div>)
+                            counter++;
+                        })
+                      }
      </div>
     </div>
   </section>

@@ -34,7 +34,6 @@ export default function NavBar(props) {
 	}
 
 	const submitDarkModeState = async (darkmode) => {
-		console.log('---- ',darkmode)
 		// get the session and the url
 		let sessionId = localStorage.getItem('sessionID');
 		const url =  `${source.proxy}/general_setting/`

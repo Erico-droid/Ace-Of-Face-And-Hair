@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import proxy from '../../proxy.json'
 import AddIcon from '@mui/icons-material/Add';
-import './manageFAQ.css';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import Slide from '@mui/material/Slide';
@@ -30,8 +29,7 @@ const style = {
     p: 4,
   };
 
-export default function ManageFAQ() {
-    
+export default function ManageTestimonials() {
     const [faqs, setFaqs] = useState([])
     const [message, setMessage] = useState("")    
     const [SnackbarOpen, setSnackbarOpen] = useState(false);
@@ -42,7 +40,7 @@ export default function ManageFAQ() {
     const handleModalClose = () => setOpen(false);
 
     const getFaqs = async () => {
-        let response = await axios.get(`${proxy.proxy}/general_setting/frequently_asked_questions/`)
+        let response = await axios.get(`${proxy.proxy}/general_setting/testimonials/`)
         response = response.data
         setFaqs(response)
         if (response.length === 0) {
@@ -80,7 +78,7 @@ export default function ManageFAQ() {
         questionInput.setAttribute("rows", "5")
         questionInput.setAttribute("required", "")
         const saveFaq = document.createElement("button")
-        saveFaq.innerText = "Save FAQ"
+        saveFaq.innerText = "Save Testimonial"
         saveFaq.classList.add("btn")
         saveFaq.classList.add("btn-save-faq")
         saveFaq.setAttribute("type", "submit")
@@ -108,7 +106,7 @@ export default function ManageFAQ() {
             document.querySelector("a.create-btn").style.display = "initial";
             setFaqs(response.data)
             setSeverity("success")
-            setMessage("Your FAQ has been added successfully.")
+            setMessage("Your Testimonial has been added successfully.")
             handleSnackbarOpen() 
         } else {
             setSeverity("error")
@@ -119,16 +117,16 @@ export default function ManageFAQ() {
 
 
     const submitAndGetResponse = async () => {
-        const url = `${proxy.proxy}/general_setting/create_faq/`
+        const url = `${proxy.proxy}/general_setting/create_testimonial/`
         let question = document.getElementById("QuestionInput").value
         let answer = document.getElementById("AnswerInput").value
        
         if (question.length === 0)
-            setMessage("Question input cannot be empty!")
+            setMessage("Testimonial input cannot be empty!")
         if (answer.length === 0)
-            setMessage("Answer input cannot be empty!")
+            setMessage("Testimonial By input cannot be empty!")
         if (question.length === 0 && answer.length === 0)
-            setMessage("Question input and answer input cannot be empty!")
+            setMessage("Testimonial input and Testimonial By input cannot be empty!")
         
         if (question.length > 0 && answer.length > 0) {
             const data = {
@@ -197,7 +195,7 @@ export default function ManageFAQ() {
     const handleDelete = async (event) => {
         let targetElement = event.target
         let target;
-        let url = `${proxy.proxy}/general_setting/delete_faq/`
+        let url = `${proxy.proxy}/general_setting/delete_testimonial/`
         if (targetElement.tagName === "TD") {
             target = targetElement
         } else {
@@ -235,7 +233,7 @@ export default function ManageFAQ() {
                     document.querySelector(".no-faqs").style.display = "block"
                 }
                 setSeverity("info")
-                setMessage("Your FAQ has been deleted.")
+                setMessage("Your Testimonial has been deleted.")
                 handleSnackbarOpen()
             } else {
                 handleModalClose()
@@ -253,7 +251,7 @@ export default function ManageFAQ() {
     const handleEditFaq = async (event) => {
         let targetElement = event.target
         let target;
-        let url = `${proxy.proxy}/general_setting/get_particular_faq/`
+        let url = `${proxy.proxy}/general_setting/get_particular_testimonial/`
         document.querySelector("a.create-btn").style.display = "none"
         let activeBtn = document.getElementById("closeBtn")
         if (activeBtn) {
@@ -272,7 +270,6 @@ export default function ManageFAQ() {
             }
         }
         const faqPk = parseInt(target.getAttribute("value"))
-        
         //now let's find the row element
         while (targetElement !== null && targetElement.tagName !== "TR") {
         targetElement = targetElement.parentElement;
@@ -285,12 +282,13 @@ export default function ManageFAQ() {
 
         //get the faq question
         const response = await axios.post(url, {"pk": faqPk})
+        console.log(response)
         let question = tableRow.children[0]
         const qText = question.innerText
         question.innerText = ""
         question.innerHTML = '<textarea name="questionInput" id="QuestionInput" type="text" class="question-input" rows="5" required=""></textarea>'
         const qInput = await findbtn("QuestionInput")
-        qInput.value = response.data.question
+        qInput.value = response.data.testimonial
 
         //get the faq answer
         let answer = tableRow.children[1]
@@ -298,12 +296,12 @@ export default function ManageFAQ() {
         answer.innerText = ""
         answer.innerHTML = '<textarea name="answerInput" id="AnswerInput" type="text" rows="5" class="answer-input" required=""></textarea>'
         const aInput = await findbtn("AnswerInput")
-        aInput.value = response.data.answer
+        aInput.value = response.data.testimonial_by
         //handle the save btn
         let saveBtn = tableRow.children[2]
         const editBtnSave = saveBtn.firstChild
         saveBtn.removeChild(saveBtn.firstChild)
-        saveBtn.innerHTML = '<button class="btn btn-save-faq" id = "saveEditFaq" type="submit">Update FAQ</button>'
+        saveBtn.innerHTML = '<button class="btn btn-save-faq" id = "saveEditFaq" type="submit">Update Testimonial</button>'
 
         //handle the cancel btn
         let cancelBtn = tableRow.children[3]
@@ -314,7 +312,7 @@ export default function ManageFAQ() {
         //add event listeners
         const saveEditFaq = await findbtn("saveEditFaq");
         saveEditFaq.addEventListener('click', async () => {
-           const url = `${proxy.proxy}/general_setting/edit_faq/`
+           const url = `${proxy.proxy}/general_setting/edit_testimonial/`
            let question = await findbtn("QuestionInput")
            question = question.value
            let answer = await findbtn("AnswerInput")
@@ -326,9 +324,10 @@ export default function ManageFAQ() {
             id
            }
            const response = await axios.post(url, data)
+           console.log(response)
            setFaqs(response.data)
            setSeverity("info")
-            setMessage("Your FAQ has been updated.")
+            setMessage("Your Testimonial has been updated.")
             handleSnackbarOpen()
             document.querySelector("a.create-btn").style.display = "block"
         })
@@ -379,7 +378,7 @@ export default function ManageFAQ() {
             >
                 <Box sx={style}>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Are you sure you want to delete faq with question "{faqDelete}" ?
+                    Are you sure you want to delete testimonial with text "{faqDelete}" ?
                 </Typography>
                 <div className='btns-actions'>
                         <Button variant="outlined" color="error" id = "delGoAheadBtn" startIcon={<DeleteIcon />}>
@@ -419,9 +418,9 @@ export default function ManageFAQ() {
             <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="/">Ace Of Face and Hair</Link></li>
-                <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Manage FAQ's</li>
+                <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Manage Testimonials</li>
             </ol>
-            <h6 className="font-weight-bolder mb-0">Manage FAQ's</h6>
+            <h6 className="font-weight-bolder mb-0">Manage Testimonials</h6>
             </nav>
         </div>
         </nav>
@@ -429,7 +428,7 @@ export default function ManageFAQ() {
             <div className="card my-4">
                 <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div className="bg-gradient-primary  border-radius-lg pt-4 pb-3">
-                    <h6 className="text-black text-capitalize ps-3">View and Manage Your FAQ's here</h6>
+                    <h6 className="text-black text-capitalize ps-3">View and Manage Your Testimonials here</h6>
                 </div>
                 </div>
                 <div className="card-body px-0 pb-2">
@@ -437,25 +436,25 @@ export default function ManageFAQ() {
                 <table className="align-items-center mb-0" id = "FAQTable">
                     <thead>
                         <tr>
-                        <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center spacious">Question</th>
-                        <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center spacious">Answer</th>
+                        <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center spacious">Testimonial</th>
+                        <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center spacious">Testimonial By</th>
                         <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 actions"></th>
                         <th className="text-secondary opacity-7 actions"></th>
                         </tr>
                     </thead>
                     <tbody id = "tBody">
-                    {faqs.map((faq) => (
+                    {faqs.map((testimonial) => (
                     <tr key={Math.random()}>
-                        <td className='text-center spacious'>{faq.question}</td>
-                        <td className='text-center spacious'>{faq.answer}</td>
-                        <td className='text-center actions edit' value = {faq.id}>  
+                        <td className='text-center spacious'>{testimonial.testimonial}</td>
+                        <td className='text-center spacious'>{testimonial.testimonial_by}</td>
+                        <td className='text-center actions edit' value = {testimonial.id}>  
                         <Button variant="outlined" color="primary" startIcon = {<EditNoteIcon/>}  onClick={
                             handleEditFaq
                         }>
                             Edit
                         </Button>
                         </td>
-                        <td className='text-center actions delete'value = {faq.id}> 
+                        <td className='text-center actions delete'value = {testimonial.id}> 
                         <Button variant="outlined" color="error" startIcon = {<DeleteIcon/>}  onClick={
                             handleDelete
                         } >
@@ -467,7 +466,7 @@ export default function ManageFAQ() {
                     </table>
                     <div className = "no-faqs text-center">
                         <p>
-                            You do not have any FAQ's at the moment
+                            You do not have any Testimonials at the moment
                         </p>
                     </div>
                 </div>
@@ -475,7 +474,7 @@ export default function ManageFAQ() {
             </div>
             <div className = "text-right">
                 <a onClick={handleCreateBtn} className='create-btn text-center main-btn'>
-                    <i style={{marginRight: "15px"}}><AddIcon/></i>Add FAQ
+                    <i style={{marginRight: "15px"}}><AddIcon/></i>Add Testimonial
                 </a>
             </div>
             </div>

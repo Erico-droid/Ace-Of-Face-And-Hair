@@ -5,9 +5,189 @@
 }
 
 .dark-content textarea.question-input:focus {
+    color: #fff;
+    outline: 1px solid #292f36;
     background: #292f36;
+    border: 1px solid #292f36;
 }
 
 .dark-content textarea.answer-input:focus {
+    color: #fff;
+    outline: 1px solid #292f36;
     background: #292f36;
+    border: 1px solid #292f36;
 }
+
+.dark-content textarea.question-input {
+    color: #fff;
+    background: #101215;
+}
+
+#FAQTable td, th {
+    border: 0px solid transparent;
+}
+
+.dark-content textarea.answer-input {
+    color: #fff;
+    background: #101215;
+}
+
+#FAQTable td.spacious {
+    min-width: 45%;
+    width: 45%
+}
+
+#FAQTable td.actions {
+    min-width: 5%;
+    width: 5%
+}
+
+#FAQTable th.spacious {
+    min-width: 45%;
+    width: 45%
+}
+
+#FAQTable th.actions {
+    min-width: 5%;
+    width: 5%
+}
+
+.dark-content textarea {
+    background: #101215;
+    border: 1px solid #292f36;
+}
+
+.dark-content textarea:focus-visible {
+    outline: 1px solid #292f36;
+    font-size: 14px
+}
+
+button.btn.btn-save-faq {
+    background: rgba(220,220,220, 0.4) !important;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.table> :not(:last-child)> :last-child>* {
+    border-bottom-color: transparent !important;
+}
+
+th.text-uppercase.text-secondary.text-xxs.font-weight-bolder.opacity-7.text-center {
+    color: #000 !important;;
+}
+
+.dark-content th.text-uppercase.text-secondary.text-xxs.font-weight-bolder.opacity-7.text-center {
+    color: #fff !important;
+}
+
+textarea:focus {
+    background: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    outline: 1px solid #dcdcdc;
+}
+
+th.text-uppercase.text-secondary.text-xxs.font-weight-bolder.opacity-7.text-center {
+    border-top: 0px solid transparent !important;
+}
+
+th.text-secondary.opacity-7 {
+    border-top: 0px solid transparent;
+}
+
+.create-btn {
+    color: #000 !important;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+}
+
+.create-btn:hover {
+    background-color: #dcdcdc;
+    padding: 10px;
+    color: #000 !important;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+    cursor: pointer
+}
+
+.delete {
+    color: red !important
+}
+
+#FAQTable td, th {
+    border: 0px solid transparent;
+    color: #000;
+    padding: 15px;
+}
+
+.dark-content #FAQTable td, th {
+    border: 0px solid transparent;
+    color: #fff;
+}
+
+.dark-content .MuiBox-root.css-1wnsr1i {
+        background: #101215 !important;
+        border-radius: 5px;
+        color: #fff;
+        border:0px;
+}
+
+.MuiBox-root.css-1wnsr1i {
+    background: #fff !important;
+    border-radius: 5px;
+    color: #000;
+    border:0px;
+}
+
+.btns-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dark-content .css-kf45sl-MuiButtonBase-root-MuiIconButton-root:hover {
+    background-color: rgba(0, 0, 0, 0.54);
+}
+
+td textarea {
+    padding: 5px 10px;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+#FAQTable td.spacious {
+    min-width: 90vw;
+}
+
+@media (min-width: 1000px) {
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+
+    #FAQTable td.spacious {
+        min-width: 45%; 
+        width: 45%;
+    }
+}
+
+.main-area {margin-bottom: 50px;}
+
+/* .card {
+    background: #fff !important;
+} */

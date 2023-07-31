@@ -11,6 +11,8 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { Chart } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
+import CheckIcon from '@mui/icons-material/Check';
+
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 
@@ -57,8 +59,7 @@ export default function
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': 'localhost:3000'
         }
-        let projects = await axios.get(`${proxy.proxy}/dashboard/get_projects`)
-        console.log(projects)
+        let projects = await axios.get(`${proxy.proxy}/portfolio`)
         projects = projects.data;
         if (projects.length === 0) {
             const prTable = document.getElementById("projectsTable")
@@ -67,6 +68,7 @@ export default function
             const noProjects = document.querySelector(".no-projects");
             noProjects.style.display = "block"
         } else {
+          console.log(projects)
             setProjects(projects)
         }
     }
@@ -82,7 +84,7 @@ export default function
             <DashboardAside />
         </div>
         <div className='col-md-10'>
-  <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <main className="main-content home-ds position-relative h-100 border-radius-lg ">
     <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div className="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
@@ -133,7 +135,7 @@ export default function
         <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div className="card">
             <div className="card-header p-3 pt-2">
-              <div className="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute  text-black">
+              <div className="icon icon-lg icon-shape bg-gradient-primary  text-center border-radius-xl mt-n4 position-absolute  text-black">
                 <i className="material-icons opacity-10" style={{color: "black"}}><PeopleAltIcon/></i>
               </div>
               <div className="text-end pt-1">
@@ -169,7 +171,7 @@ export default function
         <div className="col-lg-4 col-md-6 mt-4 mb-4">
           <div className="card z-index-2 ">
             <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div className="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+              <div className="bg-gradient-primary  border-radius-lg py-3 pe-1">
                 <div className="chart">
                   <canvas id="chart-bars" className="chart-canvas" height="170"></canvas>
                 </div>
@@ -235,26 +237,18 @@ export default function
                 <div className="col-lg-12 col-7">
                     <div className='project-detail-text'>
                   <h6>Projects</h6>
-                  <p className="text-sm mb-0">
-                    <i className="fa fa-check text-info" aria-hidden="true"></i>
-                    <span className="font-weight-bold ms-1">30 done</span> this month
+                  <p className="text-sm mb-0 pl-0">
+                    <i><CheckIcon/></i>
+                    <span className="font-weight-bold ms-1">{projects.length} projects</span> are being displayed
                   </p>
                   </div>
                   <div className='no-projects text-center' style={{display: "none"}}>
                     <p>There aren't any projects to show at the moment.</p>
-                    <a href = "#" className='unique-link'>Add projects</a>
+                    <Link to = "/dashboard-actions/manage-projects/create-project" className='unique-link'>Add project</Link>
                   </div>
                 </div>
                 <div className="col-lg-6 col-5 my-auto text-end">
                   <div className="dropdown float-lg-end pe-4">
-                    <a className="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i className="fa fa-ellipsis-v text-secondary"></i>
-                    </a>
-                    <ul className="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                      <li><a className="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                      <li><a className="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                      <li><a className="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                    </ul>
                   </div>
                 </div>
               </div>
@@ -264,56 +258,52 @@ export default function
                 <table className="table align-items-center mb-0" id = "projectsTable">
                   <thead>
                     <tr>
-                      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
-                      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Members</th>
-                      <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
-                      <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
+                      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Images</th>
+                      <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                      <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Views</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div className="d-flex px-2 py-1">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-xd.svg" className="avatar avatar-sm me-3" alt="xd"></img>
-                          </div>
-                          <div className="d-flex flex-column justify-content-center">
-                            <h6 className="mb-0 text-sm">Material XD Version</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="avatar-group mt-2">
-                          <a href="javascript:;" className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                            <img src="../assets/img/team-1.jpg" alt="team1"></img>
-                          </a>
-                          <a href="javascript:;" className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
-                            <img src="../assets/img/team-2.jpg" alt="team2"></img>
-                          </a>
-                          <a href="javascript:;" className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
-                            <img src="../assets/img/team-3.jpg" alt="team3"></img>
-                          </a>
-                          <a href="javascript:;" className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                            <img src="../assets/img/team-4.jpg" alt="team4"></img>
-                          </a>
-                        </div>
-                      </td>
-                      <td className="align-middle text-center text-sm">
-                        <span className="text-xs font-weight-bold"> $14,000 </span>
-                      </td>
-                      <td className="align-middle">
-                        <div className="progress-wrapper w-75 mx-auto">
-                          <div className="progress-info">
-                            <div className="progress-percentage">
-                              <span className="text-xs font-weight-bold">60%</span>
+                    {projects.map((project) => {
+                          return (<tr key={Math.random}>
+                          <td>
+                            <div className="d-flex px-2 py-1">
+                              <div>
+                                <img src="../assets/img/small-logos/logo-xd.svg" className="avatar avatar-sm me-3" alt="xd"></img>
+                              </div>
+                              <div className="d-flex flex-column justify-content-center">
+                                <h6 className="mb-0 text-sm">{project.name}</h6>
+                              </div>
                             </div>
-                          </div>
-                          <div className="progress">
-                            <div className="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+                          </td>
+                          <td>
+                            <div className="avatar-group mt-2">
+                              {project.images.map((Image) => {
+                              return (
+                              <a href="#" className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                                <img src={proxy.proxy + Image} className='avatar-img'></img>
+                              </a>) 
+                              })}
+                            </div>
+                          </td>
+                          <td className="align-middle text-center text-sm">
+                            <span className="text-xs font-weight-bold">{project.brief_description}</span>
+                          </td>
+                          <td className="align-middle">
+                            <div className="progress-wrapper w-75 mx-auto">
+                              <div className="progress-info">
+                                <div className="progress-percentage">
+                                  <span className="text-xs font-weight-bold">60%</span>
+                                </div>
+                              </div>
+                              <div className="progress">
+                                <div className="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>)
+                    })}
                   </tbody>
                 </table>
               </div>

@@ -15,6 +15,10 @@ import HomeDashboard from './Pages/HomeDashboard/HomeDashboard';
 import ManageProjects from './Pages/ManageProjects/ManageProjects';
 import ProjectUploadForm from './Components/ProjectUploadForm/ProjectUploadForm';
 import ManageFAQ from './Pages/ManageFAQ/ManageFAQ';
+import EditProject from './Pages/EditProject/EditProject';
+import ManageTestimonials from './Pages/ManageTestimonials/ManageTestimonials';
+import ViewReachOuts from './Pages/ViewReachOuts/ViewReachOuts';
+
 export default function App() {
 
   const [dark, setDark] = useState(false);
@@ -37,7 +41,10 @@ export default function App() {
           <Route path='/dashboard' exact element = {<HomeDashboard />} />
           <Route path='/dashboard-actions/manage-projects' exact element = {<ManageProjects />} />
           <Route path='/dashboard-actions/manage-projects/create-project' exact element = {<ProjectUploadForm />} />
+          <Route path='/dashboard-actions/manage-projects/edit-project/:slug' exact element = {<EditProject />} />
           <Route path='/dashboard-actions/manage-faqs' exact element = {<ManageFAQ />} />
+          <Route path='/dashboard-actions/manage-testimonials' exact element = {<ManageTestimonials />} />
+          <Route path='/dashboard-actions/view-reach-outs' exact element = {<ViewReachOuts />} />
       </Routes>
       <Footer/>
     </>
