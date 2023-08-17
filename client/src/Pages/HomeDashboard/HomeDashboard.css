@@ -27512,3 +27512,11 @@ img.avatar-img {
 .btn:not(:disabled):not(.disabled).active, .btn:not(:disabled):not(.disabled):active {
   background-image: wheat;
 }
+
+.table.align-items-center td {
+  vertical-align: middle;
+  word-break: break-all;
+  max-width: 7vw !important;
+  overflow-wrap: break-word;
+  white-space: break-spaces;
+}

@@ -11,6 +11,12 @@ import AppsIcon from '@mui/icons-material/Apps';
 import svg from "../../Assets/shapes.svg"
 import axios from 'axios'
 import source from '../../proxy.json'
+import img1 from '../../Assets/1.jpg'
+import img2 from '../../Assets/2.jpg'
+import img3 from '../../Assets/3.jpg'
+import img4 from '../../Assets/4.jpg'
+import img5 from '../../Assets/5.jpg'
+import img6 from '../../Assets/6.jpg'
 
 export default function Gallery(props) {
 
@@ -71,7 +77,14 @@ export default function Gallery(props) {
           <div className='col-md-6'>
           <div className='top-phots'>
             <div className='shadower'>
-              <BasicRows />
+              <div className='row'>
+                <div className='col-md-4 pl-0 pr-0 gal-img'><img src = {img1} style={{borderTopLeftRadius: "10px"}} /></div>
+                <div className='col-md-4 pl-0 pr-0 gal-img'><img src = {img2} /></div>
+                <div className='col-md-4 pl-0 pr-0 gal-img'><img src = {img3} style={{borderTopRightRadius: "10px"}}/></div>
+                <div className='col-md-4 pl-0 pr-0 gal-img'><img src = {img4} style={{borderBottomLeftRadius: "10px"}}/></div>
+                <div className='col-md-4 pl-0 pr-0 gal-img'><img src = {img5} /></div>
+                <div className='col-md-4 pl-0 pr-0 gal-img'><img src = {img6} style={{borderBottomRightRadius: "10px"}}/></div>
+              </div>
               </div>
           </div>
           </div>

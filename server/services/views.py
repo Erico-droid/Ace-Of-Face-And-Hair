@@ -3,6 +3,7 @@ from .models import Service, SubServiceImage, Sub_Service
 from django.http import HttpResponse, JsonResponse
 import json
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
+from django.core.serializers import serialize
 # Create your views here.
 
 # CRUD OPERATIONS FOR SERVICES: GET, POST, DELETE, UPDATE
@@ -37,24 +38,24 @@ def get_services_and_sub_services(request):
         data = chain_all_services()
         return JsonResponse({"data":data, "success":True}, status = 200)
     return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
-
+# C
 @csrf_exempt
 def create_service(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
             service = Service.objects.create(
-                name = data["name"],
-                service_description = data["service_description"]            
+                name = data["categoryName"],
+                service_description = data["categoryDescription"]            
             )
             service.save()
             data = chain_all_services()
-            return JsonResponse({"data": data, "sucess": True})
+            return JsonResponse({"data": data, "sucess": True, "message":"Your category was created successfuly"})
         except:
             return JsonResponse({"message": "There was an unexpected error", "success": False}, status = 500)
     return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
 
-
+# E
 @csrf_exempt
 def edit_service(request, service_slug):
     try:
@@ -71,7 +72,7 @@ def edit_service(request, service_slug):
                 "created": sub_service.created,
                 "slug": sub_service.slug,
                 "id": sub_service.pk,
-                "image": sub_service.image
+                "image": sub_service.image.image.url
             }
             all_sub_services.append(sub_service_dict)
 
@@ -83,47 +84,19 @@ def edit_service(request, service_slug):
             "sub_services": all_sub_services
         }
 
+
         return JsonResponse({"data": service_dict, "success":True},status = 200)
     
     if request.method == "POST":
         data = json.loads(request.body)
         if data:
-            service.name = data["name"]
-            service.service_description = data["service_description"]
-            sub_services = service.sub_services.all()
-            try:
-                deleted_sub_services = data["deleted_sub_services"]
-                for sub_service in sub_services:
-                    for deleted in deleted_sub_services:
-                        if sub_service.name == deleted:
-                            sub_service.delete()
-            except KeyError:
-                pass
+            service.name = data["categoryName"]
+            service.service_description = data["categoryDescription"]
             service.save()
-            
-            all_sub_services = []
-            for sub_service in service.sub_services.all():
-                sub_service_dict = {
-                    "name": sub_service.name,
-                    "sub_service_description": sub_service.sub_service_description,
-                    "created": sub_service.created,
-                    "slug": sub_service.slug,
-                    "id": sub_service.pk,
-                    "image": sub_service.image
-                }
-                all_sub_services.append(sub_service_dict)
-
-            service_dict = {
-                "name": service.name,
-                "service_description": service.service_description,
-                "slug": service.slug,
-                "created": service.created,
-                "sub_services": all_sub_services
-            }
-
-            return JsonResponse({"success": True, "data": service_dict}, status = 200)
+            data = chain_all_services()
+            return JsonResponse({"data": data, "sucess": True, "message":"Your category was updated successfuly"})
         
-
+# D
 @csrf_exempt
 def delete_service(request, service_slug):
     try:
@@ -164,45 +137,48 @@ def chain_sub_services():
         all_sub_services.append(sub_service_dict)
     return all_sub_services
 
-
+# R
 def get_sub_services(request):
     if request.method == "GET":
         data = chain_sub_services()
         return JsonResponse({"success":True, "data":data}, status = 200)
     else:
         return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
-    
+
+# C
 @csrf_exempt
 def create_sub_service(request):
     if request.method == "POST":
-        data = dict(request.POST)
+        data = request.POST
+
         try:
             image = SubServiceImage.objects.create()
             image_file = request.FILES.getlist('image')[0]
             image.image.save(str(image_file), image_file ,save = True)
-
+            
             sub_service = Sub_Service.objects.create(
-                name = data["name"],
-                sub_service_description = data["sub_service_description"],
+                name = data.get("name"),
+                sub_service_description = data.get("sub_service_description"),
                 image = image
             )
-            services = json.loads(str(data["services"][0]));
+            
+            services = json.loads(data.get("services"))
             for i in range(len(services)):
                 try:
-                    # send the service data in dict
-                    service = get_object_or_404(Service, slug = services[i]["service_slug"])
+                    service = get_object_or_404(Service, slug = services[i])
                     sub_service.services.add(service)
                 except Service.DoesNotExist:
-                    return JsonResponse({"success":False, "message": "That sub service does not exist in your server"}, status = 404)
+                    return JsonResponse({"success":False, "message": "That service does not exist in your server"}, status = 404)
             
-            return JsonResponse({"success":True, "data": chain_sub_services(), "message": "The sub service has been created successfuly"}, status = 404)
+            return JsonResponse({"success":True, "data": chain_sub_services(), "message": "The service has been created successfuly"}, status = 200)
         except:
             return JsonResponse({"success":False, "message": "There was an unexpected error in your server"}, status = 500)
     else:
         return JsonResponse({"success":False, "message": "That request is not accepted in this server"}, status = 404)
             # subservice.objects.add service or services
 
-
+# D
+@csrf_exempt
 def delete_sub_service(request, sub_service_slug):
     try:
         sub_service = get_object_or_404(Sub_Service, slug = sub_service_slug)
@@ -211,11 +187,12 @@ def delete_sub_service(request, sub_service_slug):
     
     if request.method == "DELETE":
         sub_service.delete()
-        return JsonResponse({"success":True, "data": chain_sub_services(), "message":"The sub service has been deleted"}, status = 404)
+        return JsonResponse({"success":True, "data": chain_sub_services(), "message":"The service has been deleted"}, status = 200)
     else:
-        return JsonResponse({"success":False, "message": "That request is not accepted in this server"}, status = 404)
+        return JsonResponse({"success":False, "message": "That request is not accepted in this server"}, status = 403)
 
-
+# U
+@csrf_exempt
 def edit_sub_service(request, sub_service_slug):
     try:
         sub_service = get_object_or_404(Sub_Service, slug = sub_service_slug)
@@ -223,21 +200,58 @@ def edit_sub_service(request, sub_service_slug):
         return JsonResponse({"success":False, "message": "That service does not exist in your server"}, status = 404)
     
     if request.method == "GET":
-        sub_service_dict = {
+        services_arr = []
+        for service in sub_service.services.all():
+            services_arr.append(serialize('json', [service]))
+            
+        sub_service_data = {
             "name": sub_service.name,
             "sub_service_description": sub_service.sub_service_description,
             "created": sub_service.created,
             "slug": sub_service.slug,
             "id": sub_service.pk,
-            "image": sub_service.image.image.url
+            "image": sub_service.image.image.url,
+            "services": services_arr
         }
-
-        return JsonResponse({"data": sub_service_dict, "success": True}, status = 200)
+        
+        return JsonResponse({"data": sub_service_data, "success": True}, status = 200)
     
-    # if request.method == "POST":
-    #     data = json.loads(request.boy)
-    #     sub_service.name = data["name"]
-    #     sub_service.sub_service_description = data["sub_service_description"]
-    #     sub_service.image
+    if request.method == "POST":
+        data = request.POST
+        print(data)
+        if not request.FILES.get('image') == None:
 
-    # get on from here
+            # handle image here
+            new_customImage = SubServiceImage.objects.create(
+                image = request.FILES.get('image')
+            )
+            new_customImage.save()
+
+            sub_service.image = new_customImage
+        
+
+        # Extract values from QueryDict
+        name = data.get('name')
+        sub_service_description = data.get('sub_service_description')
+        services_list = json.loads(data.get('services'))
+        
+        for service in Service.objects.all():
+            for service_slug in services_list:
+                if service.slug == service_slug:
+                    curr_service = get_object_or_404(Service, slug = service.slug)
+                    sub_service.services.add(curr_service)
+        sub_service.name = name
+        sub_service.sub_service_description = sub_service_description
+         
+        # handle removed subservices
+        removed_services = json.loads(data.get("removed_services"))
+        for service in sub_service.services.all():
+            for service2 in removed_services:
+                if (service.slug == service2):
+                    curr_service = get_object_or_404(Service, slug = service.slug)
+                    sub_service.services.remove(curr_service)
+        
+        
+        sub_service.save()
+        return JsonResponse({"success":True, "data": chain_sub_services(), "message": "The service has been updated successfuly"}, status = 200)
+        

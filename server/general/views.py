@@ -79,10 +79,11 @@ def work_area_images(request):
                 random_images.append(images[i].image.url)
         return JsonResponse({'images':random_images})
 
-
+@csrf_exempt
 def handle_login(request):
     if request.method == "POST" or request.POST:
         data = json.loads(request.body)
+        print(data)
         username = data["username"]
         password = data["password"]
         user = authenticate(request, username = username, password = password)
@@ -96,6 +97,14 @@ def handle_login(request):
 
 
 # FAQS, GET: CREATE: DELETE: UPDATE
+def check_if_authenticated(request):
+    if request.method == "GET":
+        print(request.user)
+        # if request.user.is_authenticated():
+        #     print(request.user)
+        # else:
+        #     print("xxxxxxxxxx")
+    return JsonResponse({"Hello":"World"})
 
 def chain_faqs():
     faqs = FAQ.objects.all()

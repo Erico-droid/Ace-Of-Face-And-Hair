@@ -24,5 +24,6 @@ urlpatterns = [
     path('edit_testimonial/', views.edit_testimonial, name = "edit_testimonial"),
     path('reach-outs/', views.reach_outs, name='reach_outs'),
     path('create_reach_out/', views.create_reach_out, name = "create_reach_out"),
-    path('delete_reach_out/', views.delete_reach_out, name = "delete_reach_out")
+    path('delete_reach_out/', views.delete_reach_out, name = "delete_reach_out"),
+    path('authentication_check/', views.check_if_authenticated, name = "authentication_check")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

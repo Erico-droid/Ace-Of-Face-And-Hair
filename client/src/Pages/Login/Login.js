@@ -11,7 +11,6 @@ export default function Login() {
         data = JSON.stringify(data)
           const csrf = await axios.get(`${source.proxy}/general_setting/get_csrf_token`);
 		  const csrfToken = csrf.data.csrfToken;
-          console.log(csrfToken)
 		  const headers = {
 			'X-CSRFToken': csrfToken,
 			'Content-Type': 'application/json',

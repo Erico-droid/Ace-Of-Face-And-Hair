@@ -1,10 +1,29 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import "./AFHDetails.css"
 import Art from "../../Assets/contactArt.jpg"
 import svg from "../../Assets/shapes.svg"
+import axios from 'axios';
+import proxy from '../../proxy.json'
 
 export default function AFHDetails() {
-  return (
+    const [isChecked, setIsChecked] = useState(false);
+    const [testimonials, setTestimonials] = useState([])
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+    }
+
+    const getTestimonials = async () => {
+        const url = `${proxy.proxy}/general_setting/testimonials`
+        const response = await axios.get(url)
+        setTestimonials(response.data)
+    }
+
+    let counter = 0;
+
+    useEffect(() => {
+        getTestimonials()
+    }, [])
+ return (
     <div className = "container">
         <div className='image-dots-why-area'>
               <svg aria-hidden="true" className="shape shape__inner image-dots" style={{color:" #fff"}} data-v-67de5fba="">
@@ -47,6 +66,22 @@ export default function AFHDetails() {
                         </svg>Item 8</li>
                     </ul>
                     <div className='testimonial-area'>
+                    <div class="slider"> 
+                        {testimonials.map(() => {                            
+                            counter++;
+                            return (
+                            <input type="radio" name="slider" title={`slide${counter}`} class="slider__nav"/>
+                            )
+                        })}
+                        <div class="slider__inner">
+                            {testimonials.map((Testimonial) => {
+                            return (<div class="slider__contents"><i class="slider__image fa fa-diamond"></i>
+                            <p class="slider__txt">{Testimonial.testimonial}</p>
+                            <p className='change-text2'>~ {Testimonial.testimonial_by}</p>
+                            </div>
+                            )})}
+                        </div>
+                        </div>
                     </div>
                     </div>
                 </div>

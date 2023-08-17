@@ -9,6 +9,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import wPlaceholder from '../../Assets/wpHolder.png';
 import bPlaceholder from '../../Assets/blackpHolder.png';
+import axios from 'axios'
+import proxy from '../../proxy.json'
 
 export default function DashboardAside() {
 
@@ -24,8 +26,14 @@ export default function DashboardAside() {
     }
   }
 
+  const authenticatedCheck = async () => {
+    const response = await axios.get(`${proxy.proxy}/general_setting/authentication_check/`);
+    console.log(response)
+  }
+
   useEffect (() =>{
     handlePlaceHolder();
+    authenticatedCheck()
   }, [handlePlaceHolder])
 
   return (
@@ -89,12 +97,20 @@ export default function DashboardAside() {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-black " href="../pages/rtl.html">
+          <NavLink className="nav-link text-black " to="/dashboard-actions/manage-categories">
+            <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
+              <i className="material-icons opacity-10"><DesignServicesIcon/></i>
+            </div>
+            <span className="nav-link-text ms-1">Manage Categories</span>
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link text-black " to="/dashboard-actions/manage-services">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
               <i className="material-icons opacity-10"><DesignServicesIcon/></i>
             </div>
             <span className="nav-link-text ms-1">Manage Services</span>
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item mt-3">
           <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-8">Accounts </h6>

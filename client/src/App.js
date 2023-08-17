@@ -18,6 +18,9 @@ import ManageFAQ from './Pages/ManageFAQ/ManageFAQ';
 import EditProject from './Pages/EditProject/EditProject';
 import ManageTestimonials from './Pages/ManageTestimonials/ManageTestimonials';
 import ViewReachOuts from './Pages/ViewReachOuts/ViewReachOuts';
+import ManageServices from './Pages/ManageServices/ManageServices';
+import ManageCategories from './Pages/ManageCategories/ManageCategories';
+import ProtectedRoute from './ProtectedRoute';
 
 export default function App() {
 
@@ -45,6 +48,8 @@ export default function App() {
           <Route path='/dashboard-actions/manage-faqs' exact element = {<ManageFAQ />} />
           <Route path='/dashboard-actions/manage-testimonials' exact element = {<ManageTestimonials />} />
           <Route path='/dashboard-actions/view-reach-outs' exact element = {<ViewReachOuts />} />
+          <Route path='/dashboard-actions/manage-services' exact element = {<ManageServices />} />
+          <Route path='/dashboard-actions/manage-categories' exact element = {<ManageCategories />} />
       </Routes>
       <Footer/>
     </>

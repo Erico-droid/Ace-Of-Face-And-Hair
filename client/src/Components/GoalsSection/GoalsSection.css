@@ -6,22 +6,24 @@
 }
 
 .h2-type {
-    font-family: "heebo", sans serif;
+    font-family: 'Barlow', sans-serif;
     font-size: calc(50px + 0.5vw);
     color: #000;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 3px;
-    min-height: 400px
+    min-height: 400px;
+    z-index: 125;
 }
 
 .dark-content .h2-type {
-    font-family: "heebo", sans serif;
+    font-family: 'Barlow', sans-serif;
     font-size: calc(50px + 0.5vw);
     color: #fff;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 3px;
+    z-index: 125;
 }
 
 .our-section {

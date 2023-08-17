@@ -58,6 +58,7 @@
     top: 50px;
     width: 80%;
     z-index: -100;
+    border-radius: 10px;
 }
 
 
@@ -120,4 +121,11 @@
         font-size: calc(11px + 0.5vw);
         text-align: left
     }
+}
+
+
+.gal-img img {
+    max-width:100%;
+    max-height: 100%;
+    min-height: 217px
 }
