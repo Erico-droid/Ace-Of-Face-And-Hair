@@ -99,8 +99,8 @@ export default function ItemSlider(props) {
                 <div className='container-fluid'>
                     <div className='mobile-all-content'>
                         <div className='mobile-images'>
-                        <img src="https://wallpaperaccess.com/full/757572.jpg" className = "img-1" alt="" />
-                        <img src="https://wallpapercave.com/wp/wp4937436.jpg" className = "img-2" alt="" />
+                        <img src={afh2slide} className = "img-1" alt="" />
+                            <img src={afh1slide} className = "img-2" alt="" />
                       </div>
                   </div>
                   <div className='mobile-wording'>

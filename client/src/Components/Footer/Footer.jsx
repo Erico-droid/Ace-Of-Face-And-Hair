@@ -46,6 +46,7 @@ export default function Footer(props) {
                                 <li className="footer-cancelled" title='coming soon...'><Link ><i className="fa fa-angle-right" aria-hidden="true"></i>Shop (Our Services)</Link></li>
                                 <li><Link to={"/contact"}><i className="fa fa-angle-right" aria-hidden="true"></i>Get in touch (Contact Us)</Link></li>
                                 <li><Link to={"/contact"}><i className="fa fa-angle-right" aria-hidden="true"></i>Frequently Asked Questions (FAQ)</Link></li>
+                                <li><Link to={"/dashboard"}><i className="fa fa-angle-right" aria-hidden="true"></i>Dashboard</Link></li>
                             </ul>
                         </div>
                     </div>

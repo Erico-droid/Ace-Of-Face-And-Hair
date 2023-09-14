@@ -23,6 +23,37 @@ export default function
     const [data, setData] = useState({
       datasets: []
     })
+    
+    const [todaysVisits, setTodaysVisits] = useState(0)
+    const [thisWeeksVisits, setThisWeeksVisits] = useState(0)
+    const [thisMonthsVisits, setThisMonthsVisits] = useState(0)
+    const [lastYearsVisitsDiff, setLastYearsVisitsDiff] = useState(0)
+    const [yesterVisitsDiff, setYesterVisitsDiff] = useState(0)
+    const [lastWeeksVisitsDiff, setLastWeeksVisitsDiff] = useState(0)
+    const [lastMonthsVisitsDiff, setLastMonthsVisitsDiff] = useState(0)
+    const [thisYearsVisits, setThisYearsVisits] = useState(0)
+
+    const getAnalysis = async () => {
+      const url = `${proxy.proxy}/dashboard/provide_analysis/`
+      const response = await axios.get(url)
+      var data = response.data   
+      var todays_visits = data["todays_visits"]
+      var thismonths_visits = data["thismonths_visits"]
+      var thisyears_visits = data["thisyears_visits"] 
+      var lastyears_visits = data["thisyears_visits"]
+      var last_months_visits = data["last_months_visits"]
+      var yesterday_visits = data["yesterday_visits"]
+      var thisweeks_visits = data["thisweeks_visits"]
+      var lastweek_visits = data["lastweek_visits"]
+      setThisMonthsVisits(thismonths_visits)
+      setThisWeeksVisits(thisweeks_visits)
+      setThisYearsVisits(thisyears_visits)
+      setTodaysVisits(todays_visits)
+      setYesterVisitsDiff((todays_visits/(todays_visits+yesterday_visits)) * 100)
+      setLastMonthsVisitsDiff((thismonths_visits/(thismonths_visits+last_months_visits)) * 100)
+      setLastWeeksVisitsDiff((thisweeks_visits/(thisweeks_visits + lastweek_visits)) * 100)
+      setLastYearsVisitsDiff((thisyears_visits/(thisyears_visits + lastyears_visits)) * 100)
+    }
 
     const ChartExample = () => {
       const data = {
@@ -68,13 +99,14 @@ export default function
             const noProjects = document.querySelector(".no-projects");
             noProjects.style.display = "block"
         } else {
-          console.log(projects)
             setProjects(projects)
         }
     }
 
     useEffect(() => {
         getProjects()
+        getAnalysis()
+        
     }, [])
 
   return (
@@ -105,13 +137,16 @@ export default function
                 <i className="material-icons opacity-10"><GradeIcon/></i>
               </div>
               <div className="text-end pt-1">
-                <p className="text-sm mb-0 text-capitalize">Today's Money</p>
-                <h4 className="mb-0">$53k</h4>
+                <p className="text-sm mb-0 text-capitalize">Today's Visitors</p>
+                <h4 className="mb-0">{todaysVisits}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"></hr>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+              <p className="mb-0">
+                <span className={ yesterVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
+                  {yesterVisitsDiff > 0 ? "+ ".concat(yesterVisitsDiff.toString()): "- ".concat(yesterVisitsDiff.toString())}% 
+                  </span> than yesterday</p>
             </div>
           </div>
         </div>
@@ -122,13 +157,16 @@ export default function
                 <i className="material-icons opacity-10"><CalendarMonthIcon/></i>
               </div>
               <div className="text-end pt-1">
-                <p className="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 className="mb-0">$103,430</h4>
+                <p className="text-sm mb-0 text-capitalize">This Weeks Visitors</p>
+                <h4 className="mb-0">{thisWeeksVisits}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"></hr>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+              <p className="mb-0">
+                  <span className={ lastWeeksVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
+                  {lastWeeksVisitsDiff > 0 ? "+ ".concat(lastWeeksVisitsDiff.toString()): "- ".concat(lastWeeksVisitsDiff.toString())}% 
+                  </span> than last week</p>
             </div>
           </div>
         </div>
@@ -139,13 +177,16 @@ export default function
                 <i className="material-icons opacity-10" style={{color: "black"}}><PeopleAltIcon/></i>
               </div>
               <div className="text-end pt-1">
-                <p className="text-sm mb-0 text-capitalize">Today's Users</p>
-                <h4 className="mb-0">2,300</h4>
+                <p className="text-sm mb-0 text-capitalize">This months visitors</p>
+                <h4 className="mb-0">{thisMonthsVisits}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"></hr>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+            <p className="mb-0">
+              <span className={ lastMonthsVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
+              {lastMonthsVisitsDiff > 0 ? "+ ".concat(lastMonthsVisitsDiff.toString()): "- ".concat(lastMonthsVisitsDiff.toString())}% 
+              </span> than last month</p>
             </div>
           </div>
         </div>
@@ -156,13 +197,16 @@ export default function
                 <i className="material-icons opacity-10"><MessageIcon/></i>
               </div>
               <div className="text-end pt-1">
-                <p className="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 className="mb-0">3,462</h4>
+                <p className="text-sm mb-0 text-capitalize">This years visitors</p>
+                <h4 className="mb-0">{thisYearsVisits}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"></hr>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+            <p className="mb-0">
+              <span className={ lastYearsVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
+              {lastYearsVisitsDiff > 0 ? "+ ".concat(lastYearsVisitsDiff.toString()): "- ".concat(lastYearsVisitsDiff.toString())}% 
+              </span> than last year</p>
             </div>
           </div>
         </div>
@@ -269,9 +313,6 @@ export default function
                           return (<tr key={Math.random}>
                           <td>
                             <div className="d-flex px-2 py-1">
-                              <div>
-                                <img src="../assets/img/small-logos/logo-xd.svg" className="avatar avatar-sm me-3" alt="xd"></img>
-                              </div>
                               <div className="d-flex flex-column justify-content-center">
                                 <h6 className="mb-0 text-sm">{project.name}</h6>
                               </div>
@@ -291,14 +332,14 @@ export default function
                             <span className="text-xs font-weight-bold">{project.brief_description}</span>
                           </td>
                           <td className="align-middle">
-                            <div className="progress-wrapper w-75 mx-auto">
+                            <div className={"w-60 progress-wrapper mx-auto"}>
                               <div className="progress-info">
                                 <div className="progress-percentage">
-                                  <span className="text-xs font-weight-bold">60%</span>
+                                  <span className="text-xs font-weight-bold">{project.view_count}</span>
                                 </div>
                               </div>
                               <div className="progress">
-                                <div className="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div className={"w-".concat((project.view_count).toString()) + " progress-bar bg-gradient-info"} role="progressbar" aria-valuenow={(project.view_count*5).toString()} aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                             </div>
                           </td>

@@ -46,9 +46,11 @@ export default function ViewReachOuts() {
         const url = `${proxy.proxy}/general_setting/reach-outs/`
         const response = await axios.get(url)
         setReachOuts(response.data.data)
-        if (reachOuts.length === 0) {
+        if (response.data.data.length === 0) {
             document.getElementById("reachOuts").style.display = "none"
             document.getElementById("no-reachs").style.display = "block"
+            
+        console.log(reachOuts.length)
         }
     }
 

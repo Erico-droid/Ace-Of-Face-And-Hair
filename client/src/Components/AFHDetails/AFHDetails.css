@@ -99,7 +99,8 @@
     align-items: flex-end;
     justify-content: center;
     height: 222px;
-    color: #fff;
+    color: #fff;    
+    width: 100% !important;
 }
 
   .slider__nav {
@@ -150,18 +151,19 @@
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
   }
+  
   .slider__contents {
     height: 100%;
-    padding: 2rem;
+    /* padding: 2rem; */
     text-align: center;
     display: flex;
     flex: 1 1;
     flex-flow: column nowrap;
     align-items: center;
-    max-width: 100%;
+    max-width: 100% !important;
     justify-content: center;
-    max-width: 570px !important;
-    min-width: 570px !important;
+    /* max-width: 570px !important; */
+    /* min-width: 570px !important; */
 }
 
 

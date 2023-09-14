@@ -42,9 +42,9 @@ export default function ContactSection(props) {
         <div className='text-center contacticon'>
           <img src = {getIcon()} alt = "contact icon" />
         </div>
-        <div className='text-center  container'>
+        <div className='text-center  container' style={{maxWidth: '80%'}}>
           <h2>We're waiting to hear from you.</h2>
-          <p>Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen! Contact us today and let's make magic happen!Contact us today and let's make magic happen! Contact us today and let's make magic happen!  Contact us today and let's make magic happen!</p>
+          <p>We would like to hear from you. You can always make a call to us or drop by our offices for a cup of coffee. Contact us today and let's make magic happen! </p>
         </div>
         <div className='text-center'>
           <Button icon = {<PhoneIcon  />} color = {"white"} bg = {props.darkmode ? "#101215" : "black"} btn = {"sec"}>Contact us</Button>

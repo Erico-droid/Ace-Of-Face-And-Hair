@@ -5,7 +5,7 @@ from django.middleware.csrf import get_token
 import json
 from Projects.models import CustomImage
 import random
-from .models import FAQ, Visitor, ReachOut
+from .models import FAQ, Visitor, ReachOut, DailyVisit
 from django.contrib.auth import authenticate, login
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.serializers import serialize
 from .models import Testimonial
+import datetime
 
 # from django.views.decorators.csrf import ensure_csrf_token
 
@@ -44,6 +45,18 @@ def handle_session(request):
         data = json.loads(request.body) 
         visitor, created = Visitor.objects.get_or_create(visitorSessionName=data['user_session'])
         visitor = Visitor.objects.get(visitorSessionName=data['user_session'])
+        comparison_string = data['user_session'] + " - " + str(datetime.date.today()) 
+        checkBool = False
+        for dv in DailyVisit.objects.all():
+            dailyvisit_string = str(dv)
+            if (dailyvisit_string == comparison_string):
+                checkBool = True
+        
+        if checkBool == False:            
+                DailyVisit.objects.create(
+                    user = visitor
+                )
+                
         visitor_data = {
             'dark_mode': visitor.visit_darkmode_state
         }

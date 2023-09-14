@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Service, SubServiceImage, Sub_Service
-from django.http import HttpResponse, JsonResponse
+from .models import Service, SubServiceImage, Sub_Service, Orders, Cart, Customers
+from django.http import HttpResponse, JsonResponse, Http404
 import json
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.core.serializers import serialize
@@ -218,7 +218,6 @@ def edit_sub_service(request, sub_service_slug):
     
     if request.method == "POST":
         data = request.POST
-        print(data)
         if not request.FILES.get('image') == None:
 
             # handle image here
@@ -255,3 +254,106 @@ def edit_sub_service(request, sub_service_slug):
         sub_service.save()
         return JsonResponse({"success":True, "data": chain_sub_services(), "message": "The service has been updated successfuly"}, status = 200)
         
+
+# orders, carts and customers CRUD Operations
+
+def chain_orders():
+    orders = Orders.objects.all()
+    all_orders = []
+    for order in orders:
+        order_dict = {
+            "code": order.order_code,
+            "created": order.created,
+            "slug": order.slug,
+            "sub_services": order.sub_services,
+            "extra_notes": order.extra_notes,
+            "cart": serialize('json', [order.cart])
+        }
+        all_orders.append(order_dict)
+    return all_orders
+
+def get_orders(request):
+    if request.method == "GET":
+        data = chain_orders()
+        return JsonResponse({"success":True, "data":data}, status = 200)
+    else:
+        return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
+
+
+def chain_carts():
+    carts = Cart.objects.all()
+    all_carts = []
+    for cart in carts:
+        cart_dict = {
+            "code": cart.code,
+            "created": cart.created,
+            "services": serialize('json', [cart.services.all()])
+        }
+        all_carts.append(cart_dict)
+    return all_carts
+
+def get_carts(request):
+    if request.method == "GET":
+        data = chain_carts()
+        return JsonResponse({"success":True, "data":data}, status = 200)
+    else:
+        return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
+
+def delete_item_from_cart(request, service_slug, cart_pk):
+    if request.method == "GET" or request.GET:
+        try:
+            service = Sub_Service.objects.get(slug = service_slug)
+        except Sub_Service.DoesNotExist:
+            raise Http404("Service does not exist.")
+        try:
+            cart = Cart.objects.get(pk = cart_pk)
+        except Cart.DoesNotExist:
+            raise Http404("Cart does not exist.")
+        
+        for serv in cart.services.all():
+            if (serv.slug == service_slug):
+                cart.services.remove(serv)
+        return JsonResponse(serialize('json', [cart]), status=200, safe=False)
+
+def delete_cart(request, cart_pk):
+    if request.method == "GET" or request.GET:
+        try:
+            cart = Cart.objects.get(pk = cart_pk)
+        except Cart.DoesNotExist:
+            raise Http404("Cart does not exist.")
+        Cart.objects.delete(pk = cart_pk)
+        return JsonResponse({"message": "The cart has been deleted successfully"}, status=200, safe=False)
+    
+def add_item_to_cart(request, cart_pk, service_slug):
+    if request.method == "GET" or request.GET:
+        try:
+            cart = Cart.objects.get(pk = cart_pk)
+        except Cart.DoesNotExist:
+            raise Http404("Cart does not exist.")
+        try:
+            service = Sub_Service.objects.get(slug = service_slug)
+        except Sub_Service.DoesNotExist:
+            raise Http404("Service does not exist.")
+        cart.services.add(service)
+        return JsonResponse({"message": "The cart has been updated successfully"}, status=200, safe=False)
+
+def chain_customers():
+    customers = Customers.objects.all()
+    all_customers = []
+    for customer in customers:
+        customer_dict = {
+            "order": serialize('json', [customer.order]),
+            "first_name": customer.first_name,
+            "last_name": customer.last_name,
+            "phone_number": customer.phone_number,
+            "email": customer.email
+        }
+        all_customers.append(customer_dict)
+    return all_customers
+
+def get_customers(request):
+    if request.method == "GET":
+        data = chain_customers()
+        return JsonResponse({"success":True, "data":data}, status = 200)
+    else:
+        return JsonResponse({"message":"request method not accepted in this server"}, status = 403)

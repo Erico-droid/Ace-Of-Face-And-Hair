@@ -51,7 +51,17 @@ export default function DetailedProject(props) {
         setViewerIsOpen(false);
     };
 
+    const setProjectViewer = async () => {
+        var uri = window.location.pathname
+        var indx = uri.indexOf("/", 2)
+        const urls = uri.slice(indx + 1)
+        const url = `${source.proxy}/portfolio/set_project_viewer/${urls}/`
+        const response = await Axios.post(url, {"userSession": localStorage.getItem('sessionID')})
+        console.log(response)
+    }
+
     useEffect(() => {
+        setProjectViewer()
         getData();
         setLoading(false);
         document.title = `AFH | ${heading}`

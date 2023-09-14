@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from general.models import Visitor
 
 # Create your models here.
 
@@ -14,6 +15,7 @@ class Project (models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     images = models.ManyToManyField(CustomImage, blank=True, related_name="images")
+    viewers = models.ManyToManyField(Visitor, blank=True, related_name='project_viewers')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

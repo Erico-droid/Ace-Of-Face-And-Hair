@@ -9,5 +9,6 @@ urlpatterns = [
     path('create_project', views.create_project, name='create_project'),
     path('edit_project/<slug:project_slug>/', views.edit_project, name='edit_project'),
     path('delete_project/<slug:project_slug>/', views.delete_project, name='delete_project'),
+    path('set_project_viewer/<slug:project_slug>/', views.set_project_viewer, name='set_project_viewer'),
     # Add more URL patterns as needed
 ]

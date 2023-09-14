@@ -49,7 +49,6 @@ export default function NavBar(props) {
 				'Content-Type': 'application/json',
 			};		
 			let resp = await axios.post(url, data, { headers });
-			console.log(resp)
 		}
 		catch(error) {
 			console.error(error)

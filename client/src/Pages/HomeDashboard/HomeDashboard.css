@@ -25320,13 +25320,13 @@
   }
   
   .table td .progress {
-    height: 3px;
+    height: 10px;
     width: 120px;
     margin: 0;
   }
   
   .table td .progress .progress-bar {
-    height: 3px;
+    height: 10px;
   }
   
   .table td,

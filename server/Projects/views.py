@@ -12,6 +12,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 import io
 from django.conf import settings
 from django.core.files.base import ContentFile
+from general.models import Visitor
+
 
 # Create your views here.
 
@@ -25,7 +27,6 @@ def fetch_serialized_projects():
         if images:
             for image in images:
                 images_arr.append(image.image.url)
-
         serialized_project = {
             'id': project.pk,
             'name': project.name,
@@ -33,6 +34,7 @@ def fetch_serialized_projects():
             'images':images_arr,
             'created_at': project.created_at.isoformat(),
             'slug': project.slug,
+            'view_count': project.viewers.count()
         }
         
         # Get a random image for the project
@@ -51,7 +53,22 @@ def project_list(request):
     if request.method == "GET":
         all_projects = fetch_serialized_projects()
         return JsonResponse(all_projects, safe=False)
-    
+
+@csrf_exempt
+def set_project_viewer(request, project_slug):
+    if request.method == "POST":
+        try:
+            project = get_object_or_404(Project, slug = project_slug)
+        except Project.DoesNotExist:
+            raise Http404("Project does not exist.")
+        data = json.loads(request.body)
+        try:
+            visitor = Visitor.objects.get(visitorSessionName = data["userSession"])
+            project.viewers.add(visitor)
+        except Project.DoesNotExist:
+            raise Http404("Visitor does not exist.")
+        return JsonResponse({"success": True}, status=200, safe=False)
+
 
 def project_detail(request, project_slug):
     if request.method == "GET" or request.GET:
@@ -67,6 +84,7 @@ def project_detail(request, project_slug):
             'slug': project.slug,
             'images': [image.image.url for image in project.images.all()]
         }
+
         return JsonResponse(serialized_data, safe = True)
 
 def apply_watermark(image_file, logo_file):

@@ -11,7 +11,6 @@ class RecordVisitMiddleWare:
         if not request.session.exists(request.session.session_key):
             request.session.create()
             request.session['dark_mode'] = False
-
         session_key = request.session.session_key
 
         try:
@@ -24,7 +23,5 @@ class RecordVisitMiddleWare:
         today = timezone.now().date()
         DailyVisit.objects.get_or_create(user=user, visit_date=today)
         response = self.get_response(request)
-        # print("CXsxxxx: ", request.session['dark_mode'])
-        # Update 'dark_mode' in the session after processing the request
 
         return response

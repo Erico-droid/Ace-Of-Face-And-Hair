@@ -139,27 +139,26 @@ p {
     }
 }
 .mobile-images {
-        position: absolute;
-    min-width: 400px;
-    max-width: 400px;
-    margin-top: 60px;
-    bottom: -13%;
-    left: 60%;
-    transform: translateX(-50%);
+    position: relative;
+    min-width: 100%;
+    max-width: 100%;
+    margin-top: 90px;
+    /* bottom: -13%; */
+    left: 50%;
+    transform: translateX(-40%);
 }
 
 .mobile-images img {
     
-    width: 250px;
+    width: 70%;
     max-height: 350px;
     border-radius: 10px;
-    filter: contrast(1.5) drop-shadow(2px 4px 6px black);
 }
 
 .mobile-images .img-2 {
     position: absolute;
     z-index: 12;
-    left: 11%;
+    left: 15%;
     top: 10%;
 }
 
@@ -190,4 +189,16 @@ p {
 
 .container-xl {
     max-width: 1500px !important;
+}
+
+@media (max-width: 768px) {
+    .pl-0.pr-0.gal-img {
+        max-width: 33.3% !important;
+    }
+
+    .gal-img img {
+        max-width: 100%;
+        max-height: 100% !important;
+        min-height: 100% !important;
+    }
 }
