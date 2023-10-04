@@ -109,7 +109,6 @@ export default function ManageCategories() {
         }
         edit = target.querySelector("button").getAttribute("unique")
         setBeingEdited(edit)
-        console.log(edit)
         
         const url = `${proxy.proxy}/services/edit_service/${edit}`
         const response = await axios.get(url)

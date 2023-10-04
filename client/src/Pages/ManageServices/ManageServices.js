@@ -122,7 +122,6 @@ export default function ManageServices() {
 
         let image = data.image;
         image = proxy.proxy + image
-        console.log(image)
         setSelectedEditImage(image)
 
         handleEditSubModalOpen()
@@ -224,7 +223,6 @@ export default function ManageServices() {
             ...prevFormData,
             [name]: selectedOptions,
           }));
-          console.log(formData)
         } else {
           setFormData((prevFormData) => ({
             ...prevFormData,

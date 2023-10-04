@@ -11,7 +11,7 @@ export default function ThemeContextWrapper(props) {
 
   const handleDarkMode = async () => {
     const dark_mode = await handleUserSession()
-    if (dark_mode.dark_mode == true)
+    if (dark_mode.dark_mode === true)
       setTheme(themes.dark)
     else
       setTheme(themes.light)

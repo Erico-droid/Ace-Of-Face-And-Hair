@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import SitemapView
+
 
 app_name = 'general'
 
@@ -25,5 +27,7 @@ urlpatterns = [
     path('reach-outs/', views.reach_outs, name='reach_outs'),
     path('create_reach_out/', views.create_reach_out, name = "create_reach_out"),
     path('delete_reach_out/', views.delete_reach_out, name = "delete_reach_out"),
-    path('authentication_check/', views.check_if_authenticated, name = "authentication_check")
+    path('authentication_check/', views.check_if_authenticated, name = "authentication_check"),
+    path('logout/', views.logout_view, name='logout'),
+    path('sitemap.xml', SitemapView.as_view(), name='sitemap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

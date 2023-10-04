@@ -282,7 +282,6 @@ export default function EditProject() {
     }
 
     useEffect(() => {
-        console.log(window)
         handleFileUpload()
         handleGetData()
     }, [])

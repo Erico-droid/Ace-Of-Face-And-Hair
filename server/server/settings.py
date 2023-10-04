@@ -117,7 +117,9 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,6 +137,9 @@ WSGI_APPLICATION = 'server.wsgi.application'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_NAME = 'user_uuid'
+SESSION_SAVE_EVERY_REQUEST = True 
+SESSION_COOKIE_AGE = 3600
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -184,7 +189,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -194,3 +199,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SITEMAP_URLS = [
+    'django.contrib.sitemaps.views.sitemap',
+    'general.sitemaps.MySitemap',
+]
+
+REACT_URLS = [
+    '/',
+    '/about',
+    '/contact',
+]

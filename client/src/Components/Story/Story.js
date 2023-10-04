@@ -3,7 +3,7 @@ import "./Story.css"
 
 export default function Story() {
     return (
-        <div className='our-story-area'>
+        <div className='our-story-area' id='storyDiv'>
                 <div className='cont'>
                     <div className='container'>
                         <div className='row'>
@@ -11,9 +11,22 @@ export default function Story() {
                                 <div className = "about-us-word">
                                     <h3 className = "wordheading text-right mt-md-3" >Get Our Story Right.</h3>
                                     <p>
-                                    Habari zenu wapendwa! Leo nimefurahi kuandika makala hii katika lugha ya Kiswahili ili kuwapa wasomaji wetu wote uzoefu wa kusoma makala kwa lugha yetu ya asili. Kama tunavyojua, Kiswahili ni lugha inayozidi kukua na kuvutia watu kutoka sehemu mbalimbali duniani. Hivyo basi, ni muhimu sana kuendelea kuifanyia kazi na kuiboresha zaidi ili iweze kuwa bora zaidi.</p>
+                                    We would like to introduce Ace Of Face and Hair company. We are a leading team of creative
+                                    artists specializing in Makeup Artistry and Hair styling.
+                                    Ace of face and Hair company has been in existence since 2012. The team comprises of
+                                    certified professionals in the industries of hair, makeup photography, costume and marketing.
+                                    Our experience includes working in the Film, Theater, Television, Events, Editorial Photography,
+                                    and we have worked with celebrity, actors, singers, TV presenters, various show hosts,
+                                    institutions and individuals.
+                                    </p>
 
-                                    <p>Katika makala hii, nitajadili kuhusu umuhimu wa elimu katika maisha yetu. Elimu ni moja ya mambo muhimu sana ambayo yanasaidia kukuza akili na kufungua milango ya fursa mbalimbali. Kupitia elimu, tunapata ujuzi, maarifa na stadi mbalimbali ambazo zinatusaidia kuwa bora zaidi katika maisha yetu. Kwa hiyo, ni muhimu sana kuhakikisha kuwa tunaupata elimu vizuri na kuendelea kusoma na kujifunza hata baada ya kumaliza masomo yetu.</p>
+                                    <p>
+                                        
+                                    In 2014 we were awarded a Kalasha award for best special effects for film makeup, and since
+                                    we have worked collaboratively with various productions to produce award winning stories.
+                                    We also have been hosting master classes, to train upcoming artists wishing to be become
+                                    professionals in the industry.
+                                    </p>
                                 {/* <div className = "about-word-area"></div> */}
                                 </div>
                             </div>

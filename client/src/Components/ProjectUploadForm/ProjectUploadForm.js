@@ -46,6 +46,14 @@ export default function ProjectUploadForm() {
     const handleResponseSnackbarOpen = () => {
         setOpenResponseSnackbar(true)
     }
+
+    const handleRemoveUploadedChildren = () => {
+        const doc = document.getElementById("file-list-container")
+        const fath = document.getElementById("father-file-list-cont");
+        doc.remove()
+        const newDiv = document.createElement("DIV")
+        newDiv.setAttribute('id', 'file-list-container')
+    }
     
       const handleChange = (event) => {
         if (event.target.name === 'images') {
@@ -89,6 +97,12 @@ export default function ProjectUploadForm() {
             handleSnackbarClose()
             handleResponseSnackbarOpen()
             resetForm()
+            setFormData({
+                projectName: '',
+                projectDescription: '',
+                images: [],
+            })
+            handleRemoveUploadedChildren()
           })
           .catch((error) => {
             // Handle any error that occurred during the request
@@ -312,7 +326,7 @@ export default function ProjectUploadForm() {
                                 </div>
                             </div>
                         </section>
-                        <div className='file-list files-div card' style={{display: "none"}}>
+                        <div className='file-list files-div card' id = "father-file-list-cont" style={{display: "none"}}>
                             <div id = "file-list-container" className=''>
                             </div>
                         </div>

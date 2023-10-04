@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from general.models import Visitor
+from django.urls import reverse
 
 # Create your models here.
 
@@ -16,6 +17,9 @@ class Project (models.Model):
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     images = models.ManyToManyField(CustomImage, blank=True, related_name="images")
     viewers = models.ManyToManyField(Visitor, blank=True, related_name='project_viewers')
+
+    def get_absolute_url(self):
+        return reverse('project_detail', args=[str(self.slug)])
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

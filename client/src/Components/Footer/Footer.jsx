@@ -43,10 +43,14 @@ export default function Footer(props) {
                                 <li><Link to={"/"}><i className="fa fa-angle-right" aria-hidden="true"></i>Home (Ace Of Face And Hair)</Link></li>
                                 <li><Link to={"/portfolio"}><i className="fa fa-angle-right" aria-hidden="true"></i>Our Portfolio (Completed Projects)</Link></li>
                                 <li><Link to={"/about"}><i className="fa fa-angle-right" aria-hidden="true"></i>About us / Our Story</Link></li>
-                                <li className="footer-cancelled" title='coming soon...'><Link ><i className="fa fa-angle-right" aria-hidden="true"></i>Shop (Our Services)</Link></li>
+                                <li><Link to={"/services"}><i className="fa fa-angle-right" aria-hidden="true"></i>Shop (Our Services)</Link></li>
                                 <li><Link to={"/contact"}><i className="fa fa-angle-right" aria-hidden="true"></i>Get in touch (Contact Us)</Link></li>
                                 <li><Link to={"/contact"}><i className="fa fa-angle-right" aria-hidden="true"></i>Frequently Asked Questions (FAQ)</Link></li>
-                                <li><Link to={"/dashboard"}><i className="fa fa-angle-right" aria-hidden="true"></i>Dashboard</Link></li>
+                                {props.isAuthenticated === true ?
+                                    <li><Link to={"/dashboard"}><i className="fa fa-angle-right" aria-hidden="true"></i>Dashboard</Link></li>
+                                    :
+                                    <li><Link to={"/login"}><i className="fa fa-angle-right" aria-hidden="true"></i>Login</Link></li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -54,15 +58,11 @@ export default function Footer(props) {
                     <div className="col-12 col-md-6 col-lg-4 text-left">
                         <div className="kilimanjaro_part pt-lg-5">
                             <div className="kilimanjaro_single_text">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-                                Aenean commodo ligula eget dolor. Aenean massa. 
-                                Cum sociis natoque penatibus et magnis dis parturient montes, 
-                                nascetur ridiculus mus. Donec quam felis, ultricies nec, 
-                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-                                </p>
+                            <p>Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.</p>
                             <div className='text-center'>
-                                <Button btn={'prim'}>Book an appointment</Button>
+                                <Link to={'/make-an-appointment'}>
+                                    <Button btn={'prim'}>Make an appointment</Button>
+                                </Link>
                             </div>
                             </div>
                         </div>

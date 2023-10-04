@@ -6,7 +6,7 @@ import json
 from Projects.models import CustomImage
 import random
 from .models import FAQ, Visitor, ReachOut, DailyVisit
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from rest_framework.views import APIView
@@ -15,6 +15,16 @@ from rest_framework import status
 from django.core.serializers import serialize
 from .models import Testimonial
 import datetime
+import jwt
+from django.conf import settings
+import uuid
+from importlib import import_module
+from django.utils import timezone
+from django.contrib.auth.hashers import make_password
+import string
+from django.http import HttpResponse
+from django.views.generic import View
+from django.contrib.sitemaps import Sitemap
 
 # from django.views.decorators.csrf import ensure_csrf_token
 
@@ -24,7 +34,6 @@ def check_session_exists(session_key):
 
 def get_csrf_token(request):
     csrf_token = get_token(request)
-    print("sent")
     return JsonResponse({'csrfToken': csrf_token})
 
 # @ensure_csrf_cookie
@@ -96,28 +105,64 @@ def work_area_images(request):
 def handle_login(request):
     if request.method == "POST" or request.POST:
         data = json.loads(request.body)
-        print(data)
         username = data["username"]
         password = data["password"]
-        user = authenticate(request, username = username, password = password)
+        user = authenticate(request, username = username, password = password) 
         if user is not None:
             login(request, user)
-            return JsonResponse({'message':'Login successful', "redirect":"/dashboard/"}, status = 200)
+            request.session['user_uuid'] = str(uuid.uuid4())
+            return JsonResponse({'message':'Login successful', "afh_uu_rierf": request.session.session_key}, status = 200)
         else:
-            return JsonResponse({"message": 'Invalid Credentials'}, status = 400)
+            return JsonResponse({"message": 'Invalid Credentials'}, status = 200)
     else:
         return JsonResponse({"message":"Invalid request method"}, status = 405)
+    
+
+
+@csrf_exempt
+def logout_view(request):
+    if request.method == "POST" or request.POST:
+        data = json.loads(request.body)['token']
+        try:
+            session = Session.objects.get(session_key=data)
+        except Session.DoesNotExist:            
+            return JsonResponse({'authenticated': False})
+        
+        # Log the user out
+        logout(request)
+        
+        # Delete the session from the database
+        session.delete()
+        
+        response_data = {'redirect': '/'}
+        return JsonResponse(response_data, safe=False, status=200)
 
 
 # FAQS, GET: CREATE: DELETE: UPDATE
+@csrf_exempt
 def check_if_authenticated(request):
-    if request.method == "GET":
-        print(request.user)
-        # if request.user.is_authenticated():
-        #     print(request.user)
-        # else:
-        #     print("xxxxxxxxxx")
-    return JsonResponse({"Hello":"World"})
+    if request.method == "POST":
+        token = json.loads(request.body)['token']
+        if token == 'user_not_authenticated':
+            return JsonResponse({'authenticated': False})
+        else:
+            session_key = token
+
+        engine = import_module(settings.SESSION_ENGINE)
+        try:
+            session = Session.objects.get(session_key=session_key)
+        except Session.DoesNotExist:            
+            return JsonResponse({'authenticated': False})
+        if session:
+            if timezone.now() > session.expire_date:
+                session.delete()
+                return JsonResponse({'authenticated': False})
+            else:
+                request.session = engine.SessionStore(session_key)
+                if '_auth_user_id' in request.session:
+                    return JsonResponse({'authenticated': True})
+                else:
+                    return JsonResponse({'authenticated': False})
 
 def chain_faqs():
     faqs = FAQ.objects.all()
@@ -197,7 +242,6 @@ def chain_testimonials():
         pk = testimonials[i].pk
         new_object = {"id":pk,"testimonial": testimonial, "testimonial_by": testimonial_by}
         response_data.append(new_object)  # Here, the new_object is appended to the list
-    print(response_data)
     return response_data
 
 @csrf_exempt
@@ -304,3 +348,12 @@ def create_reach_out(request):
         new_reach_out.save()
         response_data = chain_reach_outs()
     return JsonResponse(response_data, safe=False, status = 200)
+
+
+
+class SitemapView(View):
+    def get(self, request):
+        response = HttpResponse(content_type='application/xml')
+        sitemap_content = Sitemap.get_urls()
+        response.write(sitemap_content)
+        return response

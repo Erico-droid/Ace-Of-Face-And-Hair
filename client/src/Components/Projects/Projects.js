@@ -41,15 +41,21 @@ export default function Projects(props) {
         <div style = {{marginBottom: "50px"}}>
         {loading ?
             <div style = {{width: "100%", minHeight: "100vh", position: "relative", display: "block"}}>
-                {PlaceHolderSettings()}
+                {/* {PlaceHolderSettings()} */}
             </div>
             :
+            projects.length > 0 ?
         <FadeIn>
             <BorderHeading>Projects</BorderHeading>
             <div className='row'>
                 {projects.map(project => {return  <IndividualProject project = {project} key = {project.slug} />})}
             </div>
          </FadeIn>
+            :
+            <div style={{padding: "150px 0px", display: "flex",
+                justifyContent: "center", alignItems: "center"}}>
+            <p>There aren't any projects at the moment.</p>
+            </div>
         }
         </div>
   )

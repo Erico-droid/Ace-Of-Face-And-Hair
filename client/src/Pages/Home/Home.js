@@ -9,6 +9,7 @@ import Courses from '../../Components/Courses/Courses'
 import Clients from '../../Components/Clients/Clients'
 import AFHDetails from '../../Components/AFHDetails/AFHDetails'
 import PointTab from '../../Components/PointTab/PointTab'
+import Seo from '../../Components/Seo/Seo'
 
 export default function Home(props) {
 
@@ -17,7 +18,8 @@ export default function Home(props) {
   }, [])
 
   return (
-    <>
+    <>            
+            <Seo title="Home" description="Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories." />
             <Landing/>
               <div className = "services">
                 <ItemSlider darkmode = {props.darkmode}/>

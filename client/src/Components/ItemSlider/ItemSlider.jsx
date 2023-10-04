@@ -7,6 +7,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import svg from "../../Assets/shapes.svg";
 import afh1slide from "../../Assets/afh1slide.webp"
 import afh2slide from "../../Assets/afh2slide.webp"
+import {Link} from 'react-router-dom'
 
 export default function ItemSlider(props) {
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
@@ -78,7 +79,9 @@ export default function ItemSlider(props) {
                             </div>
                             <div className='p-wording text-center'>
                                 <p className='text-left'>Ace of Face and Hair offers leading makeup artistry and hair styling services for TV, film, and theatre productions. With a team of certified professionals, we excel in creating captivating looks and special effects. Our expertise spans across events, editorial photography, and working with celebrities, actors, and institutions.</p>
-                                <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
+                                <Link to='/services'>
+                                  <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -111,7 +114,9 @@ export default function ItemSlider(props) {
                                 <p className='text-left'>
                                 Ace of Face and Hair offers hair and makeup styling for TV, film, and theatre. We use art to transform the human body and challenge conventional beauty standards. Our work involves concealing or unveiling complexity, and we explore mixed mediums to tell stories.
                                 </p>
-                                <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
+                                <Link to='/services'>
+                                  <Button btn = {"sec"} icon = {<ArrowRightAltIcon />}>View Our Services</Button>
+                                </Link>
                             </div>
                       </div>
                 </div>

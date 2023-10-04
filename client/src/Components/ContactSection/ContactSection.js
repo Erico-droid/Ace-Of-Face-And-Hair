@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import Card from '../../shared/Card/Card'
 import ContactIcon from '../../Assets/paper-plane.png'
 import ContactIcon2 from '../../Assets/paper-plane2.png'
 import ContactIcon3 from '../../Assets/paper-plane3.png'
 import "./ContactSection.css"
 import Button from '../../shared/Button/Button'
-import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import svg from "../../Assets/shapes.svg"
+import {Link} from 'react-router-dom'
 
 export default function ContactSection(props) {
 
@@ -47,7 +46,9 @@ export default function ContactSection(props) {
           <p>We would like to hear from you. You can always make a call to us or drop by our offices for a cup of coffee. Contact us today and let's make magic happen! </p>
         </div>
         <div className='text-center'>
-          <Button icon = {<PhoneIcon  />} color = {"white"} bg = {props.darkmode ? "#101215" : "black"} btn = {"sec"}>Contact us</Button>
+          <Link to='/contact'>
+            <Button icon = {<PhoneIcon  />} color = {"white"} bg = {props.darkmode ? "#101215" : "black"} btn = {"sec"}>Contact us</Button>
+          </Link>
         </div>
       </div>
   )

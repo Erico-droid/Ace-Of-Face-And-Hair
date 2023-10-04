@@ -46,45 +46,49 @@ export default function AFHDetails() {
                     <ul className="two-column-list">
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Make Up (Events, Artistry etc..)</li>
+                        </svg>Professional Makeup Artistry</li>
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Hair do's</li>
+                        </svg>Photoshoots</li>
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Item 3</li>
+                        </svg>Training and Masterclasses</li>
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Item 4</li>
+                        </svg>Special Effects and Prosthetics</li>
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Item 5</li>
+                        </svg>Costume and Set Design</li>
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Item 6</li>
+                        </svg>Mixed Medium Storytelling</li>
                         <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Item 7</li>
-                        <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
+                        </svg>Hair Styling</li>
+                        {/* <li><svg id="small-checkmark" viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" className="icon feature-icon" data-v-962c30ae="" data-v-35214c05="">
                         <path d="M13.2348 5.67829C13.6094 5.27246 13.5841 4.63981 13.1783 4.2652C12.7725 3.8906 12.1398 3.9159 11.7652 4.32172L6.41899 10.1135L3.65081 7.74075C3.23148 7.38133 2.60018 7.42989 2.24076 7.84921C1.88134 8.26854 1.9299 8.89984 2.34923 9.25926L5.84923 12.2593L6.58105 12.8865L7.23482 12.1783L13.2348 5.67829Z" data-v-962c30ae=""></path>
-                        </svg>Item 8</li>
+                        </svg>Item 8</li> */}
                     </ul>
                     <div className='testimonial-area'>
-                    <div class="slider"> 
-                        {testimonials.map(() => {                            
+                    <div className="slider" style={testimonials.length > 0 ? null: {alignItems: "center"}}> 
+                    {testimonials.length > 0 ?
+                        testimonials.map(() => {                            
                             counter++;
                             return (
-                            <input type="radio" name="slider" title={`slide${counter}`} class="slider__nav"/>
+                            <input type="radio" name="slider" title={`slide${counter}`} className="slider__nav"/>
                             )
-                        })}
-                        <div class="slider__inner" style={{width: sliderInner}}>
+                        }): null }
+                        {testimonials.length > 0 ?
+                        <div className="slider__inner" style={{width: sliderInner}}>
                             {testimonials.map((Testimonial) => {
-                            return (<div class="slider__contents"><i class="slider__image fa fa-diamond"></i>
-                            <p class="slider__txt">{Testimonial.testimonial}</p>
+                            return (<div className="slider__contents"><i className="slider__image fa fa-diamond"></i>
+                            <p className="slider__txt">{Testimonial.testimonial}</p>
                             <p className='change-text2'>~ {Testimonial.testimonial_by}</p>
                             </div>
                             )})}
-                        </div>
+                        </div> :
+                        <p style={{color: "#fff"}}>There aren't any testimonials at the moment</p>
+                        }
                         </div>
                     </div>
                     </div>

@@ -60,7 +60,7 @@ def provideAnalysis(request):
                 yesterday_visits += 1
             if (visitor.visit_date.isocalendar().week == today_week and visitor.visit_date.year == today_year):
                 this_weeks_visits += 1
-            if (visitor.visit_date.isocalendar().week == last_week and visitor.visit_date.year == today_week):
+            if (visitor.visit_date.isocalendar().week == last_week and visitor.visit_date.year == today_year):
                 last_weeks_visits += 1
 
 
@@ -81,6 +81,36 @@ def provideAnalysis(request):
                               "lastweek_visits":
                               last_weeks_visits
                               }, safe=False)
+
+def viewershipGraph(request):
+    dailyArr = []
+    monthlyArr = []
+    weeklyArr = []
+    if request.method == "GET":
+        visitors = DailyVisit.objects.all()
+
+        today_month = datetime.date.today().month
+        for i in range(1, int(today_month + 1)):
+            monthlyArr.append(0)
+            for visitors in DailyVisit.objects.all():
+                if visitors.visit_date.month == i and visitors.visit_date.year == datetime.date.today().year:
+                    monthlyArr[i - 1] += 1
+
+        today_day = datetime.date.today().day
+        for i in range(1, int(today_day + 1)):
+            dailyArr.append(0)
+            for visitors in DailyVisit.objects.all():
+                if visitors.visit_date.day == i and visitors.visit_date.month == datetime.date.today().month and visitors.visit_date.year == datetime.date.today().year:
+                    dailyArr[i - 1] += 1
+
+        today_week = datetime.date.today().isocalendar().week
+        for i in range(1, int(today_week + 1)):
+            weeklyArr.append(0)
+            for visitors in DailyVisit.objects.all():
+                if visitors.visit_date.isocalendar().week == i and visitors.visit_date.year == datetime.date.today().year:
+                    weeklyArr[i - 1] += 1
+        
+        return JsonResponse({"dailyData": dailyArr, "monthlyData": monthlyArr, "weeklyData": weeklyArr, "today_day": today_day, "today_week": today_week, "today_month": today_month}, status=200, safe=False)
 
 
 

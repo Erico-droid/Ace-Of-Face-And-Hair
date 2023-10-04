@@ -17,11 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from general.sitemap import AFHSitemap
+
+sitemaps = {
+    'sitemap': AFHSitemap,
+}
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('portfolio/', include(('Projects.urls', 'projects'), namespace='projects')),
     path('general_setting/', include(('general.urls', 'general'), namespace='general')),
     path('dashboard/', include(('dashboard.urls', 'dashboard'), namespace='dashboard')),
-    path('services/', include(('services.urls', 'services'), namespace='services')),
+    path('services/', include(('services.urls', 'services'), namespace='services')),    
+    # path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

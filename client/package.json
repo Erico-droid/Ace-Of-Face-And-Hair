@@ -8,7 +8,7 @@
       ".localhost"
     ],
     "proxy": "http://0.0.0.0:8000",
-    "homepage": "http://project.aceoffaceandhair.com/"
+    "homepage": "https://aceoffaceandhair.com/"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -29,11 +29,14 @@
     "react-content-loader": "^6.2.1",
     "react-dom": "^18.2.0",
     "react-fade-in": "^2.0.1",
+    "react-helmet": "^6.1.0",
     "react-images": "^1.2.0-beta.7",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^6.10.0",
+    "react-router-sitemap": "^1.2.0",
     "react-scripts": "5.0.1",
     "react-social-media-embed": "^2.3.5",
+    "sitemap": "^7.1.1",
     "typewriter-effect": "^2.19.0",
     "web-vitals": "^2.1.4"
   },
@@ -41,7 +44,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sitemap": "babel-node ./src/sitemap-generator.js"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +70,10 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.0",
     "@babel/preset-env": "^7.22.2",
     "@babel/preset-react": "^7.22.3",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "uuid": "^9.0.0"
   }
 }

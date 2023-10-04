@@ -1,12 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Login.css"
 import Button from '../../shared/Button/Button'
 import AceLogo from "../../Assets/aofahcute.png"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios'
 import source from '../../proxy.json'
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
 
-export default function Login() {
+export default function Login(props) {
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [message, setMessage] = useState("")
+    const [severity, setSeverity] = useState("info")
+
+    const handleSnackbarClose = () => {
+        setOpenSnackbar(false);
+    };
+
+    const handleSnackbarOpen = () => {
+        setOpenSnackbar(true)
+    }
+
     const handleLogin = async (data) => {
         data = JSON.stringify(data)
           const csrf = await axios.get(`${source.proxy}/general_setting/get_csrf_token`);
@@ -16,8 +31,17 @@ export default function Login() {
 			'Content-Type': 'application/json',
 		  };
         const response = await axios.post(`${source.proxy}/general_setting/login/`, data, {headers})
-        if (response.data.redirect) {
-            window.location.href = response.data.redirect;
+        if (response.status === 200 && response.data.message !== 'Invalid Credentials') {
+            setMessage("You have been logged in successfuly.")
+            setSeverity("success")
+            setOpenSnackbar(true)
+            localStorage.setItem('afh_uu_rierf', response.data["afh_uu_rierf"]);
+            props.setIsAuthenticated(true)
+            localStorage.setItem('loginSuccessMessageShown', false);
+        } else {
+            setMessage("Wrong username/password.")
+            setSeverity("error")
+            setOpenSnackbar(true)
         }
     }
 
@@ -37,6 +61,22 @@ export default function Login() {
   return (
 
     <div className="page">
+        <Snackbar
+            open={openSnackbar}
+            autoHideDuration={null}
+            onClose={handleSnackbarClose}
+            TransitionComponent={Slide}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+            <MuiAlert
+                elevation={6}
+                variant="filled"
+                onClose={handleSnackbarClose}
+                severity={severity} // Can be "success", "error", "warning", or "info"
+            >
+                {message}
+            </MuiAlert>
+            </Snackbar>
         <div className='container-fluid'>
     <div className="login-row row">
         <div className="col-sm-8 text-center signin card">

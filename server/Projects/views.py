@@ -88,21 +88,19 @@ def project_detail(request, project_slug):
         return JsonResponse(serialized_data, safe = True)
 
 def apply_watermark(image_file, logo_file):
-    # Open the image
+    
     image = Image.open(image_file).convert('RGBA')
 
-    # Open the logo image and resize it to a desired size
     logo = Image.open(logo_file).convert("RGBA")
     logo_width, logo_height = logo.size
     max_logo_size = min(image.width, image.height) // 2.5
     if logo_width > max_logo_size or logo_height > max_logo_size:
         logo.thumbnail((max_logo_size, max_logo_size))
 
-    # Create a transparent overlay for the watermark
     overlay = Image.new('RGBA', image.size, (0, 0, 0, 0))
 
     # Calculate the position to place the logo watermark
-    padding_bottom = 20  # Adjust the padding value as per your requirements
+    padding_bottom = 20  
     x = (image.width - logo.width) // 2
     y = image.height - logo.height - padding_bottom
 
@@ -112,15 +110,12 @@ def apply_watermark(image_file, logo_file):
     # Apply the watermark overlay to the image
     watermarked_image = Image.alpha_composite(image, overlay)
 
-    # Enhance the watermark visibility (optional)
     enhancer = ImageEnhance.Brightness(watermarked_image)
-    watermarked_image = enhancer.enhance(0.8)  # Adjust brightness level as desired
+    watermarked_image = enhancer.enhance(0.8)  
 
-    # Create a byte stream to save the watermarked image
     watermarked_image_stream = io.BytesIO()
     watermarked_image.save(watermarked_image_stream, format='PNG')
 
-    # Reset the stream position to the beginning
     watermarked_image_stream.seek(0)
 
     return watermarked_image_stream
@@ -195,7 +190,6 @@ def compare_strings(str1, str2):
     str2 = find_png(str2)
     str2 = find_slash(str2)
     str2 = find_(str2, '_')
-    print(str1 == str2)
     return str1 == str2
 
 
@@ -229,7 +223,6 @@ def edit_project(request, project_slug):
         project.brief_description = data["brief_description"][0]
         
         # todo: handle the files that are being deleted here
-        print(data)
         
         try:
             deleted_images = data["deleted_images"]

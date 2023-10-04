@@ -17,6 +17,7 @@ import img3 from '../../Assets/3.jpg'
 import img4 from '../../Assets/4.jpg'
 import img5 from '../../Assets/5.jpg'
 import img6 from '../../Assets/6.jpg'
+import {Link} from 'react-router-dom'
 
 export default function Gallery(props) {
 
@@ -100,8 +101,12 @@ export default function Gallery(props) {
           </div>
           <p>We create art through hair and makeup. Our skilled stylists explore the possibilities of the human body, crafting stunning looks that challenge conventional beauty. From intricate makeup designs to bold hairstyles, we tell stories that capture the imagination. Whether it's for TV, film, theatre, or a high-profile photoshoot, we bring your vision to life. Trust us to provide the best in the business, with the expertise to make you look and feel amazing.</p>
         <div className = "button-container button-parent2">
+        <Link to={'/make-an-appointment'}>
           <Button btn={"prim"}>Make An Appointment</Button>
+        </Link>
+        <Link to={'/portfolio'}>
           <Button icon = {<AppsIcon/>} btn={"sec"}>View Our Projects</Button>
+        </Link>
         </div>
       </div>
           </div>

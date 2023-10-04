@@ -3,11 +3,13 @@ import "./IndividualProject.css";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
 import source from '../../proxy.json'
+import Seo from '../Seo/Seo';
 
 export default function IndividualProject(props) {
     const project = props.project;
     return (
             <div className = "col-md-3">
+                <Seo title={project.title} description={project.brief_description} />
                 <div className="property-card card">
                     <Link to = {`${project.slug}`}>
                         <div className="property-image" style={{background: `url(${source.proxy+project.random_image_url})`}}>

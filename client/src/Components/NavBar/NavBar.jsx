@@ -26,7 +26,6 @@ export default function NavBar(props) {
 	const [loading, setLoading] = React.useState(false);
 	const [open, setOpen] = useState({open: false,Transition: Slide});
 	const [scrollPosition, setScrollPosition] = useState(0);
-	const [openSnackbar, setOpenSnackbar] = useState(false);
 	const [pathName, setPathName] = useState("")
 
 	function SlideTransition(props) {
@@ -56,15 +55,6 @@ export default function NavBar(props) {
 	}
 
 	let location = useLocation()
-	
-	const handleSnackbarClose = () => {
-		setOpenSnackbar(false);
-	};
-
-
-	const handleSnackbarClick = () => {
-		setOpenSnackbar(true);
-	};
 
 	const handleClose = () => {
 		setOpen({
@@ -93,10 +83,6 @@ export default function NavBar(props) {
 		submitDarkModeState(darkMode)
 	};
 
-	const handleDisabledClick = (evt) => {
-		evt.preventDefault();
-		setOpenSnackbar(true);
-	}
 	
 	const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
@@ -104,10 +90,38 @@ export default function NavBar(props) {
 		let startData = await handleUserSession();
 		setChecked(startData.dark_mode)
 	}
+	
+	let isDropdownOpen = false
+	const handleDropdown = () => {
+		const toggler = document.querySelector(".navbar-toggler");		
+		const dropdown = document.getElementById("ftco-nav")
+		if (!isDropdownOpen) {
+			dropdown.classList.add("show")
+			isDropdownOpen = true
+		} else {
+			dropdown.classList.remove("show")
+			isDropdownOpen = false
+		}
+	}
+
+	const listenForClick = () => {
+		const nav = document.getElementById('ftco-nav')
+		if (nav) {
+			nav.addEventListener('click', (evt) => {
+				let element = evt.target;
+				while (element.tagName !== 'LI') {
+					element = element.parentNode
+				}				
+				nav.classList.remove("show")
+				isDropdownOpen = false
+			})
+		}
+	}
 
 	useEffect(() => {
 		setPathName(location.pathname)
 		handleStart()
+		listenForClick()
 	}, [location])
 
 
@@ -129,7 +143,18 @@ export default function NavBar(props) {
 					{ pathName === "/" && windowSize.current[0] > 1000 ? scrollPosition <= 200 ? <h3 className = "wordheading text-right mt-md-3" >Ace Of Face And Hair</h3> : <img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /> : <img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /> }
 				</span>
 		    	{/* <a className="navbar-brand" href="index.html">ace of face and hair</a> */}
-		    	<div className="social-media order-lg-last darkmode-place">
+		    	
+		      <div className="collapse navbar-collapse" id="ftco-nav">
+		        <ul className="navbar-nav ml-auto mr-md-3">
+		        	<li className="nav-item"><NavLink to="/" className = "nav-link" activeclassname="active">Home</NavLink></li>
+		        	<li className="nav-item"><NavLink to="/portfolio" className = "nav-link" activeclassname="active">Portfolio</NavLink></li>
+		        	<li className="nav-item"><NavLink to="/about" className="nav-link" activeclassname="active">About</NavLink></li>
+		        	<li className="nav-item"><NavLink to="/services"  className="nav-link">Services</NavLink></li>
+		          <li className="nav-item"><NavLink to="/contact" className="nav-link" activeclassname="active">Contact</NavLink></li>
+		        </ul>
+		      </div>
+			  <div className='icons-place'>
+				<div className="social-media order-lg-last darkmode-place">
 		    		<p className="mb-0 d-flex">
 		    			<span className="d-flex align-items-center justify-content-center">{checked ? <DarkModeIcon /> : <LightModeIcon />}</span>
 		    			<ThemeContext.Consumer>
@@ -146,18 +171,10 @@ export default function NavBar(props) {
 						</ThemeContext.Consumer>
 		    		</p>
 	        </div>
-		      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		      <a onClick={handleDropdown} style={{width:"30px", height: "30px"}} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 		        <span>{<WidgetsSharpIcon/>}</span>
-		      </button>
-		      <div className="collapse navbar-collapse" id="ftco-nav">
-		        <ul className="navbar-nav ml-auto mr-md-3">
-		        	<li className="nav-item"><NavLink to="/" className = "nav-link" activeclassname="active">Home</NavLink></li>
-		        	<li className="nav-item"><NavLink to="/portfolio" className = "nav-link" activeclassname="active">Portfolio</NavLink></li>
-		        	<li className="nav-item"><NavLink to="/about" className="nav-link" activeclassname="active">About</NavLink></li>
-		        	<li className="nav-item"><NavLink to="/shop" onClick={handleDisabledClick} title = "coming soon...." className="nav-link cancelled">Shop</NavLink></li>
-		          <li className="nav-item"><NavLink to="/contact" className="nav-link" activeclassname="active">Contact</NavLink></li>
-		        </ul>
-		      </div>
+		      </a>
+			  </div>
 		    </div>
 		  </nav>
 		  <Snackbar
@@ -180,12 +197,6 @@ export default function NavBar(props) {
 				</React.Fragment>
 				}
 			/>
-			<Snackbar open={openSnackbar} autoHideDuration={8000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-      >
-				<MuiAlert onClose={handleSnackbarClose} severity="info">
-				Shop page is coming soon
-				</MuiAlert>
-			</Snackbar>
 		  </FadeIn> 
 		  }
   </div>

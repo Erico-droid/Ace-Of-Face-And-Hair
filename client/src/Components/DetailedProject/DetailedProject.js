@@ -57,7 +57,6 @@ export default function DetailedProject(props) {
         const urls = uri.slice(indx + 1)
         const url = `${source.proxy}/portfolio/set_project_viewer/${urls}/`
         const response = await Axios.post(url, {"userSession": localStorage.getItem('sessionID')})
-        console.log(response)
     }
 
     useEffect(() => {

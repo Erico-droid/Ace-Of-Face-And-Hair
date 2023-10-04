@@ -1,3 +1,4 @@
 {
-    "proxy":"https://localhost:8000"
+    "proxy": "https://api.aceoffaceandhair.com",
+    "react-proxy": "https://aceoffaceandhair.com"
 }

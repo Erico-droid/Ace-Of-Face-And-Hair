@@ -1,22 +1,34 @@
 import React, { useEffect, useRef } from 'react';
 import "./AboutLanding.css"
-import FancyHeading from "../../shared/FancyHeading/FancyHeading";
 import Heading from '../../shared/Heading/Heading';
-import { YouTubeEmbed } from 'react-social-media-embed';
 import Button from "../../shared/Button/Button"
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import AboutImage from "../../Assets/aboutArea.png";
-
+import {Link} from 'react-router-dom'
 
 export default function AboutLanding() {
-  var height;
-  const width = window.innerWidth;
-  if (width < 768 && width > 500)
-    height = window.innerHeight - 80;
-  else if (width < 500)
-    height = window.innerHeight - 100;
-  else
-    height = window.innerHeight - 100;
+    var height;
+    const width = window.innerWidth;
+    if (width < 768 && width > 500)
+      height = window.innerHeight - 80;
+    else if (width < 500)
+      height = window.innerHeight - 100;
+    else
+      height = window.innerHeight - 100;
+
+    const handleBtnClick = () => {
+      const btn = document.getElementById("exploreStory")
+      if (btn) {
+        btn.addEventListener('click', () => {
+          window.location.href = window.location.origin + window.location.pathname + "#storyDiv"
+        })
+      }
+    }
+
+    useEffect(() => {
+      handleBtnClick()
+    }, [])
+
   return (
     <div className='container-fluid'>
       <div className='row about-landing' style = {{height: height, width: "100%"}}>
@@ -26,12 +38,18 @@ export default function AboutLanding() {
                   <div className='heading-group' style = {{height: '70px'}}>
                     <Heading>Our story unfolded</Heading>
                   </div>
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus massa quis urna dapibus placerat. Suspendisse potenti. Aliquam sagittis nisl vel tellus efficitur, sed maximus tellus laoreet. 
-                  </p>
+                  <p>Ace of face and Hair company has been in existence since 2012. The team comprises of
+                      certified professionals in the industries of hair, makeup photography, costume and marketing.
+                      Our experience includes working in the Film, Theater, Television, Events, Editorial Photography,
+                      and we have worked with celebrity, actors, singers, TV presenters, various show hosts,
+                      institutions and individuals.</p>
                   <div className='button-container'>
-                  <Button btn = {"prim"}>make an appointment</Button>
-                  <Button icon = {<ArrowDownwardIcon />} btn = {"text"}>Explore our story</Button>
+                    <Link to={'/make-an-appointment'}>
+                      <Button btn = {"prim"}>make an appointment</Button>
+                    </Link>
+                    <a id = "exploreStory">
+                      <Button icon = {<ArrowDownwardIcon />} btn = {"text"}>Explore our story</Button>
+                    </a>
                   </div>
               </div>
           </div>

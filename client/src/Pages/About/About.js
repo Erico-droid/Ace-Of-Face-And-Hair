@@ -6,6 +6,7 @@ import GoalsSection from '../../Components/GoalsSection/GoalsSection';
 import TeamSection from '../../Components/TeamSection/TeamSection';
 import "./About.css"
 import PointTab from '../../Components/PointTab/PointTab';
+import Seo from '../../Components/Seo/Seo'
 
 export default function About(props) {
   useEffect(() => {
@@ -13,6 +14,7 @@ export default function About(props) {
   }, [])
   return (
     <>
+    <Seo title="About us" description="Ace of face and Hair company has been in existence since 2012. The team comprises of certified professionals in the industries of hair, makeup photography, costume and marketing. Our experience includes working in the Film, Theater, Television, Events, Editorial Photography, and we have worked with celebrity, actors, singers, TV presenters, various show hosts, institutions and individuals." />
       <div className='about-lndn'>
         <AboutLanding />
       </div>

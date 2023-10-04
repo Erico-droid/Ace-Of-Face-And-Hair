@@ -67,8 +67,14 @@ export default function ContactForm() {
 
         const response = await axios.post(url, data)
         if (response.status === 200){
-          setMessage("Thank you for reaching out. Our team will get back to you shortly.")
           setSeverity("success")
+          document.getElementById("contactForm").reset()
+          setFirstName("")
+          setLastName("")
+          setEmail("")
+          setPhone("")
+          setFirstNameError(null)
+          setMessage("Thank you for reaching out. Our team will get back to you shortly.")
           handleSnackbarOpen()
         }
       }
@@ -78,16 +84,18 @@ export default function ContactForm() {
     const handleAccordion = () => {
       let accordion = document.querySelector("section .accordion");
       let targetId;
-      accordion.addEventListener('click', (evt) => {
-          evt.preventDefault();
-          let target = (evt.target);
-          for (var i = 0; i < accordion.children.length; i++) {
-              if (accordion.children[i].contains(target))
-                  var targetChild = accordion.children[i];
-          }
-          targetId = targetChild.getAttribute("id");
-          window.location.hash = targetId;
-      })
+      if (accordion) {
+        accordion.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            let target = (evt.target);
+            for (var i = 0; i < accordion.children.length; i++) {
+                if (accordion.children[i].contains(target))
+                    var targetChild = accordion.children[i];
+            }
+            targetId = targetChild.getAttribute("id");
+            window.location.hash = targetId;
+        })
+      }
     }
 
     useEffect(() => {
@@ -300,6 +308,7 @@ export default function ContactForm() {
                 <div className = "col-md-6">
                     <div className='card'>
                             <div className="inner">
+                            <div className="border-heading-div"><h4 className="border-heading">Get in touch</h4></div>
                                 <form onSubmit={handleSubmit} id = "contactForm" >
                                     <div className="form-group">
 
@@ -357,18 +366,15 @@ export default function ContactForm() {
                             </div>
                         </div>
                     </div>
-                <div className='col-md-6'>
+                {faqs.length > 0 ? <div className='col-md-6'>
                     <div className='heading-group-wording'>
                     <h3 className = "wordheading">Frequently Asked Questions.</h3>
-                    <p>
-                    primeForce Property Manager Plus is a custom-built solution for complex businesses managing thousands of units. 
-                    </p>
                     </div>
                     <section className='accordion'>
                     <div className="container">
                       <div className="accordion">
-                      {
-                      faqs.map((faq, counter = 0) => {
+                      
+                      {faqs.map((faq, counter = 0) => {
                         return (<div className="accordion-item" id={`question${counter}`} key = {Math.random()}>
                                 <a className="accordion-link" href={`#question${counter}`}>
                                   <div className="flex">
@@ -388,35 +394,39 @@ export default function ContactForm() {
      </div>
     </div>
   </section>
-                </div>
+                </div> :
+                <div className='col-md-6 text-center'>
+                  <p>There aren't any faqs at the moment</p>
+                  </div>
+                  }
                 </div>
             </div>
           <div className='map-details-area'>
             <div className='row'>
                 <div className='col-md-8'>
                 <div style={{width: "100%"}}>
-                  <iframe title = "-1.2097244791600448,%2036.65186665857499" width="100%" height="400" frameBorder="0" scrolling="no" marginweight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=-1.2097244791600448,%2036.65186665857499+(AceOfFaceAndHair)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                  <iframe title = "Ace Of Face And Hair" width="100%" height="400" frameBorder="0" scrolling="no" marginweight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=-1.2097244791600448,%2036.65186665857499+(AceOfFaceAndHair)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
                     </iframe></div>
                 </div>
                 <div className='col-md-4'>
                   <div className = "card mt-2">
                   <div className='contact-details-all'>
                       <div className='mt-2 location-details'>
-                        <p><MyLocationIcon/><span className = "contact-text">hello world</span></p>
+                        <p><MyLocationIcon/><span className = "contact-text">Crescent road, Zambezi, Kiambu.</span></p>
                       </div>
                   </div>
                   </div>
                   <div className = "card mt-2">
                   <div className='contact-details-all'>
                       <div className='mt-2 phone-details'>
-                        <p><PhoneIphoneIcon/><span className = "contact-text">hello world</span></p>
+                        <p><PhoneIphoneIcon/><span className = "contact-text">+254 721 227843</span></p>
                       </div>
                     </div>
                   </div>
                   <div className = "card mt-2">
                   <div className='contact-details-all'>
                       <div className='mt-2 email-details'>
-                        <p><EmailIcon/><span className = "contact-text">hello world</span></p>
+                        <p><EmailIcon/><span className = "contact-text">aceoffaceandhar@gmail.com</span></p>
                       </div>
                     </div>
                   </div>

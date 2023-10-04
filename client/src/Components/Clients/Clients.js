@@ -9,62 +9,42 @@ export default function Clients() {
                     <div className="row">
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-airbnb.svg" alt="" className="grayscale" />
+                            <img src="https://www.safaricom.co.ke/images/main.png" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-digitalocean.svg" alt="" className="grayscale" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/1200px-M-PESA_LOGO-01.svg.png" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-facebook.svg" alt="" className="grayscale" />
+                            <img src="https://www.topuptoday.com/cms/wp-content/uploads/2020/08/Airtel-Recharge.png" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-discord.svg" alt="" className="grayscale" />
+                            <img src="https://www.sharemoney.com/logos/bank-logos/bank-cooperative-bank-of-kenya-ltd.svg" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-intercom.svg" alt="" className="grayscale" />
+                            <img src="https://api.viusasa.com/assets/images/placeholders/thumbnail.png" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-twitch.svg" alt="" className="grayscale" />
+                            <img src="https://global-music-campus.net/wp-content/uploads/2017/03/creatives-garage-logo-h300.png" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-paypal.svg" alt="" className="grayscale" />
+                            <img src="data:image/png;base64,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" alt="" className="grayscale" />
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-4 col-6">
                             <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-netflix.svg" alt="" className="grayscale" />
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-4 col-6">
-                            <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-xboxone.svg" alt="" className="grayscale" />
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-4 col-6">
-                            <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-instagram.svg" alt="" className="grayscale" />
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-4 col-6">
-                            <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-pinterest.svg" alt="" className="grayscale" />
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-4 col-6">
-                            <div className="mb-4 text-center">
-                            <img src="https://codescandy.com/coach/assets/images/logo-stripe.svg" alt="" className="grayscale" />
+                            <img src="https://npa-studio.co.ke/images/logo/logo-3.png" alt="" className="grayscale" />
                             </div>
                         </div>
                     </div>

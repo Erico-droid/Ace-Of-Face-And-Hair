@@ -282,7 +282,6 @@ export default function ManageTestimonials() {
 
         //get the faq question
         const response = await axios.post(url, {"pk": faqPk})
-        console.log(response)
         let question = tableRow.children[0]
         const qText = question.innerText
         question.innerText = ""
@@ -324,7 +323,6 @@ export default function ManageTestimonials() {
             id
            }
            const response = await axios.post(url, data)
-           console.log(response)
            setFaqs(response.data)
            setSeverity("info")
             setMessage("Your Testimonial has been updated.")

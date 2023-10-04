@@ -8,21 +8,162 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import GradeIcon from '@mui/icons-material/Grade';
 import MessageIcon from '@mui/icons-material/Message';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { Chart } from 'react-chartjs-2';
+import { Chart, Bar, Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 import CheckIcon from '@mui/icons-material/Check';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
 
 ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 
 export default function
-() {
+(props) {
 
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [message, setMessage] = useState("")
+    const [severity, setSeverity] = useState("info")
     const [projects, setProjects] = useState([])
-    const [data, setData] = useState({
-      datasets: []
+    const [monthlyData, setMonthlyData] = useState({
+        labels: [],
+        datasets: [
+          {
+            label: "",
+            data: [],
+            fill: false, // Set to false for a line chart
+            borderColor: 'rgb(0,0,0)', // Line color
+            pointBackgroundColor: 'rgb(0,0,0)',
+            borderWidth: 2, // Line width
+            pointRadius: 4 // Point radius
+          }
+        ]
     })
+    const [monthlyOptions, setMonthlyOptions] = useState({
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              display: false, // Hide y-axis gridlines
+            },
+          },
+          x: {
+            grid: {
+              display: false, // Hide x-axis gridlines
+            },
+          },
+        },
+        elements: {
+          line: {
+            tension: 0.4, // Adjust the line curve (optional)
+          },
+        },
+        plugins: {
+          title: {
+            display: false, // Hide chart title
+          },
+        },
+        ticks: {
+          display: false, // Hide x-axis labels/ticks
+        },
+        legend: {
+          display: false, // Hide the legend
+        },
+    })
+
+    const [weeklyData, setWeeklyData] = useState({
+      labels: [],
+      datasets: [
+        {
+          label: "",
+          data: [],
+          fill: false, // Set to false for a line chart
+          borderColor: 'rgba(0, 0, 0, 1)', // Line color
+          pointBackgroundColor: 'rgba(0,0,0,1)',
+          borderWidth: 2, // Line width
+          pointRadius: 4 // Point radius
+        }
+      ]
+  })
+  const [weeklyOptions, setWeeklyOptions] = useState({
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false, // Hide y-axis gridlines
+        },
+      },
+      x: {
+        grid: {
+          display: false, // Hide x-axis gridlines
+        },
+      },
+    },
+    elements: {
+      line: {
+        tension: 0.4, // Adjust the line curve (optional)
+      },
+    },
+    plugins: {
+      title: {
+        display: false, // Hide chart title
+      },
+    },
+    ticks: {
+      display: false, // Hide x-axis labels/ticks
+    },
+    legend: {
+      display: false, // Hide the legend
+    },
+  })
+
+  const [dailyData, setDailyData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "",
+        data: [],
+        fill: false, // Set to false for a line chart
+        borderColor: 'rgba(255, 255, 255, 1)', // Line color
+        pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+        borderWidth: 2, // Line width
+        pointRadius: 4 // Point radius
+      }
+    ]
+})
+const [dailyOptions, setDailyOptions] = useState({
+  scales: {
+    y: {
+      beginAtZero: true,
+      grid: {
+        display: false, // Hide y-axis gridlines
+      },
+    },
+    x: {
+      grid: {
+        display: false, // Hide x-axis gridlines
+      },
+    },
+  },
+  elements: {
+    line: {
+      tension: 0.4, // Adjust the line curve (optional)
+    },
+  },
+  plugins: {
+    title: {
+      display: false, // Hide chart title
+    },
+  },
+  ticks: {
+    display: false, // Hide x-axis labels/ticks
+  },
+  legend: {
+    display: false, // Hide the legend
+  },
+})
     
     const [todaysVisits, setTodaysVisits] = useState(0)
     const [thisWeeksVisits, setThisWeeksVisits] = useState(0)
@@ -32,6 +173,17 @@ export default function
     const [lastWeeksVisitsDiff, setLastWeeksVisitsDiff] = useState(0)
     const [lastMonthsVisitsDiff, setLastMonthsVisitsDiff] = useState(0)
     const [thisYearsVisits, setThisYearsVisits] = useState(0)
+    const [orders, setOrders] = useState([])
+
+    
+
+    const handleSnackbarClose = () => {
+      setOpenSnackbar(false);
+    };
+
+    const handleSnackbarOpen = () => {
+        setOpenSnackbar(true)
+    }
 
     const getAnalysis = async () => {
       const url = `${proxy.proxy}/dashboard/provide_analysis/`
@@ -40,7 +192,7 @@ export default function
       var todays_visits = data["todays_visits"]
       var thismonths_visits = data["thismonths_visits"]
       var thisyears_visits = data["thisyears_visits"] 
-      var lastyears_visits = data["thisyears_visits"]
+      var lastyears_visits = data["lastyears_visits"]
       var last_months_visits = data["last_months_visits"]
       var yesterday_visits = data["yesterday_visits"]
       var thisweeks_visits = data["thisweeks_visits"]
@@ -49,41 +201,157 @@ export default function
       setThisWeeksVisits(thisweeks_visits)
       setThisYearsVisits(thisyears_visits)
       setTodaysVisits(todays_visits)
-      setYesterVisitsDiff((todays_visits/(todays_visits+yesterday_visits)) * 100)
-      setLastMonthsVisitsDiff((thismonths_visits/(thismonths_visits+last_months_visits)) * 100)
-      setLastWeeksVisitsDiff((thisweeks_visits/(thisweeks_visits + lastweek_visits)) * 100)
-      setLastYearsVisitsDiff((thisyears_visits/(thisyears_visits + lastyears_visits)) * 100)
+      if (todays_visits < yesterday_visits) {
+        if (yesterday_visits <= 0)
+          setYesterVisitsDiff(100)
+        else if (todays_visits === 0)
+          setYesterVisitsDiff(-100)
+        else if (todays_visits === yesterday_visits)
+          setYesterVisitsDiff(0)
+        else
+          setYesterVisitsDiff(Math.round(((todays_visits/(yesterday_visits)) * 100) - 100),2)
+      }
+      else {
+        if (yesterday_visits <= 0)
+          setYesterVisitsDiff(100)
+        else if (todays_visits === 0)
+          setYesterVisitsDiff(-100)
+        else if (todays_visits === yesterday_visits)
+          setYesterVisitsDiff(0)
+        else
+          setYesterVisitsDiff(Math.round((todays_visits/(yesterday_visits)) * 100),2)
+      }
+      if (thismonths_visits < last_months_visits) {
+        if (last_months_visits === 0)
+          setLastMonthsVisitsDiff(100)
+        else if (thismonths_visits === 0)
+          setLastMonthsVisitsDiff(-100)
+        else if (thismonths_visits === last_months_visits)
+          setLastMonthsVisitsDiff(0)
+        else
+          setLastMonthsVisitsDiff(Math.round(((thismonths_visits/(last_months_visits)) * 100) - 100),2)
+      }
+      else {
+        if (last_months_visits === 0)
+          setLastMonthsVisitsDiff(100)
+        else if (thismonths_visits === 0)
+          setLastMonthsVisitsDiff(-100)
+        else if (thismonths_visits === last_months_visits)
+          setLastMonthsVisitsDiff(0)
+        else
+          setLastMonthsVisitsDiff(Math.round((thismonths_visits/(last_months_visits)) * 100),2)
+      }
+      
+      if (thisweeks_visits < lastweek_visits) {
+        if (lastweek_visits === 0)
+          setLastWeeksVisitsDiff(100)
+        else if (thisweeks_visits === 0)
+          setLastWeeksVisitsDiff(-100)
+        else if (thisweeks_visits === lastweek_visits)
+          setLastWeeksVisitsDiff(0)
+        else {
+          setLastWeeksVisitsDiff(Math.round(((thisweeks_visits/(lastweek_visits)) * 100) - 100),2)
+        }
+      }
+      else {
+        if (lastweek_visits === 0)
+          setLastWeeksVisitsDiff(100)
+        else if (thisweeks_visits === 0)
+          setLastWeeksVisitsDiff(-100)
+        else if (thisweeks_visits === lastweek_visits)
+          setLastWeeksVisitsDiff(0)
+        else
+          setLastWeeksVisitsDiff(Math.round((thisweeks_visits/(lastweek_visits)) * 100),2)
+      }
+      if (thisyears_visits < lastyears_visits) {
+        if (lastyears_visits === 0)
+          setLastYearsVisitsDiff(100)
+        else if (thisyears_visits === 0)
+          setLastYearsVisitsDiff(-100)
+        else if (thisyears_visits === lastyears_visits)
+          setLastYearsVisitsDiff(0)
+        else
+          setLastYearsVisitsDiff(Math.round(((thisyears_visits/(lastyears_visits)) * 100) - 100),2)
+      }
+      else {
+        if (lastyears_visits === 0)
+          setLastYearsVisitsDiff(100)
+        else if (thisyears_visits === 0)
+          setLastYearsVisitsDiff(-100)
+        else if (thisyears_visits === lastyears_visits) {
+          setLastYearsVisitsDiff(0)
+        }
+        else
+          setLastYearsVisitsDiff(Math.round((thisyears_visits/(lastyears_visits)) * 100),2)
+      }
     }
 
-    const ChartExample = () => {
-      const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      
+    const getGraphData = async () => {
+      const url = `${proxy.proxy}/dashboard/viewership_graphs/`
+      const response = await axios.get(url)
+      var data = response.data  
+
+      // Monthly data this year
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"]
+      months = months.slice(0, data["today_month"])
+      setMonthlyData({
+        labels: months,
         datasets: [
           {
-            label: 'Example Bar Chart',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-            ],
-          },
-        ],
-      };
-      
-      setData(data)
-      }
+            label: "",
+            data: data["monthlyData"],
+            fill: false, // Set to false for a line chart
+            borderColor: 'rgb(0,0,0)', // Line color
+            pointBackgroundColor: 'rgb(0,0,0)',
+            borderWidth: 2, // Line width
+            pointRadius: 4 // Point radius
+          }
+        ]
+      })
 
-      const options = {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      };
+      // Weekly Data this year
+      var weeks = []
+      for (var i = 1; i < 49; i++) {
+        weeks.push(`week ${i}`)
+      }
+      weeks = weeks.slice(0, data["today_week"])
+      setWeeklyData({
+        labels: weeks,
+        datasets: [
+          {
+            label: "",
+            data: data["weeklyData"],
+            fill: false, // Set to false for a line chart
+            borderColor: 'rgb(0,0,0)', // Line color
+            pointBackgroundColor: 'rgb(0,0,0)',
+            borderWidth: 2, // Line width
+            pointRadius: 4 // Point radius
+          }
+        ]
+      })
+
+      // Daily Data this Month and This year
+      var days = []
+      for (var i = 1; i < 31; i++) {
+        days.push(`day ${i}`)
+      }
+      days = days.slice(0, data["today_day"])
+      setDailyData({
+        labels: days,
+        datasets: [
+          {
+            label: "",
+            data: data["dailyData"],
+            fill: false, // Set to false for a line chart
+            borderColor: 'rgb(255,255,255)', // Line color
+            pointBackgroundColor: 'rgb(255,255,255)',
+            borderWidth: 2, // Line width
+            pointRadius: 4 // Point radius
+          }
+        ]
+      })
+    }
 
     const getProjects = async () => {
         const headers = {
@@ -103,14 +371,60 @@ export default function
         }
     }
 
+    const getOrders = async () => {
+      let response = await axios.get(`${proxy.proxy}/services/get_orders/`)
+      var data = response.data.data
+      for (var i = 0; i < data.length; i++) {
+        let fields = JSON.parse(data[i]["customer"])
+        data[i]["customer"] = fields[0].fields
+      }
+      setOrders(data)
+    }
+
+    const getAuthenticationStatus = () => {
+      if (localStorage.loginSuccessMessageShown === 'false') {
+        localStorage.setItem('loginSuccessMessageShown', 'true');
+        setMessage("You have been logged in successfuly.")
+        setSeverity("success")
+        setOpenSnackbar(true)
+      }
+    }
+
+    function getRandomHexColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
     useEffect(() => {
         getProjects()
         getAnalysis()
-        
+        getOrders()
+        getGraphData()
+        getAuthenticationStatus()
     }, [])
 
   return (
 <div className='db-bg'>
+        <Snackbar
+        open={openSnackbar}
+        autoHideDuration={null}
+        onClose={handleSnackbarClose}
+        TransitionComponent={Slide}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+        <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={handleSnackbarClose}
+            severity={severity} // Can be "success", "error", "warning", or "info"
+        >
+            {message}
+        </MuiAlert>
+        </Snackbar>
     <div className='row'>
         <div className='col-md-2'>
             <DashboardAside />
@@ -145,7 +459,7 @@ export default function
             <div className="card-footer p-3">
               <p className="mb-0">
                 <span className={ yesterVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
-                  {yesterVisitsDiff > 0 ? "+ ".concat(yesterVisitsDiff.toString()): "- ".concat(yesterVisitsDiff.toString())}% 
+                  {yesterVisitsDiff > 0 ? "+ ".concat(yesterVisitsDiff.toString()): "".concat(yesterVisitsDiff.toString())}% 
                   </span> than yesterday</p>
             </div>
           </div>
@@ -165,7 +479,7 @@ export default function
             <div className="card-footer p-3">
               <p className="mb-0">
                   <span className={ lastWeeksVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
-                  {lastWeeksVisitsDiff > 0 ? "+ ".concat(lastWeeksVisitsDiff.toString()): "- ".concat(lastWeeksVisitsDiff.toString())}% 
+                  {lastWeeksVisitsDiff > 0 ? "+ ".concat(lastWeeksVisitsDiff.toString()): "".concat(lastWeeksVisitsDiff.toString())}% 
                   </span> than last week</p>
             </div>
           </div>
@@ -185,7 +499,7 @@ export default function
             <div className="card-footer p-3">
             <p className="mb-0">
               <span className={ lastMonthsVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
-              {lastMonthsVisitsDiff > 0 ? "+ ".concat(lastMonthsVisitsDiff.toString()): "- ".concat(lastMonthsVisitsDiff.toString())}% 
+              {lastMonthsVisitsDiff > 0 ? "+ ".concat(lastMonthsVisitsDiff.toString()): "".concat(lastMonthsVisitsDiff.toString())}% 
               </span> than last month</p>
             </div>
           </div>
@@ -205,74 +519,58 @@ export default function
             <div className="card-footer p-3">
             <p className="mb-0">
               <span className={ lastYearsVisitsDiff > 0 ? "text-success text-sm font-weight-bolder": "text-danger text-sm font-weight-bolder"}>
-              {lastYearsVisitsDiff > 0 ? "+ ".concat(lastYearsVisitsDiff.toString()): "- ".concat(lastYearsVisitsDiff.toString())}% 
+              {lastYearsVisitsDiff > 0 ? "+ ".concat(lastYearsVisitsDiff.toString()): "".concat(lastYearsVisitsDiff.toString())}% 
               </span> than last year</p>
             </div>
           </div>
         </div>
       </div>
       <div className="row mt-4">
+      <div className="col-lg-4 mt-4 mb-3">
+          <div className="card z-index-2 ">
+            <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div className="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+                <div className="chart">
+                {dailyData && <Line data={dailyData} options={dailyOptions} />}
+                </div>
+              </div>
+            </div>
+            <div className="card-body">
+              <h6 className="mb-0 ">Daily Viewership</h6>
+              <p className="text-sm ">This month</p>
+            </div>
+          </div>
+        </div>
         <div className="col-lg-4 col-md-6 mt-4 mb-4">
           <div className="card z-index-2 ">
             <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div className="bg-gradient-primary  border-radius-lg py-3 pe-1">
                 <div className="chart">
-                  <canvas id="chart-bars" className="chart-canvas" height="170"></canvas>
+                {weeklyData && <Line data={weeklyData} options={weeklyOptions} />}
                 </div>
               </div>
             </div>
             <div className="card-body">
-              <h6 className="mb-0 ">Website Views</h6>
-              <p className="text-sm ">Last Campaign Performance</p>
-              <hr className="dark horizontal"></hr>
-              <div className="d-flex ">
-                <i className="material-icons text-sm my-auto me-1">schedule</i>
-                <p className="mb-0 text-sm"> campaign sent 2 days ago </p>
+              <h6 className="mb-0 ">Weekly Viewership</h6>
+              <p className="text-sm ">This year</p>
               </div>
             </div>
           </div>
-        </div>
         <div className="col-lg-4 col-md-6 mt-4 mb-4">
           <div className="card z-index-2  ">
             <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div className="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                 <div className="chart">
-                {data && <Chart data={data} options={options} />}
+                {monthlyData && <Line data={monthlyData} options={monthlyOptions} />}
                 </div>
               </div>
             </div>
             <div className="card-body">
-              <h6 className="mb-0 "> Daily Sales </h6>
-              <p className="text-sm "> (<span className="font-weight-bolder">+15%</span>) increase in today sales. </p>
-              <hr className="dark horizontal"></hr>
-              <div className="d-flex ">
-                <i className="material-icons text-sm my-auto me-1">schedule</i>
-                <p className="mb-0 text-sm"> updated 4 min ago </p>
-              </div>
+              <h6 className="mb-0 "> Monthly Viewership </h6>
+              <p className="text-sm "> This year </p>
             </div>
           </div>
         </div>
-        <div className="col-lg-4 mt-4 mb-3">
-          <div className="card z-index-2 ">
-            <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div className="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                <div className="chart">
-                  <canvas id="chart-line-tasks" className="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
-            <div className="card-body">
-              <h6 className="mb-0 ">Completed Tasks</h6>
-              <p className="text-sm ">Last Campaign Performance</p>
-              <hr className="dark horizontal"></hr>
-              <div className="d-flex ">
-                <i className="material-icons text-sm my-auto me-1">schedule</i>
-                <p className="mb-0 text-sm">just updated</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="row mb-4">
         <div className="col-lg-8 col-md-6 mb-md-0 mb-4">
           <div className="card">
@@ -310,7 +608,7 @@ export default function
                   </thead>
                   <tbody>
                     {projects.map((project) => {
-                          return (<tr key={Math.random}>
+                          return (<tr key={project.slug}>
                           <td>
                             <div className="d-flex px-2 py-1">
                               <div className="d-flex flex-column justify-content-center">
@@ -352,30 +650,38 @@ export default function
           </div>
         </div>
         <div className="col-lg-4 col-md-6">
-          <div className="card h-100">
+          {orders.length === 0 ?
+          <div className="card-header pb-0" style = {{background: "#fff"}}>
+            <h6>You do not have any orders at the moment</h6>
+          </div>: <div className="card h-100">
             <div className="card-header pb-0">
               <h6>Orders overview</h6>
               <p className="text-sm">
                 <i className="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                <span className="font-weight-bold">24%</span> this month
+                <span className="font-weight-bold">{orders.length}</span> orders so far.
               </p>
-            </div>
-            <div className="card-body p-3">
-              <div className="timeline timeline-one-side">
+            </div>            
+            <div className="card-body p-3" style={{maxHeight: '380px', overflowY: 'scroll'}}>
+            {orders.map((Order) => {return(
+              <div className="timeline timeline-one-side" key={Order.code}>
                 <div className="timeline-block mb-3">
-                  <span className="timeline-step">
-                    <i className="material-icons text-success text-gradient">notifications</i>
+                  <span className="timeline-step" style={{background: getRandomHexColor()}}>
+                    <NotificationsIcon />
                   </span>
                   <div className="timeline-content">
-                    <h6 className="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
-                    <p className="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                    <h6 className="text-dark text-sm font-weight-bold mb-0">{Order.code}, {Order.customer.first_name} {Order.customer.last_name}</h6>
+                    <p className="text-secondary font-weight-bold text-xs mt-1 mb-0">{Order.created}</p>
                   </div>
                 </div>
+
               </div>
+            )})}            
             </div>
           </div>
+          }
         </div>
       </div>
+    </div>
     </div>
   </main>
   </div>

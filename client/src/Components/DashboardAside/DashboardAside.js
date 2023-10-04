@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
@@ -11,10 +11,14 @@ import wPlaceholder from '../../Assets/wpHolder.png';
 import bPlaceholder from '../../Assets/blackpHolder.png';
 import axios from 'axios'
 import proxy from '../../proxy.json'
+import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
+import CategoryIcon from '@mui/icons-material/Category';
+import CallReceivedIcon from '@mui/icons-material/CallReceived';
 
 export default function DashboardAside() {
 
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate()
 
   const handlePlaceHolder = () => {
     const body = document.querySelector("body");
@@ -26,14 +30,22 @@ export default function DashboardAside() {
     }
   }
 
-  const authenticatedCheck = async () => {
-    const response = await axios.get(`${proxy.proxy}/general_setting/authentication_check/`);
-    console.log(response)
+  const handleLogout = async () => {
+    const url = `${proxy.proxy}/general_setting/logout/`
+    let data, redirect = '/';
+    localStorage.setItem('isLogoutMessageShown', 'false')
+    if (localStorage.getItem('afh_uu_rierf')) {
+      data = JSON.stringify({'token': localStorage.getItem('afh_uu_rierf')})
+      const response = await axios.post(url, data)
+      redirect = `${response.data.redirect}`
+      navigate(redirect)
+    } else 
+      navigate(redirect)
+    localStorage.setItem('loginSuccessMessageShown', 'true');
   }
 
   useEffect (() =>{
     handlePlaceHolder();
-    authenticatedCheck()
   }, [handlePlaceHolder])
 
   return (
@@ -75,7 +87,7 @@ export default function DashboardAside() {
         <li className="nav-item">
           <NavLink className="nav-link text-black " to = "/dashboard-actions/manage-testimonials">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
-              <i className="material-icons opacity-10"><QuestionAnswerIcon/></i>
+              <i className="material-icons opacity-10"><MarkChatReadIcon/></i>
             </div>
             <span className="nav-link-text ms-1">Manage Testimonials</span>
           </NavLink>
@@ -83,23 +95,23 @@ export default function DashboardAside() {
         <li className="nav-item">
           <NavLink className="nav-link text-black " to = "/dashboard-actions/view-reach-outs">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
-              <i className="material-icons opacity-10"><QuestionAnswerIcon/></i>
+              <i className="material-icons opacity-10"><CallReceivedIcon/></i>
             </div>
             <span className="nav-link-text ms-1">View Reach Outs</span>
           </NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-black " href="../pages/virtual-reality.html">
+        <NavLink className="nav-link text-black " to="/dashboard-actions/manage-orders">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
               <i className="material-icons opacity-10"><GradeIcon /></i>
             </div>
             <span className="nav-link-text ms-1">Manage Orders</span>
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link text-black " to="/dashboard-actions/manage-categories">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
-              <i className="material-icons opacity-10"><DesignServicesIcon/></i>
+              <i className="material-icons opacity-10"><CategoryIcon/></i>
             </div>
             <span className="nav-link-text ms-1">Manage Categories</span>
           </NavLink>
@@ -115,16 +127,16 @@ export default function DashboardAside() {
         <li className="nav-item mt-3">
           <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-8">Accounts </h6>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <a className="nav-link text-black " href="../pages/notifications.html">
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
               <i className="material-icons opacity-10"><AccountCircleIcon/></i>
             </div>
             <span className="nav-link-text ms-1">Manage Users</span>
           </a>
-        </li>
+        </li> */}
         <li className="nav-item">
-          <a className="nav-link text-black " href="../pages/notifications.html">
+          <a className="nav-link text-black " onClick={handleLogout}>
             <div className="text-black text-center me-2 d-flex align-items-center justify-content-center">
               <i className="material-icons opacity-10"><LogoutIcon /></i>
             </div>

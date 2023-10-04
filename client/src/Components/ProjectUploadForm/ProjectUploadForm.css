@@ -32,16 +32,16 @@
 
   .formbold-form-input {
     width: 100%;
-    padding: 12px 24px;
+    padding: 7px 24px;
     border-radius: 6px;
     border: 1px solid #e0e0e0;
     background: white;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     color: #6b7280;
     outline: none;
     resize: none;
-  }
+}
 
   .dark-content .formbold-form-input {
     width: 100%;
@@ -292,7 +292,7 @@
   background: #fff;
   padding: 0px 10px; }
 .progress-bar-style2 .progress-bar { position: relative; overflow: visible}
-.progress-bar-style2 .progress { height:15px;}
+.progress-bar-style2 .progress { height:8px;}
 .progress-bar-style2 .progress-name { font-size: 10px; margin: 5px 0 20px }
 
 .progress-bar-style3 .progress-bar-sub { margin-bottom: 40px; }

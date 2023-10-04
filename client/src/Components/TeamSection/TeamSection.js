@@ -29,7 +29,7 @@ export default function TeamSection() {
                         <h3 className="name">Charles Nderitu</h3>
                         <p className="title">Founder and Creative</p>
                         <p className="description">Loved by students and staff alike, Charles brings knowledge, enthusiasm, and joy to Ace of Face & Hair. As our Course Coordinator, he is an invaluable member of the team.</p>
-                        <div className="social"><a href="#"><FacebookIcon /></a><a href="#"><TwitterIcon /></a><a href="#"><InstagramIcon /></a></div>
+                        {/* <div className="social"><a href="#"><FacebookIcon /></a><a href="#"><TwitterIcon /></a><a href="#"><InstagramIcon /></a></div> */}
                     </div>
                 </div>
                 <div className="col-md-6 col-lg-6 item">
@@ -37,7 +37,6 @@ export default function TeamSection() {
                         <h3 className="name">Wachira wa Kahihia</h3>
                         <p className="title">Founder and Creative</p>
                         <p className="description">Since founding Ace of Face & Hair, Wachira has consistently brought a passion and dedication with him each day. He has over 15 years experience in the cosmetology world.</p>
-                        <div className="social"><a href="#"><FacebookIcon /></a><a href="#"><TwitterIcon /></a><a href="#"><InstagramIcon /></a></div>
                     </div>
                 </div>
             </div>

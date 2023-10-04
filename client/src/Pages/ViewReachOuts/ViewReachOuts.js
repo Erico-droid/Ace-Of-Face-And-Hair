@@ -27,7 +27,6 @@ const style = {
 export default function ViewReachOuts() {
 
     const [reachOuts, setReachOuts] = useState([])
-    const [projectDelete, setProjectDelete] = useState ("")
     const handleModalOpen = () => setOpen(true);
     const handleModalClose = () => setOpen(false);
     const [openResponseSnackbar, setOpenResponseSnackbar] = useState(false);
@@ -49,8 +48,6 @@ export default function ViewReachOuts() {
         if (response.data.data.length === 0) {
             document.getElementById("reachOuts").style.display = "none"
             document.getElementById("no-reachs").style.display = "block"
-            
-        console.log(reachOuts.length)
         }
     }
 
@@ -75,10 +72,6 @@ export default function ViewReachOuts() {
             }
         }
         const pk = target.getAttribute("num-reach")
-        const data = {
-            "pk": pk
-        }
-
         setMessage("Are you sure you want to delete the reach out? ")
         handleModalOpen()
         const deleteBtn = await findbtn("delGoAheadBtn")

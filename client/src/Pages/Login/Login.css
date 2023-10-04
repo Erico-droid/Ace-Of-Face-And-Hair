@@ -33,6 +33,8 @@ form.loginform{
   padding: 2%;
     /* margin: auto; */
   min-height: 100%;
+  display: flex !important;
+  justify-content: center;
 }
 
 .signup{
@@ -62,23 +64,24 @@ form.loginform{
         margin-right: 1%;
     }    }
   
-.loginform input, input:focus{
-        border-width: 1.5px;
-        outline:2; 
-        -webkit-appearance:none;
-        box-shadow: none;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        margin-top: 0px;
-        border: 1px solid #ccc;
-        display: block;
-        width: 100%;
-        height: 40px;
-        padding: 0 20px;
-        border-radius: 5px;
-        font-family: "poppins", sans serif;
-        background: 0 0;
-      }
+    .loginform input, input:focus {
+      border-width: 1.5px;
+      outline: 2;
+      -webkit-appearance: none;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      margin-top: 0px;
+      border: 1px solid #ccc;
+      display: block;
+      width: 100%;
+      height: 40px;
+      padding: 0 20px;
+      border-radius: 5px;
+      /* font-family: "poppins", sans serif; */
+      background: 0 0;
+      color: #000;
+  }
 
 .dark-content .loginform .form-control:focus {
     outline-color: #101215;

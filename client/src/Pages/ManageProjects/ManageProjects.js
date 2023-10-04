@@ -49,7 +49,6 @@ export default function ManageProjects() {
     const getProjects = async () => {
         let projects = await axios.get(`${proxy.proxy}/portfolio`)
         projects = projects.data;
-        console.log(projects)
         if (projects.length === 0) {
             document.getElementById("projectsTable").style.display = "none"
             document.querySelector(".no-projects").style.display = "block"

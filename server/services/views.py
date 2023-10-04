@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Service, SubServiceImage, Sub_Service, Orders, Cart, Customers
+from .models import Service, SubServiceImage, Sub_Service, Orders, Customers
 from django.http import HttpResponse, JsonResponse, Http404
 import json
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.core.serializers import serialize
+import random
 # Create your views here.
 
 # CRUD OPERATIONS FOR SERVICES: GET, POST, DELETE, UPDATE
@@ -260,14 +261,23 @@ def edit_sub_service(request, sub_service_slug):
 def chain_orders():
     orders = Orders.objects.all()
     all_orders = []
+    customerX = []
     for order in orders:
+        services = []
+        for service in order.services.all():
+            services.append(serialize('json', [service]))
+        for customer in Customers.objects.all():
+            if customer.order == order:
+                customerX = serialize('json', [customer])
+
         order_dict = {
-            "code": order.order_code,
+            "code": order.code,
             "created": order.created,
             "slug": order.slug,
-            "sub_services": order.sub_services,
+            "sub_services": services,
             "extra_notes": order.extra_notes,
-            "cart": serialize('json', [order.cart])
+            "location": order.location,
+            'customer': customerX
         }
         all_orders.append(order_dict)
     return all_orders
@@ -279,81 +289,42 @@ def get_orders(request):
     else:
         return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
 
+@csrf_exempt
+def create_order(request):
+    if request.method == "POST":
+        payload = request.body
+        data = json.loads(payload)
+        characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                      'm','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2'
+                      ,'3','4','5','6','7','8','9','0','#','@','$']
+        threshold = 28
+        order_code = []
+        for i in range(threshold - 1):
+            rand = random.randint(0, len(characters) - 1)
+            order_code.append(characters[rand])
+        order_code = ''.join(order_code)
+        new_order = Orders.objects.create(
+            code = order_code,
+            extra_notes = data["additionalNotes"],
+            location = data["location"],
+            date = data["date"]
+        )
+        services_slug = data["selectedServices"]
+        services = Sub_Service.objects.all()
+        for service in services:
+            for slug in services_slug:
+                if (slug == service.slug):
+                    new_order.services.add(service)
+        new_order.save()
 
-def chain_carts():
-    carts = Cart.objects.all()
-    all_carts = []
-    for cart in carts:
-        cart_dict = {
-            "code": cart.code,
-            "created": cart.created,
-            "services": serialize('json', [cart.services.all()])
-        }
-        all_carts.append(cart_dict)
-    return all_carts
+        # create the customer
+        new_customer = Customers.objects.create(
+            order = new_order,
+            first_name = data["firstName"],
+            last_name = data["lastName"],
+            email = data["email"],
+            phone_number = data["phoneNumber"]
+        )
+        new_customer.save()
 
-def get_carts(request):
-    if request.method == "GET":
-        data = chain_carts()
-        return JsonResponse({"success":True, "data":data}, status = 200)
-    else:
-        return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
-
-def delete_item_from_cart(request, service_slug, cart_pk):
-    if request.method == "GET" or request.GET:
-        try:
-            service = Sub_Service.objects.get(slug = service_slug)
-        except Sub_Service.DoesNotExist:
-            raise Http404("Service does not exist.")
-        try:
-            cart = Cart.objects.get(pk = cart_pk)
-        except Cart.DoesNotExist:
-            raise Http404("Cart does not exist.")
-        
-        for serv in cart.services.all():
-            if (serv.slug == service_slug):
-                cart.services.remove(serv)
-        return JsonResponse(serialize('json', [cart]), status=200, safe=False)
-
-def delete_cart(request, cart_pk):
-    if request.method == "GET" or request.GET:
-        try:
-            cart = Cart.objects.get(pk = cart_pk)
-        except Cart.DoesNotExist:
-            raise Http404("Cart does not exist.")
-        Cart.objects.delete(pk = cart_pk)
-        return JsonResponse({"message": "The cart has been deleted successfully"}, status=200, safe=False)
-    
-def add_item_to_cart(request, cart_pk, service_slug):
-    if request.method == "GET" or request.GET:
-        try:
-            cart = Cart.objects.get(pk = cart_pk)
-        except Cart.DoesNotExist:
-            raise Http404("Cart does not exist.")
-        try:
-            service = Sub_Service.objects.get(slug = service_slug)
-        except Sub_Service.DoesNotExist:
-            raise Http404("Service does not exist.")
-        cart.services.add(service)
-        return JsonResponse({"message": "The cart has been updated successfully"}, status=200, safe=False)
-
-def chain_customers():
-    customers = Customers.objects.all()
-    all_customers = []
-    for customer in customers:
-        customer_dict = {
-            "order": serialize('json', [customer.order]),
-            "first_name": customer.first_name,
-            "last_name": customer.last_name,
-            "phone_number": customer.phone_number,
-            "email": customer.email
-        }
-        all_customers.append(customer_dict)
-    return all_customers
-
-def get_customers(request):
-    if request.method == "GET":
-        data = chain_customers()
-        return JsonResponse({"success":True, "data":data}, status = 200)
-    else:
-        return JsonResponse({"message":"request method not accepted in this server"}, status = 403)
+    return JsonResponse({"message":"Your appointment has been received on our side. Our team shall call you in a moment."}, status = 200, safe = False)

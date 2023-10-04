@@ -43,29 +43,14 @@ class Sub_Service(models.Model):
         verbose_name_plural = "Sub Services"
     
 
-class Cart(models.Model):
+class Orders(models.Model):
     code = models.CharField(max_length=508, null=True)
     created = models.DateTimeField(auto_now_add=True)
     services = models.ManyToManyField(Sub_Service, blank=True, related_name="sub_services_orders")
-    visitor = models.OneToOneField(Visitor, on_delete=models.CASCADE, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.code)
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.code
-
-    class Meta:
-        verbose_name = "Cart"
-        verbose_name_plural = "Carts"
-
-class Orders(models.Model):
-    code = models.CharField(max_length=508, null=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
     extra_notes = models.TextField(null=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
+    location = models.CharField(max_length=508, null=True)
+    date = models.CharField(max_length=100, null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.code)
@@ -79,14 +64,14 @@ class Orders(models.Model):
         verbose_name_plural = "Orders"
 
 class Customers(models.Model):
-    order = models.ForeignKey(Orders, on_delete=models.CASCADE, blank=True, null=True)
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, blank=True, null=True, related_name="customer_order")
     first_name = models.CharField(max_length=254)
     last_name = models.CharField(max_length=254)
     phone_number = models.CharField(max_length=254)
     email = models.EmailField()
 
     def __str__(self):
-        return self.first_name + "" + self.last_name
+        return self.first_name + " " + self.last_name
 
     class Meta:
         verbose_name = "Customer"
