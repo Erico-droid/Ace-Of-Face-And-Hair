@@ -216,3 +216,24 @@
         .dark-content .icons-place .css-i4bv87-MuiSvgIcon-root  {
           color: #fff
         }
+
+
+        @media (max-width: 991px) {
+          .icons-place.icons-place-mobile {
+            display: flex
+          }
+
+          .icons-place.icons-place-desktop {
+            display: none
+          }
+        }
+
+        @media (min-width: 991px) {
+          .icons-place.icons-place-mobile {
+            display: none
+          }
+
+          .icons-place.icons-place-desktop {
+            display: flex
+          }
+        }

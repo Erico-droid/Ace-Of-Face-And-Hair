@@ -13,6 +13,7 @@ class Visitor (models.Model):
     visitorSessionName = models.CharField(max_length=250)
     visit_date = models.DateField(auto_now_add=True)
     visit_darkmode_state = models.BooleanField(default=False)
+    visitor_remote_add = models.CharField(null=True, blank=True)
 
     def __str__(self):
         return self.visitorSessionName

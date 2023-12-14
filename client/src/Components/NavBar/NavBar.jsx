@@ -142,6 +142,28 @@ export default function NavBar(props) {
 				<span className="spanLogo">
 					{ pathName === "/" && windowSize.current[0] > 1000 ? scrollPosition <= 200 ? <h3 className = "wordheading text-right mt-md-3" >Ace Of Face And Hair</h3> : <img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /> : <img src={logo} className="imglogo" alt="Ace of Face and Hair Logo" /> }
 				</span>
+				<div className='icons-place icons-place-mobile'>
+				<div className="social-media order-lg-last darkmode-place">
+		    		<p className="mb-0 d-flex">
+		    			<span className="d-flex align-items-center justify-content-center">{checked ? <DarkModeIcon /> : <LightModeIcon />}</span>
+		    			<ThemeContext.Consumer>
+							{({ changeTheme }) => (
+									<Switch
+									checked={checked}
+									onChange={(evt, SlideTransition) => {
+										handleChange(evt);
+										changeTheme(!checked ? themes.dark : themes.light);
+									}}
+									inputProps={{ 'aria-label': 'controlled', 'id' : 'dark_mode' }}
+									/>
+						)}
+						</ThemeContext.Consumer>
+		    		</p>
+	        </div>
+		      <a onClick={handleDropdown} style={{width:"30px", height: "30px"}} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		        <span>{<WidgetsSharpIcon/>}</span>
+		      </a>
+			  </div>
 		    	{/* <a className="navbar-brand" href="index.html">ace of face and hair</a> */}
 		    	
 		      <div className="collapse navbar-collapse" id="ftco-nav">
@@ -153,7 +175,7 @@ export default function NavBar(props) {
 		          <li className="nav-item"><NavLink to="/contact" className="nav-link" activeclassname="active">Contact</NavLink></li>
 		        </ul>
 		      </div>
-			  <div className='icons-place'>
+			  <div className='icons-place icons-place-desktop'>
 				<div className="social-media order-lg-last darkmode-place">
 		    		<p className="mb-0 d-flex">
 		    			<span className="d-flex align-items-center justify-content-center">{checked ? <DarkModeIcon /> : <LightModeIcon />}</span>

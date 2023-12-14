@@ -11,12 +11,13 @@ class RecordVisitMiddleWare:
         if not request.session.exists(request.session.session_key):
             request.session.create()
             request.session['dark_mode'] = False
-        session_key = request.session.session_key
+        session_key = request.session.session_key        
+        user_ip = request.META.get('REMOTE_ADDR')
 
         try:
             user = Visitor.objects.get(visitorSessionName=session_key)
         except Visitor.DoesNotExist:
-            user = Visitor.objects.create(visitorSessionName=session_key)
+            user = Visitor.objects.create(visitorSessionName=session_key, visitor_remote_add=user_ip)
         except Visitor.MultipleObjectsReturned:
             user = Visitor.objects.filter(visitorSessionName=session_key).first()
 
